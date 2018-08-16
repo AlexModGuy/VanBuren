@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "oldworldblues:shelf_trolley" },
+        "facing=south": { "model": "oldworldblues:shelf_trolley", "y": 180 },
+        "facing=west":  { "model": "oldworldblues:shelf_trolley", "y": 270 },
+        "facing=east":  { "model": "oldworldblues:shelf_trolley", "y": 90 }
+    }
+}

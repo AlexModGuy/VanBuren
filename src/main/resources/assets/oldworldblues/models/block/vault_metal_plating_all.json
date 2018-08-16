@@ -1,0 +1,14 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "oldworldblues:blocks/vault_metal_plating",
+    "down": "oldworldblues:blocks/vault_wall_top",
+    "up": "oldworldblues:blocks/vault_metal_plating",
+    "north": "oldworldblues:blocks/vault_metal_plating_side",
+    "east": "oldworldblues:blocks/vault_metal_plating_side",
+    "south": "oldworldblues:blocks/vault_metal_plating_side",
+    "west": "oldworldblues:blocks/vault_metal_plating_side"
+  }
+}
+
+

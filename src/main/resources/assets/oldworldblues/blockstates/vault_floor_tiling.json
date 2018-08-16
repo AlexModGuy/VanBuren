@@ -1,0 +1,24 @@
+{
+    "multipart": [
+        {   "apply": { "model": "oldworldblues:vault_floor_tiling" }},
+
+        {   "when": { "up": "false" },
+            "apply": { "model": "oldworldblues:vault_floor_tiling_up", "uvlock": false }
+        },
+        {   "when": { "down": "false" },
+            "apply": { "model": "oldworldblues:vault_floor_tiling_down", "uvlock": false }
+        },
+        {   "when": { "east": "false" },
+            "apply": { "model": "oldworldblues:vault_floor_tiling_right", "y" : 0, "uvlock": false }
+        },
+        {   "when": { "west": "false" },
+            "apply": { "model": "oldworldblues:vault_floor_tiling_left", "y" : 0, "uvlock": false }
+        },
+        {   "when": { "north": "false" },
+            "apply": { "model": "oldworldblues:vault_floor_tiling_left", "y" : 90, "uvlock": false }
+        },
+        {   "when": { "south": "false" },
+            "apply": { "model": "oldworldblues:vault_floor_tiling_right", "y" : 90, "uvlock": false }
+        }
+    ]
+}

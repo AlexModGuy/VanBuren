@@ -1,0 +1,9 @@
+{
+	"parent": "oldworldblues:block/nuka_cola",
+	"textures": {
+		"bottle": "oldworldblues:blocks/nuka_cola/nuka_cola_bottle",
+		"cap": "oldworldblues:blocks/nuka_cola/nuka_cola_transparent",
+		"liquid": "oldworldblues:blocks/nuka_cola/nuka_cola_transparent",
+		"particle": "oldworldblues:blocks/nuka_cola/nuka_cola_bottle"
+	}
+}

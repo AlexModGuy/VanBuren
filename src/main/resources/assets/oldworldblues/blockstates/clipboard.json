@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "oldworldblues:clipboard", "y": 180 },
+        "facing=south": { "model": "oldworldblues:clipboard"},
+        "facing=west":  { "model": "oldworldblues:clipboard", "y": 90 },
+        "facing=east":  { "model": "oldworldblues:clipboard", "y": 270 }
+    }
+}

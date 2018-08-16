@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "oldworldblues:vault_crate_brown" },
+        "facing=south": { "model": "oldworldblues:vault_crate_brown", "y": 180 },
+        "facing=west":  { "model": "oldworldblues:vault_crate_brown", "y": 270 },
+        "facing=east":  { "model": "oldworldblues:vault_crate_brown", "y": 90 }
+    }
+}

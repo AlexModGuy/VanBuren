@@ -1,0 +1,12 @@
+{
+    "multipart": [
+        {   "apply": { "model": "oldworldblues:vault_wall" }},
+
+        {   "when": { "up": "false" },
+            "apply": { "model": "oldworldblues:vault_wall_up", "uvlock": false }
+        },
+        {   "when": { "down": "false" },
+            "apply": { "model": "oldworldblues:vault_wall_down", "uvlock": false }
+        }
+    ]
+}

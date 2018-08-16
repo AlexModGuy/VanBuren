@@ -1,0 +1,7 @@
+{
+    "parent": "block/carpet",
+    "textures": {
+        "particle": "oldworldblues:blocks/vault_floor_mat",
+        "wool": "oldworldblues:blocks/vault_floor_mat"
+    }
+}

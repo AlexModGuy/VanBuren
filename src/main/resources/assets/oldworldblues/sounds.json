@@ -1,0 +1,89 @@
+{
+  "interior_vault_door_open": {
+    "category": "neutral",
+    "sounds": [
+      "oldworldblues:interior_vault_door_open"
+    ]
+  },
+  "vault_door_open": {
+    "category": "neutral",
+    "sounds": [
+      "oldworldblues:vault_door_open"
+    ]
+  },
+  "vault_door_slide": {
+    "category": "neutral",
+    "sounds": [
+      "oldworldblues:vault_door_slide"
+    ]
+  },
+  "salesman_villager_trade": {
+    "category": "neutral",
+    "sounds": [
+      "oldworldblues:salesman_villager_trade_0",
+      "oldworldblues:salesman_villager_trade_1"
+    ]
+  },
+  "salesman_villager_idle": {
+    "category": "neutral",
+    "sounds": [
+      "oldworldblues:salesman_villager_idle_0",
+      "oldworldblues:salesman_villager_idle_1"
+    ]
+  },
+  "salesman_villager_hurt": {
+    "category": "neutral",
+    "sounds": [
+      "oldworldblues:salesman_villager_hurt"
+    ]
+  },
+  "salesman_villager_die": {
+    "category": "neutral",
+    "sounds": [
+      "oldworldblues:salesman_villager_die"
+    ]
+  },
+  "vats_start": {
+    "category": "neutral",
+    "sounds": [
+      "oldworldblues:vats_start"
+    ]
+  },
+  "vats_exit": {
+    "category": "neutral",
+    "sounds": [
+      "oldworldblues:vats_exit_0",
+      "oldworldblues:vats_exit_1"
+    ]
+  },
+  "vats_select_target": {
+  "category": "neutral",
+  "sounds": [
+    "oldworldblues:vats_select_target"
+  ]
+},
+  "vats_deselect_target": {
+  "category": "neutral",
+  "sounds": [
+    "oldworldblues:vats_deselect_target"
+  ]
+},
+  "vats_change_target": {
+  "category": "neutral",
+  "sounds": [
+    "oldworldblues:vats_change_target"
+  ]
+},
+  "vats_critical": {
+    "category": "neutral",
+    "sounds": [
+      "oldworldblues:vats_critical"
+    ]
+  },
+  "vats_critical_full": {
+    "category": "neutral",
+    "sounds": [
+      "oldworldblues:vats_critical_full"
+    ]
+  }
+}

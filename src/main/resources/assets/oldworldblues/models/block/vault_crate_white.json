@@ -1,0 +1,51 @@
+{
+	"parent": "block/block",
+	"textures": {
+		"0": "oldworldblues:blocks/crate/vault_crate_white_front",
+		"1": "oldworldblues:blocks/crate/vault_crate_white_top",
+		"2": "oldworldblues:blocks/crate/vault_crate_white_side",
+		"3": "oldworldblues:blocks/crate/vault_crate_white_corner",
+		"particle": "oldworldblues:blocks/crate/vault_crate_white_front"
+	},
+	"elements": [
+		{
+			"name": "center",
+			"from": [1, 1, 3],
+			"to": [15, 11, 13],
+			"faces": {
+				"north": {"uv": [0, 0, 14, 10], "texture": "#0"},
+				"east": {"uv": [0, 0, 10, 10], "texture": "#2"},
+				"south": {"uv": [0, 0, 14, 10], "texture": "#0"},
+				"west": {"uv": [0, 0, 10, 10], "texture": "#2"},
+				"up": {"uv": [0, 0, 14, 10], "texture": "#1"},
+				"down": {"uv": [0, 0, 14, 10], "texture": "#1"}
+			}
+		},
+		{
+			"name": "left",
+			"from": [3, 0, 2],
+			"to": [4, 12, 14],
+			"faces": {
+				"north": {"uv": [0, 0, 1, 12], "texture": "#3"},
+				"east": {"uv": [0, 0, 12, 12], "texture": "#3"},
+				"south": {"uv": [0, 0, 1, 12], "texture": "#3"},
+				"west": {"uv": [0, 0, 12, 12], "texture": "#3"},
+				"up": {"uv": [0, 0, 1, 12], "texture": "#3"},
+				"down": {"uv": [0, 0, 1, 12], "texture": "#3"}
+			}
+		},
+		{
+			"name": "right",
+			"from": [12, 0, 2],
+			"to": [13, 12, 14],
+			"faces": {
+				"north": {"uv": [0, 0, 1, 12], "texture": "#3"},
+				"east": {"uv": [0, 0, 12, 12], "texture": "#3"},
+				"south": {"uv": [0, 0, 1, 12], "texture": "#3"},
+				"west": {"uv": [0, 0, 12, 12], "texture": "#3"},
+				"up": {"uv": [0, 0, 1, 12], "texture": "#3"},
+				"down": {"uv": [0, 0, 1, 12], "texture": "#3"}
+			}
+		}
+	]
+}

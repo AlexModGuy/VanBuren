@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "inventory": { "model": "oldworldblues:grating_slab" },
+        "half=bottom": { "model": "oldworldblues:grating_slab" },
+        "half=top": { "model": "oldworldblues:grating_upper_slab" }
+    }
+}

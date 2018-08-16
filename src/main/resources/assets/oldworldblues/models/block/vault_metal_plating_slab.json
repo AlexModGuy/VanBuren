@@ -1,0 +1,9 @@
+
+{
+    "parent": "block/half_slab",
+    "textures": {
+        "bottom": "oldworldblues:blocks/vault_wall_top",
+        "top": "oldworldblues:blocks/vault_metal_plating",
+        "side": "oldworldblues:blocks/vault_metal_plating_side_stairs_front"
+    }
+}

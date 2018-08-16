@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "inventory": { "model": "oldworldblues:vault_metal_plating_slab" },
+        "half=bottom": { "model": "oldworldblues:vault_metal_plating_slab" },
+        "half=top": { "model": "oldworldblues:vault_metal_plating_upper_slab" }
+    }
+}

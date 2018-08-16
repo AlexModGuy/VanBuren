@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "oldworldblues:coffee_cup" },
+        "facing=south": { "model": "oldworldblues:coffee_cup", "y": 180 },
+        "facing=west":  { "model": "oldworldblues:coffee_cup", "y": 270 },
+        "facing=east":  { "model": "oldworldblues:coffee_cup", "y": 90 }
+    }
+}

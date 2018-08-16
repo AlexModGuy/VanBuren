@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "oldworldblues:vault_door_access", "y": 180 },
+        "facing=south": { "model": "oldworldblues:vault_door_access", "y": 0 },
+        "facing=west":  { "model": "oldworldblues:vault_door_access", "y": 90 },
+        "facing=east":  { "model": "oldworldblues:vault_door_access", "y": 270 }
+    }
+}

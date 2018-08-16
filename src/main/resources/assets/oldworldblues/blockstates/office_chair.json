@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "oldworldblues:office_chair", "y": 180 },
+        "facing=south": { "model": "oldworldblues:office_chair", "y": 0 },
+        "facing=west":  { "model": "oldworldblues:office_chair", "y": 90 },
+        "facing=east":  { "model": "oldworldblues:office_chair", "y": 270 }
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "oldworldblues:computer" },
+        "facing=south": { "model": "oldworldblues:computer", "y": 180 },
+        "facing=west":  { "model": "oldworldblues:computer", "y": 270 },
+        "facing=east":  { "model": "oldworldblues:computer", "y": 90 }
+    }
+}

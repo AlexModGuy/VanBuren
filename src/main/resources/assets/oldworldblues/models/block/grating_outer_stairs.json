@@ -1,0 +1,8 @@
+{
+    "parent": "block/outer_stairs",
+    "textures": {
+        "bottom": "oldworldblues:blocks/grating",
+        "top": "oldworldblues:blocks/grating",
+        "side": "oldworldblues:blocks/grating"
+    }
+}

@@ -1,0 +1,35 @@
+{
+	"parent": "block/block",
+	"textures": {
+		"0": "oldworldblues:blocks/clipboard",
+		"particle": "oldworldblues:blocks/clipboard"
+	},
+	"elements": [
+		{
+			"name": "board",
+			"from": [5, 0, 3],
+			"to": [11, 1, 13],
+			"faces": {
+				"north": {"uv": [0, 9, 6, 10], "texture": "#0"},
+				"east": {"uv": [0, 0, 1, 10], "texture": "#0", "rotation": 270},
+				"south": {"uv": [0, 0, 6, 1], "texture": "#0", "rotation": 180},
+				"west": {"uv": [5, 0, 6, 10], "texture": "#0", "rotation": 270},
+				"up": {"uv": [0, 0, 6, 10], "texture": "#0", "rotation": 180},
+				"down": {"uv": [6, 0, 0, 10], "texture": "#0"}
+			}
+		},
+		{
+			"name": "clip",
+			"from": [6, 0.5, 10],
+			"to": [10, 1.5, 12],
+			"faces": {
+				"north": {"uv": [6, 1, 10, 2], "texture": "#0"},
+				"east": {"uv": [6, 0, 7, 2], "texture": "#0", "rotation": 90},
+				"south": {"uv": [6, 0, 10, 1], "texture": "#0", "rotation": 180},
+				"west": {"uv": [9, 0, 10, 2], "texture": "#0", "rotation": 90},
+				"up": {"uv": [6, 0, 10, 2], "texture": "#0", "rotation": 180},
+				"down": {"uv": [6, 0, 10, 2], "texture": "#0"}
+			}
+		}
+	]
+}

@@ -1,0 +1,12 @@
+{
+    "variants": {
+        "facing=north,half=bottom": { "model": "oldworldblues:vault_beam_bottom" },
+        "facing=south,half=bottom": { "model": "oldworldblues:vault_beam_bottom", "y": 180 },
+        "facing=west,half=bottom":  { "model": "oldworldblues:vault_beam_bottom", "y": 270 },
+        "facing=east,half=bottom":  { "model": "oldworldblues:vault_beam_bottom", "y": 90 },
+        "facing=north,half=top": { "model": "oldworldblues:vault_beam_top" },
+        "facing=south,half=top": { "model": "oldworldblues:vault_beam_top", "y": 180 },
+        "facing=west,half=top":  { "model": "oldworldblues:vault_beam_top", "y": 270 },
+        "facing=east,half=top":  { "model": "oldworldblues:vault_beam_top", "y": 90 }
+    }
+}

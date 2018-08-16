@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "oldworldblues:metal_table_seat", "y": 180 },
+        "facing=south": { "model": "oldworldblues:metal_table_seat", "y": 0 },
+        "facing=west":  { "model": "oldworldblues:metal_table_seat", "y": 90 },
+        "facing=east":  { "model": "oldworldblues:metal_table_seat", "y": 270 }
+    }
+}

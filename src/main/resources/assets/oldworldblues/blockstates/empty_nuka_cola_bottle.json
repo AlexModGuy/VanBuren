@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "oldworldblues:empty_nuka_cola_bottle", "y": 180 },
+        "facing=south": { "model": "oldworldblues:empty_nuka_cola_bottle", "y": 0 },
+        "facing=west":  { "model": "oldworldblues:empty_nuka_cola_bottle", "y": 90 },
+        "facing=east":  { "model": "oldworldblues:empty_nuka_cola_bottle", "y": 270 }
+    }
+}

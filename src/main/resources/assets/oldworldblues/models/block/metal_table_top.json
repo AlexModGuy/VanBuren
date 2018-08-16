@@ -1,0 +1,21 @@
+{
+	"parent": "block/block",
+	"textures": {
+		"particle": "oldworldblues:blocks/metal_table/metal_table_seat_side"
+	},
+	"elements": [
+		{
+			"name": "table",
+			"from": [0, 14, 0],
+			"to": [16, 16, 16],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 2], "texture": "#side"},
+				"east": {"uv": [0, 0, 16, 2], "texture": "#side"},
+				"south": {"uv": [0, 0, 16, 2], "texture": "#side"},
+				"west": {"uv": [0, 0, 16, 2], "texture": "#side"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#top"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#top"}
+			}
+		}
+	]
+}

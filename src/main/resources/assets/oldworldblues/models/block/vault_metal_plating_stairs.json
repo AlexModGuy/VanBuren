@@ -1,0 +1,10 @@
+{
+    "parent": "oldworldblues:block/multi_side_stairs",
+    "textures": {
+        "bottom": "oldworldblues:blocks/vault_wall_top",
+        "top": "oldworldblues:blocks/vault_metal_plating",
+        "side": "oldworldblues:blocks/vault_metal_plating_side_stairs",
+        "front": "oldworldblues:blocks/vault_metal_plating_side_stairs_front",
+        "back": "oldworldblues:blocks/vault_metal_plating_side"
+    }
+}

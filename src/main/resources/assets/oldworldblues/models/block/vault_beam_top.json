@@ -1,0 +1,62 @@
+{
+	"parent": "block/block",
+	"textures": {
+		"0": "oldworldblues:blocks/vault_beam",
+		"1": "oldworldblues:blocks/vault_beam_bottom",
+		"particle": "oldworldblues:blocks/vault_beam"
+	},
+	"elements": [
+		{
+			"name": "bottom",
+			"from": [5, 8, 0],
+			"to": [11, 10, 16],
+			"faces": {
+				"north": {"uv": [0, 14, 6, 16], "texture": "#0"},
+				"east": {"uv": [0, 6, 16, 8], "texture": "#0"},
+				"south": {"uv": [0, 14, 6, 16], "texture": "#0"},
+				"west": {"uv": [0, 6, 16, 8], "texture": "#0"},
+				"up": {"uv": [1, 0, 7, 16], "texture": "#1"},
+				"down": {"uv": [1, 0, 7, 16], "texture": "#1"}
+			}
+		},
+		{
+			"name": "top",
+			"from": [5, 14, 0],
+			"to": [11, 16, 16],
+			"faces": {
+				"north": {"uv": [0, 8, 6, 10], "texture": "#0"},
+				"east": {"uv": [0, 0, 16, 2], "texture": "#0"},
+				"south": {"uv": [0, 8, 6, 10], "texture": "#0"},
+				"west": {"uv": [0, 0, 16, 2], "texture": "#0"},
+				"up": {"uv": [1, 0, 7, 16], "texture": "#1"},
+				"down": {"uv": [1, 0, 7, 16], "texture": "#1"}
+			}
+		},
+		{
+			"name": "front",
+			"from": [5, 10, 0],
+			"to": [11, 14, 6],
+			"faces": {
+				"north": {"uv": [0, 10, 6, 14], "texture": "#0"},
+				"east": {"uv": [0, 10, 6, 14], "texture": "#0"},
+				"south": {"uv": [0, 10, 6, 14], "texture": "#0"},
+				"west": {"uv": [0, 10, 6, 14], "texture": "#0"},
+				"up": {"uv": [0, 9, 6, 15], "texture": "#0"},
+				"down": {"uv": [0, 9, 6, 15], "texture": "#0"}
+			}
+		},
+		{
+			"name": "back",
+			"from": [5, 10, 10],
+			"to": [11, 14, 16],
+			"faces": {
+				"north": {"uv": [0, 10, 6, 14], "texture": "#0"},
+				"east": {"uv": [0, 10, 6, 14], "texture": "#0"},
+				"south": {"uv": [0, 10, 6, 14], "texture": "#0"},
+				"west": {"uv": [0, 10, 6, 14], "texture": "#0"},
+				"up": {"uv": [0, 9, 6, 15], "texture": "#0"},
+				"down": {"uv": [0, 9, 6, 15], "texture": "#0"}
+			}
+		}
+	]
+}

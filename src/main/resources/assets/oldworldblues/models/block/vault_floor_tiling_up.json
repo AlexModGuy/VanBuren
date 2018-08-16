@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "oldworldblues:blocks/vault_floor_tiling_all",
+    "down": "oldworldblues:blocks/vault_floor_tiling_blank",
+    "up": "oldworldblues:blocks/vault_floor_tiling_blank",
+    "north": "oldworldblues:blocks/vault_floor_tiling_up",
+    "east": "oldworldblues:blocks/vault_floor_tiling_up",
+    "south": "oldworldblues:blocks/vault_floor_tiling_up",
+    "west": "oldworldblues:blocks/vault_floor_tiling_up"
+  }
+}
+

@@ -1,0 +1,10 @@
+{
+    "parent": "oldworldblues:block/multi_side_inner_stairs",
+    "textures": {
+        "bottom": "oldworldblues:blocks/vault_wall_top",
+        "top": "oldworldblues:blocks/vault_wall_top",
+        "side": "oldworldblues:blocks/vault_wall_top",
+        "front": "oldworldblues:blocks/vault_wall_top",
+        "back": "oldworldblues:blocks/vault_wall_top"
+    }
+}

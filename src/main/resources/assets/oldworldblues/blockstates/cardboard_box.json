@@ -1,0 +1,12 @@
+{
+    "variants": {
+        "facing=north,open=true": { "model": "oldworldblues:open_cardboard_box", "y": 90 },
+        "facing=south,open=true": { "model": "oldworldblues:open_cardboard_box", "y": 270 },
+        "facing=west,open=true":  { "model": "oldworldblues:open_cardboard_box"},
+        "facing=east,open=true":  { "model": "oldworldblues:open_cardboard_box", "y": 180 },
+        "facing=north,open=false": { "model": "oldworldblues:closed_cardboard_box", "y": 90 },
+        "facing=south,open=false": { "model": "oldworldblues:closed_cardboard_box", "y": 270 },
+        "facing=west,open=false":  { "model": "oldworldblues:closed_cardboard_box" },
+        "facing=east,open=false":  { "model": "oldworldblues:closed_cardboard_box", "y": 180 }
+    }
+}

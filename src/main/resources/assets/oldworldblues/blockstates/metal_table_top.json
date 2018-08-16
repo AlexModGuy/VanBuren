@@ -1,0 +1,17 @@
+{
+    "multipart": [
+        {   "apply": { "model": "oldworldblues:metal_table_top_base" }},
+        {   "when": { "east": "false" },
+            "apply": { "model": "oldworldblues:metal_table_top_right", "y" : 0, "uvlock": false }
+        },
+        {   "when": { "west": "false" },
+            "apply": { "model": "oldworldblues:metal_table_top_left", "y" : 0, "uvlock": false }
+        },
+        {   "when": { "north": "false" },
+            "apply": { "model": "oldworldblues:metal_table_top_left", "y" : 90, "uvlock": false }
+        },
+        {   "when": { "south": "false" },
+            "apply": { "model": "oldworldblues:metal_table_top_right", "y" : 90, "uvlock": false }
+        }
+    ]
+}

@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "inventory": { "model": "oldworldblues:blast_concrete_slab" },
+        "half=bottom": { "model": "oldworldblues:blast_concrete_slab" },
+        "half=top": { "model": "oldworldblues:blast_concrete_upper_slab" }
+    }
+}

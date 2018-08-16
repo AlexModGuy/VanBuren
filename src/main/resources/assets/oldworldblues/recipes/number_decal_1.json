@@ -1,0 +1,19 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "DD ",
+    " D ",
+    "DDD"
+  ],
+  "key": {
+    "D": {
+      "type": "forge:ore_dict",
+      "ore": "dyeYellow"
+    }
+  },
+  "result": {
+    "item": "oldworldblues:number_decal",
+    "data": 1,
+    "count" : 6
+  }
+}

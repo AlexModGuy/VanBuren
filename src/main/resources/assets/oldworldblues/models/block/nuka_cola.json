@@ -1,0 +1,162 @@
+{
+	"parent": "block/block",
+	"elements": [
+		{
+			"name": "liquid1",
+			"from": [6.5, 0.5, 6.5],
+			"to": [9.5, 3.5, 9.5],
+			"faces": {
+				"north": {"uv": [0, 13, 3, 16], "texture": "#liquid"},
+				"east": {"uv": [0, 13, 3, 16], "texture": "#liquid"},
+				"south": {"uv": [0, 13, 3, 16], "texture": "#liquid"},
+				"west": {"uv": [0, 13, 3, 16], "texture": "#liquid"},
+				"up": {"uv": [0, 13, 3, 16], "texture": "#liquid"},
+				"down": {"uv": [0, 13, 3, 16], "texture": "#liquid"}
+			}
+		},
+		{
+			"name": "liquid2",
+			"from": [7, 3.5, 7],
+			"to": [9, 6.5, 9],
+			"faces": {
+				"north": {"uv": [0, 10, 2, 13], "texture": "#liquid"},
+				"east": {"uv": [0, 10, 2, 13], "texture": "#liquid"},
+				"south": {"uv": [0, 10, 2, 13], "texture": "#liquid"},
+				"west": {"uv": [0, 10, 2, 13], "texture": "#liquid"},
+				"up": {"uv": [0, 10, 2, 12], "texture": "#liquid"},
+				"down": {"uv": [0, 10, 2, 12], "texture": "#liquid"}
+			}
+		},
+		{
+			"name": "liquid3",
+			"from": [7.5, 6.5, 7.5],
+			"to": [8.5, 8.5, 8.5],
+			"faces": {
+				"north": {"uv": [0, 8, 1, 10], "texture": "#liquid"},
+				"east": {"uv": [0, 8, 1, 10], "texture": "#liquid"},
+				"south": {"uv": [0, 8, 1, 10], "texture": "#liquid"},
+				"west": {"uv": [0, 8, 1, 10], "texture": "#liquid"},
+				"up": {"uv": [0, 8, 1, 9], "texture": "#liquid"},
+				"down": {"uv": [0, 8, 1, 9], "texture": "#liquid"}
+			}
+		},
+		{
+			"name": "bottom",
+			"from": [6, 0, 6],
+			"to": [10, 4, 10],
+			"faces": {
+				"north": {"uv": [7, 12, 11, 16], "texture": "#bottle"},
+				"east": {"uv": [0, 12, 4, 16], "texture": "#bottle"},
+				"south": {"uv": [0, 12, 4, 16], "texture": "#bottle"},
+				"west": {"uv": [0, 12, 4, 16], "texture": "#bottle"},
+				"up": {"uv": [12, 12, 16, 16], "texture": "#bottle", "rotation": 180},
+				"down": {"uv": [0, 12, 4, 16], "texture": "#bottle"}
+			}
+		},
+		{
+			"name": "wing4",
+			"from": [7.5, 0, 10],
+			"to": [8.5, 3, 11],
+			"faces": {
+				"north": {"uv": [4, 13, 5, 16], "texture": "#bottle"},
+				"east": {"uv": [5, 13, 6, 16], "texture": "#bottle"},
+				"south": {"uv": [5, 13, 6, 16], "texture": "#bottle"},
+				"west": {"uv": [5, 13, 6, 16], "texture": "#bottle"},
+				"up": {"uv": [5, 13, 6, 14], "texture": "#bottle"},
+				"down": {"uv": [5, 13, 6, 14], "texture": "#bottle"}
+			}
+		},
+		{
+			"name": "wing3",
+			"from": [10, 0, 7.5],
+			"to": [11, 3, 8.5],
+			"faces": {
+				"north": {"uv": [5, 13, 6, 16], "texture": "#bottle"},
+				"east": {"uv": [5, 13, 6, 16], "texture": "#bottle"},
+				"south": {"uv": [5, 13, 6, 16], "texture": "#bottle"},
+				"west": {"uv": [6, 13, 7, 16], "texture": "#bottle"},
+				"up": {"uv": [5, 13, 6, 14], "texture": "#bottle"},
+				"down": {"uv": [5, 13, 6, 14], "texture": "#bottle"}
+			}
+		},
+		{
+			"name": "wing2",
+			"from": [5, 0, 7.5],
+			"to": [6, 3, 8.5],
+			"faces": {
+				"north": {"uv": [5, 13, 6, 16], "texture": "#bottle"},
+				"east": {"uv": [4, 13, 5, 16], "texture": "#bottle"},
+				"south": {"uv": [5, 13, 6, 16], "texture": "#bottle"},
+				"west": {"uv": [5, 13, 6, 16], "texture": "#bottle"},
+				"up": {"uv": [5, 13, 6, 14], "texture": "#bottle"},
+				"down": {"uv": [5, 13, 6, 14], "texture": "#bottle"}
+			}
+		},
+		{
+			"name": "wing1",
+			"from": [7.5, 0, 5],
+			"to": [8.5, 3, 6],
+			"faces": {
+				"north": {"uv": [5, 13, 6, 16], "texture": "#bottle"},
+				"east": {"uv": [5, 13, 6, 16], "texture": "#bottle"},
+				"south": {"uv": [4, 13, 5, 16], "texture": "#bottle"},
+				"west": {"uv": [5, 13, 6, 16], "texture": "#bottle"},
+				"up": {"uv": [5, 13, 6, 14], "texture": "#bottle"},
+				"down": {"uv": [5, 13, 6, 14], "texture": "#bottle"}
+			}
+		},
+		{
+			"name": "logo",
+			"from": [6.5, 4, 6.5],
+			"to": [9.5, 7, 6.5],
+			"faces": {
+				"north": {"uv": [7, 9, 10, 12], "texture": "#bottle"},
+				"east": {"uv": [4, 9, 7, 12], "texture": "#bottle"},
+				"south": {"uv": [7, 9, 10, 12], "texture": "#bottle", "rotation": 180},
+				"west": {"uv": [4, 9, 7, 12], "texture": "#bottle", "rotation": 180},
+				"up": {"uv": [13, 9, 16, 12], "texture": "#bottle", "rotation": 180},
+				"down": {"uv": [10, 9, 13, 12], "texture": "#bottle"}
+			}
+		},
+		{
+			"name": "stem1",
+			"from": [6.5, 4, 6.5],
+			"to": [9.5, 7, 9.5],
+			"faces": {
+				"north": {"uv": [7, 9, 10, 12], "texture": "#bottle"},
+				"east": {"uv": [4, 9, 7, 12], "texture": "#bottle"},
+				"south": {"uv": [0, 9, 3, 12], "texture": "#bottle"},
+				"west": {"uv": [4, 9, 7, 12], "texture": "#bottle", "rotation": 180},
+				"up": {"uv": [13, 9, 16, 12], "texture": "#bottle", "rotation": 180},
+				"down": {"uv": [10, 9, 13, 12], "texture": "#bottle"}
+			}
+		},
+
+		{
+			"name": "stem2",
+			"from": [7, 7, 7],
+			"to": [9, 9, 9],
+			"faces": {
+				"north": {"uv": [7, 7, 9, 9], "texture": "#bottle"},
+				"east": {"uv": [5, 7, 7, 9], "texture": "#bottle"},
+				"south": {"uv": [0, 7, 2, 9], "texture": "#bottle"},
+				"west": {"uv": [7, 7, 5, 9], "texture": "#bottle"},
+				"up": {"uv": [14, 7, 16, 9], "texture": "#bottle"},
+				"down": {"uv": [12, 7, 14, 9], "texture": "#bottle"}
+			}
+		},
+		{
+			"name": "cap",
+			"from": [6.5, 9, 6.5],
+			"to": [9.5, 10, 9.5],
+			"faces": {
+				"north": {"uv": [0, 3, 3, 4], "texture": "#cap"},
+				"east": {"uv": [0, 3, 3, 4], "texture": "#cap"},
+				"south": {"uv": [0, 3, 3, 4], "texture": "#cap"},
+				"west": {"uv": [0, 3, 3, 4], "texture": "#cap"},
+				"up": {"uv": [0, 0, 3, 3], "texture": "#cap"},
+				"down": {"uv": [3, 0, 6, 3], "texture": "#cap"}
+			}
+		}
+	]
+}

@@ -1,0 +1,8 @@
+{
+    "parent": "block/stairs",
+    "textures": {
+        "bottom": "oldworldblues:blocks/blast_concrete",
+        "top": "oldworldblues:blocks/blast_concrete",
+        "side": "oldworldblues:blocks/blast_concrete"
+    }
+}

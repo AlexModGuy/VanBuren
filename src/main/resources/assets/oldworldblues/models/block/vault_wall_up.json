@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "oldworldblues:blocks/vault_wall_all",
+    "down": "oldworldblues:blocks/vault_wall_blank",
+    "up": "oldworldblues:blocks/vault_wall_blank",
+    "north": "oldworldblues:blocks/vault_wall_up",
+    "east": "oldworldblues:blocks/vault_wall_up",
+    "south": "oldworldblues:blocks/vault_wall_up",
+    "west": "oldworldblues:blocks/vault_wall_up"
+  }
+}
+

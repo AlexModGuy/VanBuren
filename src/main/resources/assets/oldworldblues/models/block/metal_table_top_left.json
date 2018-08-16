@@ -1,0 +1,7 @@
+{
+	"parent": "oldworldblues:block/metal_table_top",
+	"textures": {
+		"top": "oldworldblues:blocks/metal_table/metal_table_left",
+		"side": "oldworldblues:blocks/metal_table/metal_table_blank"
+	}
+}
