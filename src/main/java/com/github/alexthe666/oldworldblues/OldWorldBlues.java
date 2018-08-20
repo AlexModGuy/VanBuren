@@ -9,6 +9,7 @@ import com.github.alexthe666.oldworldblues.message.MessageAddTargetToMap;
 import com.github.alexthe666.oldworldblues.message.MessageTriggerVats;
 import com.github.alexthe666.oldworldblues.message.MessageUseAP;
 import com.github.alexthe666.oldworldblues.message.MessageVatsTarget;
+import com.github.alexthe666.oldworldblues.structure.OWBWorldGenerator;
 import net.ilexiconn.llibrary.server.config.Config;
 import net.ilexiconn.llibrary.server.entity.EntityPropertiesHandler;
 import net.ilexiconn.llibrary.server.network.NetworkWrapper;
@@ -23,6 +24,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -54,6 +56,7 @@ public class OldWorldBlues
         NetworkRegistry.INSTANCE.registerGuiHandler(OldWorldBlues.INSTANCE, PROXY);
         PROXY.preInit();
         MinecraftForge.EVENT_BUS.register(new VATSServerEvents());
+        GameRegistry.registerWorldGenerator(new OWBWorldGenerator(), 0);
         MinecraftForge.EVENT_BUS.register(PROXY);
         OWBVillagers.init();
     }

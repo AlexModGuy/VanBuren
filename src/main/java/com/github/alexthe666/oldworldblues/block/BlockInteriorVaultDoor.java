@@ -2,9 +2,7 @@ package com.github.alexthe666.oldworldblues.block;
 
 import com.github.alexthe666.oldworldblues.OldWorldBlues;
 import com.github.alexthe666.oldworldblues.block.entity.TileEntityInteriorVaultDoor;
-import com.github.alexthe666.oldworldblues.block.entity.TileEntityVaultDoor;
 import com.github.alexthe666.oldworldblues.init.OWBBlocks;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -12,17 +10,11 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.resources.I18n;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -31,7 +23,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.lwjgl.Sys;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -95,6 +86,18 @@ public class BlockInteriorVaultDoor extends BlockContainer {
                 }
             }
         }
+    }
+
+    public static void onStructureGen(World worldIn, BlockPos pos, IBlockState state) {
+        for (int y = 0; y < 3; y++) {
+            BlockPos ySearch = pos.up(y);
+            for (int xz = 0; xz < 3; xz++) {
+                BlockPos xzSearch = ySearch.offset(state.getValue(FACING).rotateYCCW(), xz);
+                worldIn.setBlockState(xzSearch, OWBBlocks.INTERIOR_VAULT_DOOR_FRAME.getDefaultState().withProperty(BlockInteriorVaultDoorFrame.FACING, state.getValue(FACING)));
+            }
+        }
+        worldIn.setBlockState(pos, OWBBlocks.INTERIOR_VAULT_DOOR.getDefaultState().withProperty(BlockInteriorVaultDoorFrame.FACING, state.getValue(FACING)));
+
     }
 
     @Deprecated
@@ -163,6 +166,15 @@ public class BlockInteriorVaultDoor extends BlockContainer {
             return Blocks.AIR.getDefaultState();
         }
     }
+
+    public IBlockState withRotation(IBlockState state, Rotation rot) {
+        return state.withProperty(FACING, rot.rotate((EnumFacing) state.getValue(FACING)));
+    }
+
+    public IBlockState withMirror(IBlockState state, Mirror mirrorIn) {
+        return state.withRotation(mirrorIn.toRotation((EnumFacing) state.getValue(FACING)));
+    }
+
 
     public boolean canPlaceHere(EntityLivingBase placer, World world, BlockPos pos) {
         for (int y = 0; y < 3; y++) {

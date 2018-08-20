@@ -102,7 +102,6 @@ public class ClientProxy extends CommonProxy {
                 Object obj = f.get(null);
                 if (obj instanceof Block && Item.getItemFromBlock((Block)obj) != null && !(obj instanceof ISpecialItemRender)) {
                     String name = ((Block)obj).getUnlocalizedName().substring(19);
-                    System.out.println(name);
                     ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock((Block)obj), 0, new ModelResourceLocation("oldworldblues:" + name, "inventory"));
 
                 }
@@ -115,9 +114,7 @@ public class ClientProxy extends CommonProxy {
                 Object obj = f.get(null);
                 if (obj instanceof Item && !(obj instanceof ISpecialItemRender)) {
                     String name = ((Item)obj).getUnlocalizedName().substring(19);
-                    System.out.println(name);
                     ModelLoader.setCustomModelResourceLocation((Item)obj, 0, new ModelResourceLocation("oldworldblues:" + name, "inventory"));
-
                 }
             }
         } catch (IllegalAccessException e) {
