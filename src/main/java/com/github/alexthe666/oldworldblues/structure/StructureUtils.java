@@ -30,7 +30,7 @@ public class StructureUtils {
         EnumFacing facing = rotation.rotate(EnumFacing.NORTH);
         int xSize = template.getSize().getX();
         int zSize = template.getSize().getZ();
-        BlockPos center = pos;
+        BlockPos center = rotatePos(template.getSize(), rotation).subtract(pos);
         switch(rotation){
             case NONE:
                 center = pos;
@@ -149,6 +149,7 @@ public class StructureUtils {
                 case LOOT:
                     return new OWBBlockProcessorLoot(pos, settings, loot);
                 case VAULT:
+
                     if(args[0] instanceof WorldGenVault && args[1] instanceof WorldGenVault.RoomType){
                         return new OWBBlockProcessorVault(pos, settings, loot, (WorldGenVault)args[0], (WorldGenVault.RoomType)args[1]);
                     }else{
@@ -162,6 +163,35 @@ public class StructureUtils {
                     }
             }
             return null;
+        }
+    }
+
+    public static BlockPos rotatePos(BlockPos pos, Rotation rotation) {
+        switch (rotation) {
+            case CLOCKWISE_90:
+                return new BlockPos(-pos.getZ(), pos.getY(), pos.getX());
+            case CLOCKWISE_180:
+                return new BlockPos(-pos.getX(), pos.getY(), -pos.getZ());
+            case COUNTERCLOCKWISE_90:
+                return new BlockPos(pos.getZ(), pos.getY(), -pos.getX());
+            default:
+                return pos;
+        }
+    }
+
+    public static BlockPos rotatePos(BlockPos pos, Rotation rotation, int structureX, int structureZ) {
+        switch (rotation) {
+            case CLOCKWISE_90:
+                return pos.add(-structureZ, 0, 0);
+                //return new BlockPos(-pos.getZ(), pos.getY(), pos.getX());
+            case CLOCKWISE_180:
+                return pos.add(-structureX, 0, -structureZ);
+                //return new BlockPos(-pos.getX(), pos.getY(), -pos.getZ());
+            case COUNTERCLOCKWISE_90:
+                return pos.add(structureZ, 0, -structureX);
+            //return new BlockPos(pos.getZ(), pos.getY(), -pos.getX());
+            default:
+                return pos;
         }
     }
 }

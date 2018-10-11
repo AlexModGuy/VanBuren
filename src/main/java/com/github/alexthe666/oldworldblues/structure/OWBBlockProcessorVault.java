@@ -26,7 +26,8 @@ public class OWBBlockProcessorVault extends OWBBlockProcessorLoot {
     @Nullable
     public Template.BlockInfo processBlock(World worldIn, BlockPos pos, Template.BlockInfo blockInfoIn) {
         IBlockState currentState = worldIn.getBlockState(pos);
-        if(currentState.getBlock() == OWBBlocks.INTERIOR_VAULT_DOOR || currentState.getBlock() == OWBBlocks.INTERIOR_VAULT_DOOR_FRAME || currentState.getBlock() == Blocks.DIAMOND_BLOCK){
+
+        if(isVaultBlock(currentState)){
             return null;
         }
         if(blockInfoIn.blockState.getBlock() == Blocks.EMERALD_BLOCK){
@@ -35,19 +36,7 @@ public class OWBBlockProcessorVault extends OWBBlockProcessorLoot {
         if(blockInfoIn.blockState.getBlock() == Blocks.PUMPKIN){
             if(worldIn.rand.nextInt(100) < vaultGen.roomChance) {
                 EnumFacing facing = blockInfoIn.blockState.withRotation(this.rotation).getValue(BlockHorizontal.FACING);
-                BlockPos tunnel_corner = pos.offset(facing.getOpposite(), 1).down(3).offset(facing.rotateY(), 3);
-                switch(this.rotation){
-                    case NONE://Green
-                        break;
-                    case CLOCKWISE_90://Red
-                        break;
-                    case COUNTERCLOCKWISE_90://Yellow
-                        tunnel_corner = tunnel_corner.offset(facing.rotateY(), -6);
-                        break;
-                    case CLOCKWISE_180://Blue
-                        tunnel_corner = tunnel_corner.offset(facing.rotateY(), -6);
-                        break;
-               }
+                BlockPos tunnel_corner = pos.offset(facing.rotateY(), -2).down(2);
                 boolean canGenerateRoom = vaultGen.canGenerateRoom(worldIn, tunnel_corner, worldIn.rand, facing.getOpposite());
                 if(canGenerateRoom) {
                     IBlockState doorState = OWBBlocks.INTERIOR_VAULT_DOOR.getDefaultState().withProperty(BlockInteriorVaultDoor.FACING, facing.getOpposite()); //OWBBlocks.INTERIOR_VAULT_DOOR.getDefaultState().withProperty(BlockInteriorVaultDoor.FACING, facing.rotateYCCW());
@@ -55,15 +44,21 @@ public class OWBBlockProcessorVault extends OWBBlockProcessorLoot {
                     worldIn.setBlockState(door_corner, doorState);
                     BlockInteriorVaultDoor.onStructureGen(worldIn, door_corner, doorState);
 
-                    vaultGen.generateDoor(worldIn, tunnel_corner, worldIn.rand, facing.getOpposite());
+                    vaultGen.generateDoor(worldIn, pos, worldIn.rand, facing.getOpposite());
                 }else{
                     return new Template.BlockInfo(pos, roomType.wallState, null);
                 }
             }else{
-                return new Template.BlockInfo(pos, OWBBlocks.VAULT_WALL.getDefaultState(), null);
+                return new Template.BlockInfo(pos, roomType.wallState, null);
             }
             return null;
         }
         return super.processBlock(worldIn, pos, blockInfoIn);
+    }
+
+    public boolean isVaultBlock(IBlockState state){
+        return state.getBlock() == OWBBlocks.VAULT_FLOOR_TILING || state.getBlock() == OWBBlocks.VAULT_SUPPORT || state.getBlock() == OWBBlocks.VAULT_WALL
+                || state.getBlock() == OWBBlocks.VAULT_DOOR_FRAME || state.getBlock() == OWBBlocks.VAULT_DOOR || state.getBlock() == OWBBlocks.VAULT_BEAM || state.getBlock() == OWBBlocks.VAULT_DOOR_ACCESS
+                || state.getBlock() == OWBBlocks.INTERIOR_VAULT_DOOR || state.getBlock() == OWBBlocks.INTERIOR_VAULT_DOOR_FRAME || state.getBlock() == OWBBlocks.VAULT_RAILING || state.getBlock() == OWBBlocks.VAULT_LIGHTING;
     }
 }

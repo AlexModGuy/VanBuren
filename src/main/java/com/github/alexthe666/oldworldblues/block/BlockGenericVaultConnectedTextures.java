@@ -1,9 +1,7 @@
 package com.github.alexthe666.oldworldblues.block;
 
-import com.github.alexthe666.oldworldblues.OldWorldBlues;
+import com.github.alexthe666.oldworldblues.init.OWBBlocks;
 import net.minecraft.block.Block;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
@@ -55,7 +53,7 @@ public class BlockGenericVaultConnectedTextures extends BlockGenericVault {
     private boolean canFenceConnectTo(IBlockAccess world, BlockPos pos, EnumFacing facing) {
         BlockPos other = pos.offset(facing);
         Block block = world.getBlockState(other).getBlock();
-        return block == this;
+        return block == this || this == OWBBlocks.VAULT_FLOOR_TILING && block == OWBBlocks.VAULT_METAL_PLATING || block == OWBBlocks.VAULT_FLOOR_TILING && this == OWBBlocks.VAULT_METAL_PLATING;
     }
 
     @Override
