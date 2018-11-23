@@ -9,8 +9,8 @@ import com.github.alexthe666.oldworldblues.block.entity.TileEntityInteriorVaultD
 import com.github.alexthe666.oldworldblues.block.entity.TileEntityLocker;
 import com.github.alexthe666.oldworldblues.block.entity.TileEntityOWBStorage;
 import com.github.alexthe666.oldworldblues.block.entity.TileEntityVaultDoor;
-import com.github.alexthe666.oldworldblues.client.gui.GuiVATSCombat;
 import com.github.alexthe666.oldworldblues.client.gui.GuiOWBStorage;
+import com.github.alexthe666.oldworldblues.client.gui.GuiVATSCombat;
 import com.github.alexthe666.oldworldblues.client.model.ModelVaultJumpsuit;
 import com.github.alexthe666.oldworldblues.client.model.ModelVaultSecurityArmor;
 import com.github.alexthe666.oldworldblues.client.render.entity.RenderSalesmanVillager;
@@ -20,6 +20,7 @@ import com.github.alexthe666.oldworldblues.client.render.entity.tile.RenderInter
 import com.github.alexthe666.oldworldblues.client.render.entity.tile.RenderLocker;
 import com.github.alexthe666.oldworldblues.client.render.entity.tile.RenderVaultDoor;
 import com.github.alexthe666.oldworldblues.client.render.item.OWBTEISR;
+import com.github.alexthe666.oldworldblues.client.render.item.VaultMapItemRenderer;
 import com.github.alexthe666.oldworldblues.entity.EntitySalesmanVillager;
 import com.github.alexthe666.oldworldblues.entity.EntitySeat;
 import com.github.alexthe666.oldworldblues.entity.EntityVaultTecPoster;
@@ -71,7 +72,8 @@ public class ClientProxy extends CommonProxy {
     private static final ModelBiped VAULT_SECURITY_MODEL_LEGS = new ModelVaultSecurityArmor(0.15F, false);
     private static final ModelBiped VAULT_SECURITY_MODEL_SMALLARMS = new ModelVaultSecurityArmor(0.2F, true);
     private static final ModelBiped VAULT_SECURITY_MODEL_LEGS_SMALLARMS = new ModelVaultSecurityArmor(0.15F, true);
-    
+    public static VaultMapItemRenderer mapItemRenderer;
+
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
     public static void registerModels(ModelRegistryEvent event) {
@@ -80,6 +82,8 @@ public class ClientProxy extends CommonProxy {
         ModelLoader.setCustomStateMapper(OWBBlocks.INTERIOR_VAULT_DOOR, (new StateMap.Builder()).ignore(BlockInteriorVaultDoor.FACING).build());
         ModelLoader.setCustomStateMapper(OWBBlocks.INTERIOR_VAULT_DOOR_FRAME, (new StateMap.Builder()).ignore(BlockInteriorVaultDoorFrame.FACING).build());
         ModelLoader.setCustomModelResourceLocation(OWBItems.PIPBOY3000IV, 0, new ModelResourceLocation("oldworldblues:pipboy3000iv", "inventory"));
+        ModelLoader.setCustomModelResourceLocation(OWBItems.VAULT_MAP, 0, new ModelResourceLocation("oldworldblues:vault_map", "inventory"));
+        ModelLoader.setCustomModelResourceLocation(OWBItems.FILLED_VAULT_MAP, 0, new ModelResourceLocation("oldworldblues:filled_vault_map", "inventory"));
         ModelBakery.registerItemVariants(OWBItems.NUMBER_DECAL, new ResourceLocation("oldworldblues:number_decal_0"), new ResourceLocation("oldworldblues:number_decal_1"), new ResourceLocation("oldworldblues:number_decal_2"),
                 new ResourceLocation("oldworldblues:number_decal_3"), new ResourceLocation("oldworldblues:number_decal_4"), new ResourceLocation("oldworldblues:number_decal_5"), new ResourceLocation("oldworldblues:number_decal_6"),
                 new ResourceLocation("oldworldblues:number_decal_7"), new ResourceLocation("oldworldblues:number_decal_8"), new ResourceLocation("oldworldblues:number_decal_9"));
@@ -132,11 +136,14 @@ public class ClientProxy extends CommonProxy {
     }
 
     public void postInit(){
+        mapItemRenderer = new VaultMapItemRenderer(Minecraft.getMinecraft().getTextureManager());
         VATSClientEvents.initializeVATSRenderLayer();
         OWBItems.PIPBOY3000IV.setTileEntityItemStackRenderer(TEISR);
+        OWBItems.FILLED_VAULT_MAP.setTileEntityItemStackRenderer(TEISR);
         Item.getItemFromBlock(OWBBlocks.VAULT_DOOR).setTileEntityItemStackRenderer(TEISR);
         Item.getItemFromBlock(OWBBlocks.INTERIOR_VAULT_DOOR).setTileEntityItemStackRenderer(TEISR);
         Item.getItemFromBlock(OWBBlocks.LOCKER_BOTTOM).setTileEntityItemStackRenderer(TEISR);
+
     }
 
     public void openVatsCombatGui(){

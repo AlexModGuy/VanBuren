@@ -69,7 +69,7 @@ public class OWBBlocks {
     public static final Block VAULT_CRATE_BLUE = new BlockVaultCrate("blue");
     @GameRegistry.ObjectHolder(OldWorldBlues.MODID + ":cardboard_box")
     public static final Block CARDBOARD_BOX = new BlockCardboardBox();
-    @GameRegistry.ObjectHolder(OldWorldBlues.MODID + ":metal_table_top")
+            @GameRegistry.ObjectHolder(OldWorldBlues.MODID + ":metal_table_top")
     public static final Block METAL_TABLE_TOP = new BlockMetalTableTop();
     @GameRegistry.ObjectHolder(OldWorldBlues.MODID + ":metal_table_seat")
     public static final Block METAL_TABLE_SEAT = new BlockMetalTableSeat();

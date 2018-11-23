@@ -6,12 +6,10 @@ import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -20,7 +18,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockMetalTableSeat extends BlockHorizontal implements ISittable{
+public class BlockMetalTableSeat extends BlockHorizontal implements ISittable, IDecorationBlock{
 
     protected static final AxisAlignedBB AABB_SOUTH = new AxisAlignedBB(0.0D, 0D, 0.25D, 1.0D, 0.5D, 1.0D);
     protected static final AxisAlignedBB AABB_NORTH = new AxisAlignedBB(0.0D, 0D, 0.0D, 1.0D, 0.5D, 0.75D);

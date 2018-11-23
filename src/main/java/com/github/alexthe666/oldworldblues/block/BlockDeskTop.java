@@ -14,7 +14,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockDeskTop extends Block {
+public class BlockDeskTop extends Block implements IDecorationBlock {
 
     protected static final AxisAlignedBB AABB = new AxisAlignedBB(0.0D, 0.875D, 0.0D, 1, 1, 1);
 

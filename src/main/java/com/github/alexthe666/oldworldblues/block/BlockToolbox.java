@@ -5,7 +5,6 @@ import com.github.alexthe666.oldworldblues.OldWorldBlues;
 import com.github.alexthe666.oldworldblues.block.entity.TileEntityOWBStorage;
 import com.github.alexthe666.oldworldblues.init.OWBBlocks;
 import net.minecraft.block.BlockContainer;
-import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -13,7 +12,6 @@ import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -28,9 +26,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
-import java.util.List;
 
-public class BlockToolbox extends BlockContainer {
+public class BlockToolbox extends BlockContainer implements IDecorationBlock {
 
     public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
     protected AxisAlignedBB AABB_NORTH = OWBBlocks.generateAABBFromPixels(2F, 0F, 4F, 14F, 7F, 12F);

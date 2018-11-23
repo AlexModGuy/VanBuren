@@ -10,14 +10,16 @@ import java.util.Random;
 
 public class OWBWorldGenerator implements IWorldGenerator{
 
-    private static final WorldGenVault VAULT_GEN = new WorldGenVault();
-
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
         int x = chunkX * 16;
         int z = chunkZ * 16;
-        if(chunkX % 8 == 0 && chunkZ % 8 == 0 && random.nextInt(3) == 0){
-            VAULT_GEN.generate(world, random, new BlockPos(x, 10 + random.nextInt(70), z));
+        if(chunkX % 8 == 0 && chunkZ % 8 == 0){
+            int x2 = x + random.nextInt(15);
+            int z2 = z + random.nextInt(15);
+            BlockPos centerPos = world.getHeight(new BlockPos(x2, 0, z2));
+            int y2 = Math.max(centerPos.getY() - (40 + random.nextInt(20)), 10);
+            new WorldGenVault().generate(world, random, new BlockPos(x2, y2, z2));
         }
     }
 }

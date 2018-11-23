@@ -28,7 +28,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class BlockVaultCrate extends BlockContainer implements IBlockStackable {
+public class BlockVaultCrate extends BlockContainer implements IBlockStackable, IDecorationBlock {
 
     protected static AxisAlignedBB AABB_SOUTH = new AxisAlignedBB(0.0625D, 0D, 0.125D, 0.9375D, 0.75D, 0.875D);
     protected static AxisAlignedBB AABB_NORTH = new AxisAlignedBB(0.0625D, 0D, 0.125D, 0.9375D, 0.75D, 0.875D);

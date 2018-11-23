@@ -1,26 +1,21 @@
 package com.github.alexthe666.oldworldblues.structure;
 
 import com.github.alexthe666.oldworldblues.OldWorldBlues;
-import com.github.alexthe666.oldworldblues.block.BlockInteriorVaultDoor;
-import com.github.alexthe666.oldworldblues.block.BlockInteriorVaultDoorFrame;
-import com.github.alexthe666.oldworldblues.block.BlockVaultBeam;
-import com.github.alexthe666.oldworldblues.block.BlockVaultLighting;
+import com.github.alexthe666.oldworldblues.block.*;
 import com.github.alexthe666.oldworldblues.init.OWBBlocks;
-import net.minecraft.block.BlockColored;
-import net.minecraft.block.BlockGlazedTerracotta;
-import net.minecraft.block.BlockHorizontal;
-import net.minecraft.block.BlockRotatedPillar;
+import com.github.alexthe666.oldworldblues.world.OWBWorldData;
+import com.github.alexthe666.oldworldblues.world.VaultData;
+import com.google.common.collect.Maps;
+import net.minecraft.block.*;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.Mirror;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
@@ -30,6 +25,7 @@ import net.minecraft.world.storage.loot.LootTableList;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 public class WorldGenVault extends WorldGenerator {
@@ -43,77 +39,104 @@ public class WorldGenVault extends WorldGenerator {
     public static final ResourceLocation VAULT_ROOM_BUNKS = new ResourceLocation(OldWorldBlues.MODID, "vault_room_bunks");
     public static final ResourceLocation VAULT_ROOM_OFFICE = new ResourceLocation(OldWorldBlues.MODID, "vault_room_office");
     public static final ResourceLocation VAULT_ROOM_STORAGE = new ResourceLocation(OldWorldBlues.MODID, "vault_room_storage");
+    public static final ResourceLocation DEBUG = new ResourceLocation(OldWorldBlues.MODID, "debug");
     public List<BlockPos> doorPositions;
     public int roomChance = 200;
     public int tunnelLength;
     public int doorCount = 0;
+    public int currentRooms = 0;
+    public int maxRooms = 0;
     public RoomType nextRoom;
     public AxisAlignedBB nextRoomAABB;
-    private EnumFacing nextRoomFacing;
-    public List<RoomType> possibleRooms;
+    public EnumFacing nextRoomFacing;
     public List<AxisAlignedBB> roomAABBs;
     public int size;
     public BlockPos start;
-
+    public Random random;
+    //Air blocks for decoration that are ON THE GROUND
+    private Map<BlockPos, RoomType> emeraldBlocks;
+    //Air blocks for decoration that are AGAINST A WALL or ABOVE A DESK
+    private Map<BlockPos, RoomType> diamondBlocks;
+    //Air blocks for decoration that are ABOVE EMERALD BLOCKS
+    private Map<BlockPos, RoomType> goldBlocks;
+    public static Random ROOM_RANDOM;
+    private boolean hasAtrium;
     @Override
     public boolean generate(World worldIn, Random rand, BlockPos position) {
+        hasAtrium = false;
         doorPositions = new ArrayList<>();
-        possibleRooms = new ArrayList<>();
         roomAABBs = new ArrayList<>();
+        emeraldBlocks =  Maps.newHashMap();
+        diamondBlocks =  Maps.newHashMap();
+        goldBlocks =  Maps.newHashMap();
         doorCount = 0;
         size = 0;
-        for(RoomType room : RoomType.values()){
-            possibleRooms.add(room);
-        }
-        roomChance = 200;
+        roomChance = 100;
+        currentRooms = 0;
+        maxRooms = 6 + rand.nextInt(11);
         start = position;
-        nextRoomFacing = EnumFacing.NORTH;
+        nextRoomFacing = EnumFacing.getHorizontal(rand.nextInt(3));
+        EnumFacing facingNow = EnumFacing.getHorizontal(rand.nextInt(3));
+        random = rand;
+        generateCaveEnterance(worldIn, position.offset(facingNow.getOpposite(), 9).offset(facingNow.rotateY(), 8).down(2), rand, facingNow.getOpposite());
+        tryGenerateRoom(VAULT_ROOM_ENTRANCE, worldIn, position, rand, getRotationFromFacing(facingNow), false, false, StructureUtils.ProcessorType.VAULT, LootTableList.EMPTY, this, RoomType.ENTERANCE);
+        tryGenerateRoom(VAULT_ROOM_ENTRANCE_OUTSIDE, worldIn, position.offset(facingNow.getOpposite(), 12).offset(facingNow.rotateY(), 5), rand, getRotationFromFacing(facingNow), false, false, StructureUtils.ProcessorType.VAULT_DECO, LootTableList.EMPTY, this, RoomType.ENTERANCE);
+        checkAndAddAABB(RoomType.ENTERANCE, worldIn, position, getRotationFromFacing(facingNow), this);
+        OWBWorldData.addVault(worldIn, new VaultData(position, position));
+        worldIn.setBlockState(position, Blocks.DIAMOND_BLOCK.getDefaultState());
+        decorateRooms(worldIn, rand);
         nextRoomAABB = null;
-        tryGenerateRoom(VAULT_ROOM_ENTRANCE, worldIn, position, rand, getRotationFromFacing(EnumFacing.getHorizontal(rand.nextInt(3))), false, false, StructureUtils.ProcessorType.VAULT, LootTableList.EMPTY, this);
         return true;
     }
 
-    public boolean canGenerateRoom(World world, BlockPos doorPos, Random random, EnumFacing facing) {
-        nextRoom = RoomType.getRandom(possibleRooms);
-        nextRoomFacing = EnumFacing.getHorizontal(random.nextInt(3));
-        TemplateManager templateManager = world.getSaveHandler().getStructureTemplateManager();
-        Template template = templateManager.getTemplate(world.getMinecraftServer(), nextRoom.structure);
-        int largestSize = Math.max(template.getSize().getX(), template.getSize().getZ());
-        tunnelLength = (largestSize / 4) + 2;
-        int actualLength = tunnelLength * 4;
-        BlockPos pathPos = doorPos.offset(facing, actualLength);
-        AxisAlignedBB boundingBox = rotateAABB(nextRoom.getAABB(world), nextRoomFacing).offset(pathPos);
-        AxisAlignedBB tunnelBox = rotateAABB(new AxisAlignedBB(0, 0, -1, 7, 7, actualLength - 1), facing).offset(doorPos);
-        for(AxisAlignedBB box : roomAABBs){
-            if (box.intersects(boundingBox)) {
-                return false;
+    private void generateCaveEnterance(World worldIn, BlockPos offset, Random rand, EnumFacing facing) {
+        int size = 3;
+        BlockPos pos = offset;
+        while(!worldIn.canBlockSeeSky(pos.offset(facing, 2).down())) {
+            pos = pos.offset(facing).up();
+            for (float i = 0; i < size; i += 0.5) {
+                for (float j = 0; j < 2 * Math.PI * i; j += 0.5) {
+                    int x = (int) Math.floor(Math.sin(j) * i);
+                    int z = (int) Math.floor(Math.cos(j) * i);
+                    if (facing.getAxis() == EnumFacing.Axis.Z) {
+                        worldIn.setBlockToAir(pos.add(x, z, 0));
+                    } else {
+                        worldIn.setBlockToAir(pos.add(0, z, x));
+
+                    }
+                }
             }
         }
-        nextRoomAABB = boundingBox;
-        return checkIfRoomCanGenerate(nextRoom, world, pathPos.offset(facing.getOpposite().rotateY(), 3).up(), random, getRotationFromFacing(nextRoomFacing), false, false, StructureUtils.ProcessorType.VAULT, LootTableList.EMPTY, this);
     }
 
-    public void generateDoor(World world, BlockPos doorPos, Random random, EnumFacing facing){
+    public boolean canGenerateRoom(World world, BlockPos doorPos, Random random, EnumFacing facing) {
+        nextRoom = RoomType.getRandom(this);
+        tunnelLength = random.nextInt(3) + 2;
+        int actualLength = tunnelLength * 4;
+        BlockPos pathPos = doorPos.offset(facing, actualLength);
+        BlockPos roomPos = pathPos.up().offset(facing.getOpposite()).offset(facing.rotateY());
+        return checkAndAddAABB(nextRoom, world, offsetRoom(world, roomPos, facing, nextRoom.structure), getRotationFromFacing(facing), this);
+    }
+
+    public void generateDoor(World world, BlockPos doorPos, Random random, EnumFacing facing) {
         doorCount++;
-        TemplateManager templateManager = world.getSaveHandler().getStructureTemplateManager();
-        Template template = templateManager.getTemplate(world.getMinecraftServer(), nextRoom.structure);
-        int largestSize = Math.max(template.getSize().getX(), template.getSize().getZ());
+        nextRoomFacing = facing;
         doorPositions.add(doorPos);
         roomChance = Math.round(roomChance * 0.75F);
         BlockPos pathPos = doorPos.offset(facing.getOpposite().rotateY(), -3).down(4);
         int segments = 0;
-        world.setBlockState(doorPos.up(7), Blocks.COBBLESTONE.getDefaultState(), 2);
-        world.setBlockState(doorPos.up(8), Blocks.PUMPKIN.getDefaultState().withProperty(BlockHorizontal.FACING, facing), 2);
 
-        while(segments < tunnelLength && generateTunnel(world, pathPos, facing)) {
+        while (segments < tunnelLength && generateTunnel(world, pathPos, facing)) {
             segments++;
             pathPos = pathPos.offset(facing, 4);
+
         }
         BlockPos basePosition = pathPos.offset(facing.getOpposite().rotateY(), 4).up(3);
         IBlockState doorState = OWBBlocks.INTERIOR_VAULT_DOOR.getDefaultState().withProperty(BlockInteriorVaultDoor.FACING, facing.getOpposite());
-        tryGenerateRoom(nextRoom, world, pathPos.up(), random, getRotationFromFacing(nextRoomFacing), false, false, StructureUtils.ProcessorType.VAULT, LootTableList.EMPTY, this);
+        BlockPos roomPos = pathPos.up().offset(facing.getOpposite()).offset(facing.rotateY());
+        tryGenerateRoom(nextRoom, world, offsetRoom(world, roomPos, nextRoomFacing, nextRoom.structure), random, getRotationFromFacing(nextRoomFacing), false, false, StructureUtils.ProcessorType.VAULT, LootTableList.EMPTY, this);
 
-        switch(getRotationFromFacing(nextRoomFacing)){
+        switch (getRotationFromFacing(nextRoomFacing)) {
             case NONE:
                 world.setBlockState(pathPos.offset(facing.getOpposite().rotateY(), 6).up().down(6), Blocks.GREEN_GLAZED_TERRACOTTA.getDefaultState().withProperty(BlockGlazedTerracotta.FACING, facing));
                 break;
@@ -122,7 +145,6 @@ public class WorldGenVault extends WorldGenerator {
                 break;
             case COUNTERCLOCKWISE_90:
                 world.setBlockState(pathPos.offset(facing.getOpposite().rotateY(), 6).up().down(6), Blocks.YELLOW_GLAZED_TERRACOTTA.getDefaultState().withProperty(BlockGlazedTerracotta.FACING, facing));
-
                 break;
             case CLOCKWISE_180:
                 world.setBlockState(pathPos.offset(facing.getOpposite().rotateY(), 6).up().down(6), Blocks.BLUE_GLAZED_TERRACOTTA.getDefaultState().withProperty(BlockGlazedTerracotta.FACING, facing));
@@ -138,34 +160,33 @@ public class WorldGenVault extends WorldGenerator {
             }
         }
         world.setBlockState(basePosition, doorState, 2);
-        world.setBlockState(basePosition.offset(facing), Blocks.COBBLESTONE.getDefaultState(), 2);
-        world.setBlockState(basePosition.offset(facing).up(), Blocks.PUMPKIN.getDefaultState().withProperty(BlockHorizontal.FACING, facing), 2);
     }
 
-    private boolean generateTunnel(World world, BlockPos pos, EnumFacing facing){
-        if(!this.roomAABBs.isEmpty()){
-            for(AxisAlignedBB box : this.roomAABBs){
-                if(box.contains(new Vec3d(pos))){
-                    return false;
-                }
-            }
-        }
-        tunnelBase(world, pos, facing, false);
-        tunnelBase(world, pos.offset(facing), facing, true);
-        tunnelBase(world, pos.offset(facing, 2), facing, false);
-        tunnelSupport(world, pos.offset(facing, 3), facing);
+    private BlockPos offsetRoom(World world, BlockPos start, EnumFacing facing, ResourceLocation struct) {
+        TemplateManager templateManager = world.getSaveHandler().getStructureTemplateManager();
+        Template template = templateManager.getTemplate(world.getMinecraftServer(), struct);
+        int x = template.getSize().getX();
+        int z = template.getSize().getZ();
+        return start.offset(facing, z).offset(facing.rotateYCCW(), x);
+    }
+
+    private boolean generateTunnel(World world, BlockPos pos, EnumFacing facing) {
+        tunnelBase(world, pos, facing, false, false);
+        tunnelBase(world, pos.offset(facing), facing, true, false);
+        tunnelBase(world, pos.offset(facing, 2), facing, false, false);
+        tunnelSupport(world, pos.offset(facing, 3), facing, false);
         return true;
     }
 
-    private void tunnelSupport(World world, BlockPos pos, EnumFacing facing){
+    private void tunnelSupport(World world, BlockPos pos, EnumFacing facing, boolean stairs) {
         pos = pos.offset(facing);
-        for(int x = 0; x < 7; x++) {
+        for (int x = 0; x < 7; x++) {
             for (int y = 0; y < 7; y++) {
                 BlockPos frame = pos.offset(facing.rotateYCCW(), x).up(y + 1);
                 world.setBlockState(frame, OWBBlocks.BLAST_CONCRETE.getDefaultState());
             }
         }
-        for(int x = 2; x < 5; x++) {
+        for (int x = 2; x < 5; x++) {
             for (int y = 2; y < 5; y++) {
                 BlockPos frame = pos.offset(facing.rotateYCCW(), x).up(y + 1);
                 world.setBlockState(frame, Blocks.AIR.getDefaultState());
@@ -187,20 +208,33 @@ public class WorldGenVault extends WorldGenerator {
         world.setBlockState(pos.offset(facing.rotateYCCW(), 3).up(5), OWBBlocks.VAULT_BEAM.getDefaultState().withProperty(BlockHorizontal.FACING, facing.rotateYCCW()).withProperty(BlockVaultBeam.HALF, BlockVaultBeam.Half.TOP));
         world.setBlockState(pos.offset(facing.rotateYCCW(), 4).up(5), OWBBlocks.VAULT_BEAM.getDefaultState().withProperty(BlockHorizontal.FACING, facing.rotateYCCW()).withProperty(BlockVaultBeam.HALF, BlockVaultBeam.Half.TOP));
 
-        world.setBlockState(pos.offset(facing.rotateYCCW(), 2).up(2), OWBBlocks.VAULT_FLOOR_TILING.getDefaultState());
-        world.setBlockState(pos.offset(facing.rotateYCCW(), 3).up(2), OWBBlocks.VAULT_FLOOR_TILING.getDefaultState());
-        world.setBlockState(pos.offset(facing.rotateYCCW(), 4).up(2), OWBBlocks.VAULT_FLOOR_TILING.getDefaultState());
+        if(stairs){
+            world.setBlockState(pos.offset(facing.rotateYCCW(), 2).up(2), OWBBlocks.VAULT_METAL_PLATING_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, facing.getOpposite()));
+            world.setBlockState(pos.offset(facing.rotateYCCW(), 3).up(2), OWBBlocks.VAULT_METAL_PLATING_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, facing.getOpposite()));
+            world.setBlockState(pos.offset(facing.rotateYCCW(), 4).up(2), OWBBlocks.VAULT_METAL_PLATING_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, facing.getOpposite()));
+        }else{
+            world.setBlockState(pos.offset(facing.rotateYCCW(), 2).up(2), OWBBlocks.VAULT_FLOOR_TILING.getDefaultState());
+            world.setBlockState(pos.offset(facing.rotateYCCW(), 3).up(2), OWBBlocks.VAULT_FLOOR_TILING.getDefaultState());
+            world.setBlockState(pos.offset(facing.rotateYCCW(), 4).up(2), OWBBlocks.VAULT_FLOOR_TILING.getDefaultState());
+        }
+
+        emeraldBlocks.put(pos.offset(facing.rotateYCCW(), 2).up(3), RoomType.TUNNEL);
+        emeraldBlocks.put(pos.offset(facing.rotateYCCW(), 3).up(3), RoomType.TUNNEL);
+        emeraldBlocks.put(pos.offset(facing.rotateYCCW(), 4).up(3), RoomType.TUNNEL);
+        diamondBlocks.put(pos.offset(facing.rotateYCCW(), 2).up(4), RoomType.TUNNEL);
+        goldBlocks.put(pos.offset(facing.rotateYCCW(), 3).up(4), RoomType.TUNNEL);
+        diamondBlocks.put(pos.offset(facing.rotateYCCW(), 4).up(4), RoomType.TUNNEL);
     }
 
-    private void tunnelBase(World world, BlockPos pos, EnumFacing facing, boolean light){
+    private void tunnelBase(World world, BlockPos pos, EnumFacing facing, boolean light, boolean stairs) {
         pos = pos.offset(facing);
-        for(int x = 0; x < 7; x++) {
+        for (int x = 0; x < 7; x++) {
             for (int y = 0; y < 7; y++) {
                 BlockPos frame = pos.offset(facing.rotateYCCW(), x).up(y + 1);
                 world.setBlockState(frame, OWBBlocks.BLAST_CONCRETE.getDefaultState());
             }
         }
-        for(int x = 2; x < 5; x++) {
+        for (int x = 2; x < 5; x++) {
             for (int y = 2; y < 5; y++) {
                 BlockPos frame = pos.offset(facing.rotateYCCW(), x).up(y + 1);
                 world.setBlockState(frame, Blocks.AIR.getDefaultState());
@@ -217,36 +251,36 @@ public class WorldGenVault extends WorldGenerator {
         world.setBlockState(pos.offset(facing.rotateYCCW(), 2).up(6), OWBBlocks.VAULT_WALL.getDefaultState());
         world.setBlockState(pos.offset(facing.rotateYCCW(), 3).up(6), OWBBlocks.VAULT_WALL.getDefaultState());
         world.setBlockState(pos.offset(facing.rotateYCCW(), 4).up(6), OWBBlocks.VAULT_WALL.getDefaultState());
-        if(light) {
+        if (light) {
             world.setBlockState(pos.offset(facing.rotateYCCW(), 3).up(5), OWBBlocks.VAULT_LIGHTING.getDefaultState().withProperty(BlockHorizontal.FACING, facing).withProperty(BlockVaultLighting.HALF, BlockVaultLighting.Half.TOP));
         }
-        world.setBlockState(pos.offset(facing.rotateYCCW(), 2).up(2), OWBBlocks.VAULT_FLOOR_TILING.getDefaultState());
-        world.setBlockState(pos.offset(facing.rotateYCCW(), 3).up(2), OWBBlocks.VAULT_FLOOR_TILING.getDefaultState());
-        world.setBlockState(pos.offset(facing.rotateYCCW(), 4).up(2), OWBBlocks.VAULT_FLOOR_TILING.getDefaultState());
+        if(stairs){
+            world.setBlockState(pos.offset(facing.rotateYCCW(), 2).up(2), OWBBlocks.VAULT_METAL_PLATING_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, facing.getOpposite()));
+            world.setBlockState(pos.offset(facing.rotateYCCW(), 3).up(2), OWBBlocks.VAULT_METAL_PLATING_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, facing.getOpposite()));
+            world.setBlockState(pos.offset(facing.rotateYCCW(), 4).up(2), OWBBlocks.VAULT_METAL_PLATING_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, facing.getOpposite()));
+        }else{
+            world.setBlockState(pos.offset(facing.rotateYCCW(), 2).up(2), OWBBlocks.VAULT_FLOOR_TILING.getDefaultState());
+            world.setBlockState(pos.offset(facing.rotateYCCW(), 3).up(2), OWBBlocks.VAULT_FLOOR_TILING.getDefaultState());
+            world.setBlockState(pos.offset(facing.rotateYCCW(), 4).up(2), OWBBlocks.VAULT_FLOOR_TILING.getDefaultState());
+        }
+        emeraldBlocks.put(pos.offset(facing.rotateYCCW(), 2).up(3), RoomType.TUNNEL);
+        emeraldBlocks.put(pos.offset(facing.rotateYCCW(), 4).up(3), RoomType.TUNNEL);
+        diamondBlocks.put(pos.offset(facing.rotateYCCW(), 2).up(4), RoomType.TUNNEL);
+        diamondBlocks.put(pos.offset(facing.rotateYCCW(), 4).up(4), RoomType.TUNNEL);
     }
 
-
-    private EnumFacing getNextRotation(EnumFacing facing, Random random){
-        EnumFacing next;
-        do{
-            next = EnumFacing.HORIZONTALS[random.nextInt(EnumFacing.HORIZONTALS.length - 1)];
-        }while(next != facing.getOpposite());
-        return next;
-    }
-
-    public boolean addAABB(BlockPos pos, AxisAlignedBB box, EnumFacing facing){
-        AxisAlignedBB aabb = rotateAABB(box, facing).offset(pos);
-        for(AxisAlignedBB aabb2 : roomAABBs){
-            if (aabb.intersects(aabb2)) {
+    public boolean addAABB(AxisAlignedBB box) {
+        for (AxisAlignedBB rooms : roomAABBs) {
+            if (rooms.intersects(box)) {
                 return false;
             }
         }
-        roomAABBs.add(aabb);
+        roomAABBs.add(box);
         return true;
     }
 
-    public static Rotation getRotationFromFacing(EnumFacing facing){
-        switch (facing){
+    public static Rotation getRotationFromFacing(EnumFacing facing) {
+        switch (facing) {
             case EAST:
                 return Rotation.CLOCKWISE_90;
             case SOUTH:
@@ -258,191 +292,155 @@ public class WorldGenVault extends WorldGenerator {
         }
     }
 
-    private static AxisAlignedBB rotateAABB(AxisAlignedBB aabb, EnumFacing facing){
-        if(facing == EnumFacing.EAST || facing == EnumFacing.WEST) {
-            return new AxisAlignedBB(aabb.minZ, aabb.minY, aabb.minX, aabb.maxZ, aabb.maxY, aabb.maxX);
-        }else{
-            return aabb;
-        }
+    public static boolean tryGenerateRoom(RoomType structure, World world, BlockPos pos, Random random, Rotation rotation, boolean buildDoor, boolean removeAir, StructureUtils.ProcessorType type, ResourceLocation loot, WorldGenVault vault) {
+        return tryGenerateRoom(structure.structure, world, pos, random, rotation, buildDoor, removeAir, type, loot, vault, structure);
     }
 
-    public static boolean tryGenerateRoom(RoomType structure, World world, BlockPos pos, Random random, Rotation rotation, boolean buildDoor, boolean removeAir, StructureUtils.ProcessorType type, ResourceLocation loot, WorldGenVault vault) {
+    public static boolean tryGenerateRoom(ResourceLocation structure, World world, BlockPos pos, Random random, Rotation rotation, boolean buildDoor, boolean removeAir, StructureUtils.ProcessorType type, ResourceLocation loot, WorldGenVault vault, RoomType room) {
+        ROOM_RANDOM = random;
         MinecraftServer server = world.getMinecraftServer();
         TemplateManager templateManager = world.getSaveHandler().getStructureTemplateManager();
         PlacementSettings settings = new PlacementSettings().setRotation(rotation);
-        Template template = templateManager.getTemplate(server, structure.structure);
-        int x = template.getSize().getX();
-        int z = template.getSize().getZ();
-        BlockPos genPos = pos.subtract(new BlockPos(x, 0, z).rotate(rotation)).add(new BlockPos(x, 0, z));
-        template.addBlocksToWorld(world, genPos, type.get(pos, settings, loot, vault, structure), settings, 2);
-        world.setBlockState(genPos, Blocks.OBSIDIAN.getDefaultState());
-        return true;
-    }
-
-    public static boolean tryGenerateRoom(ResourceLocation structure, World world, BlockPos pos, Random random, Rotation rotation, boolean buildDoor, boolean removeAir, StructureUtils.ProcessorType type, ResourceLocation loot, WorldGenVault vault) {
-        Mirror mirror = Mirror.NONE;
-        MinecraftServer server = world.getMinecraftServer();
-        TemplateManager templateManager = world.getSaveHandler().getStructureTemplateManager();
-        PlacementSettings settings = new PlacementSettings().setRotation(rotation).setMirror(mirror);
         if (removeAir) {
             settings.setReplacedBlock(Blocks.AIR);
         }
         Template template = templateManager.getTemplate(server, structure);
-        EnumFacing facing = rotation.rotate(EnumFacing.NORTH);
-        int xSize = template.getSize().getX();
-        int zSize = template.getSize().getZ();
-        BlockPos center = pos;
-        switch(rotation){
-            case NONE:
-                center = pos;
-                world.setBlockState(pos.down(6), Blocks.GREEN_GLAZED_TERRACOTTA.getDefaultState().withProperty(BlockGlazedTerracotta.FACING, facing));
-                break;
-            case CLOCKWISE_90:
-                center = pos.add(template.getSize().getZ() - 1, 0, 0);
-                xSize = template.getSize().getZ();
-                zSize = template.getSize().getX();
-                world.setBlockState(pos.down(6), Blocks.RED_GLAZED_TERRACOTTA.getDefaultState().withProperty(BlockGlazedTerracotta.FACING, facing));
-                break;
-            case COUNTERCLOCKWISE_90:
-                center = pos.add(0, 0, template.getSize().getX() - 1);
-                xSize = template.getSize().getZ();
-                zSize = template.getSize().getX();
-                world.setBlockState(pos.down(6), Blocks.YELLOW_GLAZED_TERRACOTTA.getDefaultState().withProperty(BlockGlazedTerracotta.FACING, facing));
-
-                break;
-            case CLOCKWISE_180:
-                center = pos.add(template.getSize().getX() - 1, 0, template.getSize().getZ() - 1);
-                world.setBlockState(pos.down(6), Blocks.BLUE_GLAZED_TERRACOTTA.getDefaultState().withProperty(BlockGlazedTerracotta.FACING, facing));
-                break;
+        if (pos.getDistance(vault.start.getX(), vault.start.getY(), vault.start.getZ()) > vault.size) {
+            vault.size = (int) pos.getDistance(vault.start.getX(), vault.start.getY(), vault.start.getZ());
         }
-        for(int i = 0; i < xSize; i++){
-            for(int j = 0; j < zSize; j++){
-                world.setBlockState(pos.add(i, -5, j), Blocks.GLOWSTONE.getDefaultState());
-            }
-        }
-        if(vault != null){
-            AxisAlignedBB box = new AxisAlignedBB(0, 0, 0, xSize, template.getSize().getY(), zSize);
-            if(!vault.addAABB(center, box, facing)){
-                return false;
-            }
-        }
-        if(center.getDistance(vault.start.getX(), vault.start.getY(), vault.start.getZ()) > vault.size){
-            vault.size = (int)center.getDistance(vault.start.getX(), vault.start.getY(), vault.start.getZ());
-        }
-        template.addBlocksToWorld(world, center, type.get(center, settings, loot, vault, RoomType.OFFICE), settings, 2);
+        vault.currentRooms++;
+        template.addBlocksToWorld(world, pos, type.get(pos, settings, loot, vault, room), settings, 2);
         return true;
     }
 
-    public static boolean checkIfRoomCanGenerate(RoomType structure, World world, BlockPos pos, Random random, Rotation rotation, boolean buildDoor, boolean removeAir, StructureUtils.ProcessorType type, ResourceLocation loot, WorldGenVault vault) {
+    public static boolean checkAndAddAABB(RoomType structure, World world, BlockPos pos, Rotation rotation, WorldGenVault vault) {
         MinecraftServer server = world.getMinecraftServer();
         TemplateManager templateManager = world.getSaveHandler().getStructureTemplateManager();
         Template template = templateManager.getTemplate(server, structure.structure);
-        EnumFacing facing = rotation.rotate(EnumFacing.NORTH);
-        int xSize = template.getSize().getX();
-        int zSize = template.getSize().getZ();
-        BlockPos center = pos;
-        switch(rotation){
+        int xMaxSize = template.getSize().getX();
+        int zMaxSize = template.getSize().getZ();
+        int xMinSize = 0;
+        int zMinSize = 0;
+        switch (rotation) {
             case NONE:
-                center = pos;
                 break;
             case CLOCKWISE_90:
-                center = pos.add(template.getSize().getZ() - 1, 0, 0);
-                xSize = template.getSize().getZ();
-                zSize = template.getSize().getX();
+                xMaxSize = 0;
+                xMinSize = -template.getSize().getZ();
+                zMaxSize = template.getSize().getX();
                 break;
             case COUNTERCLOCKWISE_90:
-                center = pos.add(0, 0, template.getSize().getX() - 1);
-                xSize = template.getSize().getZ();
-                zSize = template.getSize().getX();
+                xMinSize = 0;
+                zMinSize = -template.getSize().getX();
+                xMaxSize = template.getSize().getZ();
+                zMaxSize = 0;
                 break;
             case CLOCKWISE_180:
-                center = pos.add(template.getSize().getX() - 1, 0, template.getSize().getZ() - 1);
+                xMinSize = -template.getSize().getX();
+                zMinSize = -template.getSize().getZ();
+                xMaxSize = 0;
+                zMaxSize = 0;
                 break;
         }
-
-        if(vault != null) {
-            AxisAlignedBB box = new AxisAlignedBB(0, 0, 0, xSize, template.getSize().getY(), zSize);
-            if (!vault.addAABB(center, box, facing)) {
-                return false;
-            }
-        }
-        if(center.getDistance(vault.start.getX(), vault.start.getY(), vault.start.getZ()) > vault.size){
-            vault.size = (int)center.getDistance(vault.start.getX(), vault.start.getY(), vault.start.getZ());
-        }
-        return true;
+        AxisAlignedBB aabb = new AxisAlignedBB(xMinSize, 0, zMinSize, xMaxSize, template.getSize().getY(), zMaxSize).offset(pos);
+        return vault.addAABB(aabb);
     }
 
-    enum RoomType{
+    public void addDecorationSpace(RoomType type, BlockPos pos, Block blockType){
+        if(blockType == Blocks.EMERALD_BLOCK){
+            emeraldBlocks.put(pos, type);
+        }
+        if(blockType == Blocks.DIAMOND_BLOCK){
+            diamondBlocks.put(pos, type);
+        }
+        if(blockType == Blocks.GOLD_BLOCK){
+            goldBlocks.put(pos, type);
+        }
+    }
+
+    private void decorateRooms(World worldIn, Random rand) {
+        for(Map.Entry<BlockPos, RoomType> entry : emeraldBlocks.entrySet()){
+            BlockPos pos = entry.getKey();
+            if(worldIn.isAirBlock(pos)){
+                if(rand.nextFloat() > 0.8F && (entry.getValue() == RoomType.ATRIUM || entry.getValue() == RoomType.RECREATIONAL || entry.getValue() == RoomType.CAFETERIA)){
+                    VaultDecorations.generateDiningTable(worldIn, pos, rand);
+                }
+                if(rand.nextFloat() > 0.5F && entry.getValue() == RoomType.STORAGE){
+                    VaultDecorations.generateShelf(worldIn, pos, rand);
+                }
+                if(rand.nextFloat() > 0.96F){
+                    VaultDecorations.generateCrates(worldIn, pos, rand);
+                }
+                if(rand.nextFloat() > (entry.getValue() == RoomType.TUNNEL ? 0.7F : 0.99F)){
+                    VaultDecorations.generateTrolley(worldIn, pos, rand);
+                }
+                if(rand.nextFloat() > 0.98F){
+                    VaultDecorations.generateFloorMats(worldIn, pos, rand);
+                }
+            }
+        }
+        for(Map.Entry<BlockPos, RoomType> entry : goldBlocks.entrySet()){
+            BlockPos pos = entry.getKey();
+
+        }
+        for(Map.Entry<BlockPos, RoomType> entry : diamondBlocks.entrySet()){
+            BlockPos pos = entry.getKey();
+            VaultDecorations.generateComputers(worldIn, pos, rand);
+            if(rand.nextFloat() > 0.9F){
+                VaultDecorations.generatePoster(worldIn, pos, rand);
+            }
+        }
+    }
+
+    enum RoomType {
+        ENTERANCE(VAULT_ROOM_ENTRANCE, 0, true),
+        TUNNEL(VAULT_ROOM_TUNNEL, 0, true),
         ATRIUM(VAULT_ROOM_ATRIUM, 80, true),
-        RESIDENTIAL(VAULT_ROOM_RESIDENTIAL, 60, false, Blocks.CONCRETE.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.WHITE)),
+        RESIDENTIAL(VAULT_ROOM_RESIDENTIAL, 60, false),
         RECREATIONAL(VAULT_ROOM_RECREATIONAL, 40, false),
-        CAFETERIA(VAULT_ROOM_CAFETERIA, 40, true, Blocks.STAINED_HARDENED_CLAY.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.WHITE)),
+        CAFETERIA(VAULT_ROOM_CAFETERIA, 40, false),
         BUNKS(VAULT_ROOM_BUNKS, 50, false),
-        OFFICE(VAULT_ROOM_OFFICE, 40, false),
-        STORAGE(VAULT_ROOM_STORAGE, 40, false);
+        STORAGE(VAULT_ROOM_STORAGE, 50, false),
+        OFFICE(VAULT_ROOM_OFFICE, 40, false);
 
         private int weight;
         public ResourceLocation structure;
         private boolean single;
-        public IBlockState wallState;
-        RoomType(ResourceLocation structure, int weight, boolean single){
+        private static final RoomType[] WITHOUT_ATRIUM = new RoomType[]{RESIDENTIAL, RECREATIONAL, CAFETERIA, BUNKS, STORAGE, OFFICE};
+        RoomType(ResourceLocation structure, int weight, boolean single) {
             this.weight = weight;
             this.structure = structure;
             this.single = single;
-            this.wallState = OWBBlocks.VAULT_WALL.getDefaultState();
         }
 
-        RoomType(ResourceLocation structure, int weight, boolean single, IBlockState wall){
-            this.weight = weight;
-            this.structure = structure;
-            this.single = single;
-            this.wallState = wall;
-        }
-
-        public int getXSize(World world){
-            TemplateManager templateManager = world.getSaveHandler().getStructureTemplateManager();
-            Template template = templateManager.getTemplate(world.getMinecraftServer(), this.structure);
-            return template.getSize().getX();
-        }
-
-        public int getZSize(World world){
-            TemplateManager templateManager = world.getSaveHandler().getStructureTemplateManager();
-            Template template = templateManager.getTemplate(world.getMinecraftServer(), this.structure);
-            return template.getSize().getZ();
-        }
-
-        public int getYSize(World world){
-            TemplateManager templateManager = world.getSaveHandler().getStructureTemplateManager();
-            Template template = templateManager.getTemplate(world.getMinecraftServer(), this.structure);
-            return template.getSize().getY();
-        }
-
-        public int getLargestSize(World world){
-            TemplateManager templateManager = world.getSaveHandler().getStructureTemplateManager();
-            Template template = templateManager.getTemplate(world.getMinecraftServer(), this.structure);
-            return Math.max(template.getSize().getZ(), template.getSize().getX());
-        }
-
-        public AxisAlignedBB getAABB(World world){
-            return new AxisAlignedBB(-1, -1, -1, getXSize(world) + 1, getYSize(world) + 1, getZSize(world) + 1);
-        }
-        public static RoomType getRandom(List<RoomType> list){
-            double completeWeight = 0;
-            for (RoomType item : list) {
-                completeWeight += item.weight;
+        public static RoomType getRandom(WorldGenVault vault) {
+            if(vault.hasAtrium){
+                return WITHOUT_ATRIUM[vault.random.nextInt(WITHOUT_ATRIUM.length - 1)];
+            }else{
+                vault.hasAtrium = true;
+                return ATRIUM;
             }
-            double r = Math.random() * completeWeight;
-            double countWeight = 0;
-            for (RoomType item : list) {
-                countWeight += item.weight;
-                if (countWeight >= r) {
-                    if(item.single){
-                        list.remove(item);
-                    }
-                    return item;
-                }
+        }
+
+        public IBlockState getWallBlock() {
+            if (this == RESIDENTIAL) {
+                return Blocks.CONCRETE.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.WHITE);
             }
-            return ATRIUM;
+            if (this == CAFETERIA) {
+                return Blocks.STAINED_HARDENED_CLAY.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.WHITE);
+            }
+            return OWBBlocks.VAULT_WALL.getDefaultState();
+        }
+
+        public IBlockState getFlooringBlock() {
+            if (this == RESIDENTIAL) {
+                return Blocks.CONCRETE.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.ORANGE);
+            }
+            return OWBBlocks.VAULT_FLOOR_TILING.getDefaultState();
+        }
+
+        public IBlockState getCeilingBlock() {
+            return OWBBlocks.VAULT_WALL.getDefaultState();
         }
     }
 }

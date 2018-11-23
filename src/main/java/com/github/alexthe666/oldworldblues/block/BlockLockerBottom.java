@@ -3,7 +3,6 @@ package com.github.alexthe666.oldworldblues.block;
 import com.github.alexthe666.oldworldblues.CommonProxy;
 import com.github.alexthe666.oldworldblues.OldWorldBlues;
 import com.github.alexthe666.oldworldblues.block.entity.TileEntityLocker;
-import com.github.alexthe666.oldworldblues.block.entity.TileEntityOWBStorage;
 import com.github.alexthe666.oldworldblues.init.OWBBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -28,7 +27,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class BlockLockerBottom extends BlockContainer {
+public class BlockLockerBottom extends BlockContainer implements IDecorationBlock {
 
     public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
 

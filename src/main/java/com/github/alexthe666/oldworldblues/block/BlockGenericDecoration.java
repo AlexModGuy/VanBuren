@@ -2,7 +2,6 @@ package com.github.alexthe666.oldworldblues.block;
 
 import com.github.alexthe666.oldworldblues.OldWorldBlues;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -17,13 +16,12 @@ import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockGenericDecoration extends BlockHorizontal {
+public class BlockGenericDecoration extends BlockHorizontal implements IDecorationBlock {
     protected AxisAlignedBB AABB_NORTH;
     protected AxisAlignedBB AABB_SOUTH;
     protected AxisAlignedBB AABB_EAST;

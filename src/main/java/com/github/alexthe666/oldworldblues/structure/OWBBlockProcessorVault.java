@@ -1,10 +1,13 @@
 package com.github.alexthe666.oldworldblues.structure;
 
 import com.github.alexthe666.oldworldblues.block.BlockInteriorVaultDoor;
+import com.github.alexthe666.oldworldblues.block.IDecorationBlock;
 import com.github.alexthe666.oldworldblues.init.OWBBlocks;
+import net.minecraft.block.BlockColored;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -26,16 +29,56 @@ public class OWBBlockProcessorVault extends OWBBlockProcessorLoot {
     @Nullable
     public Template.BlockInfo processBlock(World worldIn, BlockPos pos, Template.BlockInfo blockInfoIn) {
         IBlockState currentState = worldIn.getBlockState(pos);
-
-        if(isVaultBlock(currentState)){
-            return null;
+        if(blockInfoIn.blockState.getBlock() == OWBBlocks.VAULT_DOOR){
+            
         }
         if(blockInfoIn.blockState.getBlock() == Blocks.EMERALD_BLOCK){
-            return new Template.BlockInfo(pos, Blocks.AIR.getDefaultState(), null);
+            if(currentState.getBlock() instanceof IDecorationBlock){
+                return null;
+            }else{
+                vaultGen.addDecorationSpace(roomType, pos, Blocks.EMERALD_BLOCK);
+                return new Template.BlockInfo(pos, Blocks.AIR.getDefaultState(), null);
+            }
+        }
+        if(blockInfoIn.blockState.getBlock() == Blocks.GOLD_BLOCK){
+            if(currentState.getBlock() instanceof IDecorationBlock){
+                return null;
+            }else{
+                vaultGen.addDecorationSpace(roomType, pos, Blocks.GOLD_BLOCK);
+                return new Template.BlockInfo(pos, Blocks.AIR.getDefaultState(), null);
+            }
+        }
+        if(blockInfoIn.blockState.getBlock() == Blocks.DIAMOND_BLOCK){
+            if(currentState.getBlock() instanceof IDecorationBlock){
+                return null;
+            }else{
+                vaultGen.addDecorationSpace(roomType, pos, Blocks.DIAMOND_BLOCK);
+                return new Template.BlockInfo(pos, Blocks.AIR.getDefaultState(), null);
+            }
+        }
+        if(isVaultBlock(currentState) && !(currentState.getBlock() instanceof IDecorationBlock)){
+            return null;
+        }
+        if(currentState.getBlock() instanceof IDecorationBlock && !blockInfoIn.blockState.isOpaqueCube()){
+            return null;
+        }
+        if(blockInfoIn.blockState.getBlock() == OWBBlocks.VAULT_WALL){
+            if(worldIn.isAirBlock(pos.down())){
+                return new Template.BlockInfo(pos, roomType.getWallBlock(), null);
+
+            }else{
+                return new Template.BlockInfo(pos, roomType.getWallBlock(), null);
+            }
+        }
+        if(blockInfoIn.blockState.getBlock() == OWBBlocks.VAULT_FLOOR_TILING || blockInfoIn.blockState == Blocks.CONCRETE.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.ORANGE)){
+            return new Template.BlockInfo(pos, roomType.getFlooringBlock(), null);
         }
         if(blockInfoIn.blockState.getBlock() == Blocks.PUMPKIN){
-            if(worldIn.rand.nextInt(100) < vaultGen.roomChance) {
-                EnumFacing facing = blockInfoIn.blockState.withRotation(this.rotation).getValue(BlockHorizontal.FACING);
+            EnumFacing facing = blockInfoIn.blockState.withRotation(this.rotation).getValue(BlockHorizontal.FACING);
+            double facingMod = vaultGen.nextRoomFacing != facing ? 0.5F : 1.0F;
+            double atriumMod = roomType == WorldGenVault.RoomType.ATRIUM ? 2.5F : 1.0F;
+
+            if(worldIn.rand.nextInt(100) < vaultGen.roomChance * facingMod * atriumMod && vaultGen.currentRooms < vaultGen.maxRooms || this.roomType == WorldGenVault.RoomType.ENTERANCE) {
                 BlockPos tunnel_corner = pos.offset(facing.rotateY(), -2).down(2);
                 boolean canGenerateRoom = vaultGen.canGenerateRoom(worldIn, tunnel_corner, worldIn.rand, facing.getOpposite());
                 if(canGenerateRoom) {
@@ -46,10 +89,10 @@ public class OWBBlockProcessorVault extends OWBBlockProcessorLoot {
 
                     vaultGen.generateDoor(worldIn, pos, worldIn.rand, facing.getOpposite());
                 }else{
-                    return new Template.BlockInfo(pos, roomType.wallState, null);
+                    return new Template.BlockInfo(pos, roomType.getWallBlock(), null);
                 }
             }else{
-                return new Template.BlockInfo(pos, roomType.wallState, null);
+                return new Template.BlockInfo(pos, roomType.getWallBlock(), null);
             }
             return null;
         }
@@ -57,8 +100,9 @@ public class OWBBlockProcessorVault extends OWBBlockProcessorLoot {
     }
 
     public boolean isVaultBlock(IBlockState state){
-        return state.getBlock() == OWBBlocks.VAULT_FLOOR_TILING || state.getBlock() == OWBBlocks.VAULT_SUPPORT || state.getBlock() == OWBBlocks.VAULT_WALL
+        return state.getBlock() == OWBBlocks.VAULT_FLOOR_TILING || state.getBlock() == OWBBlocks.VAULT_SUPPORT
                 || state.getBlock() == OWBBlocks.VAULT_DOOR_FRAME || state.getBlock() == OWBBlocks.VAULT_DOOR || state.getBlock() == OWBBlocks.VAULT_BEAM || state.getBlock() == OWBBlocks.VAULT_DOOR_ACCESS
-                || state.getBlock() == OWBBlocks.INTERIOR_VAULT_DOOR || state.getBlock() == OWBBlocks.INTERIOR_VAULT_DOOR_FRAME || state.getBlock() == OWBBlocks.VAULT_RAILING || state.getBlock() == OWBBlocks.VAULT_LIGHTING;
+                || state.getBlock() == OWBBlocks.INTERIOR_VAULT_DOOR || state.getBlock() == OWBBlocks.INTERIOR_VAULT_DOOR_FRAME || state.getBlock() == OWBBlocks.VAULT_RAILING || state.getBlock() == OWBBlocks.VAULT_LIGHTING
+                || state.getBlock() instanceof IDecorationBlock;
     }
 }

@@ -1,10 +1,7 @@
 package com.github.alexthe666.oldworldblues.init;
 
 import com.github.alexthe666.oldworldblues.OldWorldBlues;
-import com.github.alexthe666.oldworldblues.item.ItemNumberDecal;
-import com.github.alexthe666.oldworldblues.item.ItemPipBoy;
-import com.github.alexthe666.oldworldblues.item.ItemVaultJumpsuit;
-import com.github.alexthe666.oldworldblues.item.ItemVaultTecPoster;
+import com.github.alexthe666.oldworldblues.item.*;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
@@ -42,4 +39,8 @@ public class OWBItems {
     @GameRegistry.ObjectHolder(OldWorldBlues.MODID + ":vault_tec_poster")
     public static final Item VAULT_TEC_POSTER = new ItemVaultTecPoster();
 
+    @GameRegistry.ObjectHolder(OldWorldBlues.MODID + ":vault_map")
+    public static final Item VAULT_MAP = new ItemEmptyVaultMap();
+    @GameRegistry.ObjectHolder(OldWorldBlues.MODID + ":filled_vault_map")
+    public static final Item FILLED_VAULT_MAP = new ItemVaultMap();
 }

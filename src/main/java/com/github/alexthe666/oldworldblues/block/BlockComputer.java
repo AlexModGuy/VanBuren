@@ -20,7 +20,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockComputer extends BlockHorizontal {
+public class BlockComputer extends BlockHorizontal implements IDecorationBlock {
 
     protected static final AxisAlignedBB AABB = new AxisAlignedBB(0.125D, 0D, 0.125D, 0.875D, 0.625D, 0.875D);
 

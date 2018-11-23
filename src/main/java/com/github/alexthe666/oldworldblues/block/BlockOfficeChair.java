@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockOfficeChair extends BlockHorizontal implements ISittable{
+public class BlockOfficeChair extends BlockHorizontal implements ISittable, IDecorationBlock{
 
     protected static final AxisAlignedBB AABB_SOUTH = new AxisAlignedBB(0.0D, 0D, 0.125D, 1D, 1.25D, 0.875D);
     protected static final AxisAlignedBB AABB_NORTH = new AxisAlignedBB(0.0D, 0D, 0.125D, 1D, 1.25D, 0.875D);

@@ -68,6 +68,8 @@ item.oldworldblues.vault_security_chest.name=Vault Security Chestplate
 item.oldworldblues.vault_security_legs.name=Vault Security Shinguards
 item.oldworldblues.vault_security_feet.name=Vault Security Boots
 item.oldworldblues.vault_tec_poster.name=Vault-Tec Poster
+item.oldworldblues.vault_map.name=Vault Map
+item.oldworldblues.filled_vault_map.name=Vault Map
 
 oldworldblues.vault_number=Vault
 entity.Villager.salesman=Vault-Tec Sales Representative

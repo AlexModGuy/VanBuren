@@ -1,14 +1,11 @@
 package com.github.alexthe666.oldworldblues.block;
 
-import com.github.alexthe666.oldworldblues.CommonProxy;
 import com.github.alexthe666.oldworldblues.OldWorldBlues;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
-import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -22,7 +19,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockCardboardBox extends BlockHorizontal {
+public class BlockCardboardBox extends BlockHorizontal implements IDecorationBlock {
     public static final PropertyBool OPEN = PropertyBool.create("open");
     protected static final AxisAlignedBB AABB_OPEN_NS = new AxisAlignedBB(0.125, 0.0D, 0.0625D, 0.875D, 0.5D, 0.9375D);
     protected static final AxisAlignedBB AABB_OPEN_EW = new AxisAlignedBB(0.0625D, 0.0D, 0.125D, 0.9375D, 0.5D, 0.875D);
