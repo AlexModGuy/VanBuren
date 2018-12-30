@@ -105,6 +105,30 @@ public class OWBBlocks {
     public static final Block SHELF_TROLLEY = new BlockGenericDecoration("shelf_trolley", Material.IRON, SoundType.METAL, false, generateAABBFromPixels(0F, 0F, 3F, 16F, 16F, 13F)).setRenderLayer(BlockRenderLayer.CUTOUT);
     @GameRegistry.ObjectHolder(OldWorldBlues.MODID + ":vault_door_access")
     public static final Block VAULT_DOOR_ACCESS = new BlockVaultDoorAccess();
+    @GameRegistry.ObjectHolder(OldWorldBlues.MODID + ":asphalt")
+    public static final Block ASPHALT = new BlockGeneric("asphalt", 2.5F, 15F, Material.ROCK, SoundType.STONE);
+    @GameRegistry.ObjectHolder(OldWorldBlues.MODID + ":asphalt_road_lines")
+    public static final Block ASPHALT_ROAD_LINES = new BlockAsphaltRoadLines();
+    @GameRegistry.ObjectHolder(OldWorldBlues.MODID + ":asphalt_cracked")
+    public static final Block CRACKED_ASPHALT = new BlockCrackedAsphalt();
+    @GameRegistry.ObjectHolder(OldWorldBlues.MODID + ":asphalt_cracked_road_lines")
+    public static final Block CRACKED_ASPHALT_ROAD_LINES = new BlockCrackedAsphaltRoadLines();
+    @GameRegistry.ObjectHolder(OldWorldBlues.MODID + ":irradiated_stone")
+    public static final Block IRRADIATED_STONE = new BlockGeneric("irradiated_stone", 1.5F, 10F, Material.ROCK, SoundType.STONE);
+    @GameRegistry.ObjectHolder(OldWorldBlues.MODID + ":irradiated_soil")
+    public static final Block IRRADIATED_SOIL = new BlockGeneric("irradiated_soil", 0.5F, 0F, Material.GROUND, SoundType.GROUND);
+    @GameRegistry.ObjectHolder(OldWorldBlues.MODID + ":irradiated_grass")
+    public static final Block IRRADIATED_GRASS = new BlockIrradiatedGrass();
+    @GameRegistry.ObjectHolder(OldWorldBlues.MODID + ":irradiated_soil_rocky")
+    public static final Block ROCKY_IRRADIATED_SOIL = new BlockGeneric("irradiated_soil_rocky", 1.05F, 3F, Material.GROUND, SoundType.GROUND);
+    @GameRegistry.ObjectHolder(OldWorldBlues.MODID + ":irradiated_tall_grass")
+    public static final Block IRRADIATED_TALL_GRASS = new BlockIrradiatedTallGrass();
+    @GameRegistry.ObjectHolder(OldWorldBlues.MODID + ":irradiated_mud")
+    public static final Block IRRADIATED_MUD = new BlockGeneric("irradiated_mud", 1.3F, 0F, Material.GROUND, SoundType.GROUND);
+    @GameRegistry.ObjectHolder(OldWorldBlues.MODID + ":irradiated_mud_dry")
+    public static final Block DRY_IRRADIATED_MUD = new BlockGeneric("irradiated_mud_dry", 1F, 2F, Material.GROUND, SoundType.STONE);
+    @GameRegistry.ObjectHolder(OldWorldBlues.MODID + ":wasteland_sand")
+    public static final Block WASTELAND_SAND = new BlockGeneric("wasteland_sand", 1F, 0F, Material.SAND, SoundType.SAND);
 
     static{
         GameRegistry.registerTileEntity(TileEntityOWBStorage.class, "OWBStorage");

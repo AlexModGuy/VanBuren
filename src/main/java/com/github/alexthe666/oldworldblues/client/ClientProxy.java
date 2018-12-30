@@ -29,22 +29,29 @@ import com.github.alexthe666.oldworldblues.event.VATSClientEvents;
 import com.github.alexthe666.oldworldblues.init.OWBBlocks;
 import com.github.alexthe666.oldworldblues.init.OWBItems;
 import com.github.alexthe666.oldworldblues.item.ISpecialItemRender;
+import com.github.alexthe666.oldworldblues.world.biome.BiomeWasteland;
 import net.ilexiconn.llibrary.server.entity.EntityPropertiesHandler;
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMap;
+import net.minecraft.client.renderer.color.IBlockColor;
+import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.client.renderer.entity.RenderPlayer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
@@ -55,6 +62,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
 import java.lang.reflect.Field;
 import java.util.Random;
 
@@ -77,6 +85,7 @@ public class ClientProxy extends CommonProxy {
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
     public static void registerModels(ModelRegistryEvent event) {
+
         ModelLoader.setCustomStateMapper(OWBBlocks.VAULT_DOOR, (new StateMap.Builder()).ignore(BlockVaultDoor.FACING).build());
         ModelLoader.setCustomStateMapper(OWBBlocks.VAULT_DOOR_FRAME, (new StateMap.Builder()).ignore(BlockVaultDoorFrame.FACING).build());
         ModelLoader.setCustomStateMapper(OWBBlocks.INTERIOR_VAULT_DOOR, (new StateMap.Builder()).ignore(BlockInteriorVaultDoor.FACING).build());
@@ -133,6 +142,18 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntitySalesmanVillager.class, new RenderSalesmanVillager(Minecraft.getMinecraft().getRenderManager()));
         RenderingRegistry.registerEntityRenderingHandler(EntityVaultTecPoster.class, new RenderVaultTecPoster(Minecraft.getMinecraft().getRenderManager()));
         RenderingRegistry.registerEntityRenderingHandler(EntitySeat.class, new RenderSeat(Minecraft.getMinecraft().getRenderManager()));
+        Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(new IBlockColor() {
+            @Override
+            public int colorMultiplier(IBlockState state, @Nullable IBlockAccess worldIn, @Nullable BlockPos pos, int tintIndex) {
+                return worldIn != null && pos != null ? BiomeColorHelper.getGrassColorAtPos(worldIn, pos) : BiomeWasteland.GRASS_COLOR;
+            }
+        }, OWBBlocks.IRRADIATED_GRASS, OWBBlocks.IRRADIATED_TALL_GRASS);
+        Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new IItemColor() {
+            @Override
+            public int colorMultiplier(ItemStack stack, int tintIndex) {
+                return BiomeWasteland.GRASS_COLOR;
+            }
+        }, Item.getItemFromBlock(OWBBlocks.IRRADIATED_GRASS), Item.getItemFromBlock(OWBBlocks.IRRADIATED_TALL_GRASS));
     }
 
     public void postInit(){

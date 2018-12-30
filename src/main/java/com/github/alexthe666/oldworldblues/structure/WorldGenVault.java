@@ -61,6 +61,7 @@ public class WorldGenVault extends WorldGenerator {
     private Map<BlockPos, RoomType> goldBlocks;
     public static Random ROOM_RANDOM;
     private boolean hasAtrium;
+    public int vaultNumber = 0;
     @Override
     public boolean generate(World worldIn, Random rand, BlockPos position) {
         hasAtrium = false;
@@ -71,6 +72,7 @@ public class WorldGenVault extends WorldGenerator {
         goldBlocks =  Maps.newHashMap();
         doorCount = 0;
         size = 0;
+        vaultNumber = 1 + rand.nextInt(200);
         roomChance = 100;
         currentRooms = 0;
         maxRooms = 6 + rand.nextInt(11);

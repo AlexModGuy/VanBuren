@@ -6,10 +6,7 @@ import com.github.alexthe666.oldworldblues.block.entity.TileEntityOWBStorage;
 import com.github.alexthe666.oldworldblues.entity.EntitySalesmanVillager;
 import com.github.alexthe666.oldworldblues.entity.EntitySeat;
 import com.github.alexthe666.oldworldblues.entity.EntityVaultTecPoster;
-import com.github.alexthe666.oldworldblues.init.ActionPointMappings;
-import com.github.alexthe666.oldworldblues.init.OWBBlocks;
-import com.github.alexthe666.oldworldblues.init.OWBItems;
-import com.github.alexthe666.oldworldblues.init.OWBSounds;
+import com.github.alexthe666.oldworldblues.init.*;
 import com.github.alexthe666.oldworldblues.inventory.ContainerOWBStorage;
 import com.github.alexthe666.oldworldblues.item.ItemBlockVaultDoor;
 import com.github.alexthe666.oldworldblues.recipe.RecipeNumberDecal;
@@ -28,6 +25,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -42,6 +40,7 @@ public class CommonProxy implements IGuiHandler {
     public static final int GUI_OWB_STORAGE = 1;
 
     public void preInit() {
+
     }
 
     public void init() {
@@ -59,6 +58,11 @@ public class CommonProxy implements IGuiHandler {
         IRecipe recipeVaultDoorNumber = new RecipeVaultDoorNumber().setRegistryName(new ResourceLocation("oldworldblues:vault_door_number_recipe"));
         IRecipe recipeVaultJumpsuitNumber = new RecipeVaultJumpsuitNumber().setRegistryName(new ResourceLocation("oldworldblues:vault_jumpsuit_number"));
         event.getRegistry().registerAll(recipeNumberDecal, recipeVaultDoorNumber, recipeVaultJumpsuitNumber);
+    }
+
+    @SubscribeEvent
+    public static void registerBiomes(RegistryEvent.Register<Biome> event) {
+       event.getRegistry().registerAll(OWBWorld.WASTELAND_PLAINS_BIOME, OWBWorld.WASTELAND_DESERT_BIOME, OWBWorld.WASTELAND_RIVER_BIOME);
     }
 
     @SubscribeEvent

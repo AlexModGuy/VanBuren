@@ -1,9 +1,11 @@
 package com.github.alexthe666.oldworldblues;
 
+import com.github.alexthe666.oldworldblues.command.CommandWasteland;
 import com.github.alexthe666.oldworldblues.entity.VATSProperties;
 import com.github.alexthe666.oldworldblues.event.VATSServerEvents;
 import com.github.alexthe666.oldworldblues.init.OWBItems;
 import com.github.alexthe666.oldworldblues.init.OWBVillagers;
+import com.github.alexthe666.oldworldblues.init.OWBWorld;
 import com.github.alexthe666.oldworldblues.keybinding.OWBKeybinds;
 import com.github.alexthe666.oldworldblues.message.MessageAddTargetToMap;
 import com.github.alexthe666.oldworldblues.message.MessageTriggerVats;
@@ -22,6 +24,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -59,6 +62,7 @@ public class OldWorldBlues
         GameRegistry.registerWorldGenerator(new OWBWorldGenerator(), 0);
         MinecraftForge.EVENT_BUS.register(PROXY);
         OWBVillagers.init();
+        OWBWorld.init();
     }
 
     @EventHandler
@@ -72,5 +76,10 @@ public class OldWorldBlues
     public void postInit(FMLPostInitializationEvent event){
         PROXY.postInit();
 
+    }
+
+    @EventHandler
+    public void onServerStart(FMLServerStartingEvent event){
+        event.registerServerCommand(new CommandWasteland());
     }
 }

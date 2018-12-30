@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "oldworldblues:blocks/road/asphalt",
+    "down": "oldworldblues:blocks/vault_wall_blank",
+    "up": "oldworldblues:blocks/road/asphalt_road_lines",
+    "north": "oldworldblues:blocks/road/asphalt_road_lines_side",
+    "east": "oldworldblues:blocks/vault_wall_blank",
+    "south": "oldworldblues:blocks/road/asphalt_road_lines_side",
+    "west": "oldworldblues:blocks/vault_wall_blank"
+  }
+}
+

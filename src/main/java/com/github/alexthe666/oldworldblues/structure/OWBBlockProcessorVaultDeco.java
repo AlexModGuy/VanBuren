@@ -1,6 +1,7 @@
 package com.github.alexthe666.oldworldblues.structure;
 
 import com.github.alexthe666.oldworldblues.block.BlockInteriorVaultDoor;
+import com.github.alexthe666.oldworldblues.block.entity.TileEntityVaultDoor;
 import com.github.alexthe666.oldworldblues.init.OWBBlocks;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.state.IBlockState;
@@ -25,6 +26,13 @@ public class OWBBlockProcessorVaultDeco extends OWBBlockProcessorLoot {
     @Nullable
     public Template.BlockInfo processBlock(World worldIn, BlockPos pos, Template.BlockInfo blockInfoIn) {
         IBlockState currentState = worldIn.getBlockState(pos);
+        if(blockInfoIn.blockState.getBlock() == OWBBlocks.VAULT_DOOR){
+            if(worldIn.getTileEntity(pos) != null && worldIn.getTileEntity(pos) instanceof TileEntityVaultDoor){
+                TileEntityVaultDoor door = (TileEntityVaultDoor)worldIn.getTileEntity(pos);
+                door.number = vaultGen.vaultNumber;
+                door.markDirty();
+            }
+        }
         if(currentState.getBlock() == OWBBlocks.INTERIOR_VAULT_DOOR || currentState.getBlock() == OWBBlocks.INTERIOR_VAULT_DOOR_FRAME || currentState.getBlock() == Blocks.DIAMOND_BLOCK){
             return null;
         }

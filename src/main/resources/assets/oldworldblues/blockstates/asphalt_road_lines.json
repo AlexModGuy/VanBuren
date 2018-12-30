@@ -1,0 +1,13 @@
+{
+
+    "multipart": [
+        {   "apply": { "model": "oldworldblues:asphalt" }},
+
+        {   "when": { "line_axis": "x" },
+            "apply": { "model": "oldworldblues:asphalt_road_lines", "y": 90, "uvlock": false }
+        },
+        {   "when": { "line_axis": "z" },
+            "apply": { "model": "oldworldblues:asphalt_road_lines", "uvlock": false }
+        }
+    ]
+}

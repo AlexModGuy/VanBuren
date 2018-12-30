@@ -1,0 +1,9 @@
+{
+    "variants": {
+        "variant=0": { "model": "oldworldblues:asphalt_cracked_0"},
+        "variant=1": { "model": "oldworldblues:asphalt_cracked_1"},
+        "variant=2": { "model": "oldworldblues:asphalt_cracked_2"},
+        "variant=3": { "model": "oldworldblues:asphalt_cracked_3"},
+        "variant=4": { "model": "oldworldblues:asphalt_cracked_4"}
+    }
+}

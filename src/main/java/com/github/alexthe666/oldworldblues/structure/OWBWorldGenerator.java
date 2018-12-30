@@ -14,7 +14,7 @@ public class OWBWorldGenerator implements IWorldGenerator{
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
         int x = chunkX * 16;
         int z = chunkZ * 16;
-        if(chunkX % 8 == 0 && chunkZ % 8 == 0){
+        if(world.provider.getDimension() == 0 && chunkX % 8 == 0 && chunkZ % 8 == 0 && random.nextInt(15) == 0){
             int x2 = x + random.nextInt(15);
             int z2 = z + random.nextInt(15);
             BlockPos centerPos = world.getHeight(new BlockPos(x2, 0, z2));

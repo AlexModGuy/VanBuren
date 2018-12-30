@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "variant=0": { "model": "oldworldblues:irradiated_tall_grass_0"},
+        "variant=1": { "model": "oldworldblues:irradiated_tall_grass_1"},
+        "variant=2": { "model": "oldworldblues:irradiated_tall_grass_2"},
+        "variant=3": { "model": "oldworldblues:irradiated_tall_grass_3"}
+    }
+}
