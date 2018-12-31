@@ -1,0 +1,22 @@
+{
+	"parent": "block/block",
+	"textures": {
+		"1_0": "oldworldblues:blocks/tire_front",
+		"particle": "oldworldblues:blocks/tire_front",
+		"1_1": "oldworldblues:blocks/tire_side"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0],
+			"to": [16, 6, 16],
+			"faces": {
+				"north": {"uv": [0, 0, 6, 16], "rotation": 90, "texture": "#1_1"},
+				"east": {"uv": [0, 0, 6, 16], "rotation": 270, "texture": "#1_1"},
+				"south": {"uv": [0, 0, 6, 16], "rotation": 270, "texture": "#1_1"},
+				"west": {"uv": [0, 0, 6, 16], "rotation": 90, "texture": "#1_1"},
+				"up": {"uv": [0, 0, 16, 16], "rotation": 270, "texture": "#1_0"},
+				"down": {"uv": [0, 0, 16, 16], "rotation": 270, "texture": "#1_0"}
+			}
+		}
+	]
+}

@@ -1,0 +1,16 @@
+{
+    "variants": {
+        "facing=up,position=side":    { "model": "oldworldblues:wheel_side", "uvlock": false },
+        "facing=down,position=side":  { "model": "oldworldblues:wheel_side", "uvlock": false, "x": 180 },
+        "facing=east,position=side":  { "model": "oldworldblues:wheel_side", "uvlock": false, "x": 90, "y": 90 },
+        "facing=west,position=side":  { "model": "oldworldblues:wheel_side", "uvlock": false, "x": 90, "y": 270 },
+        "facing=south,position=side": { "model": "oldworldblues:wheel_side", "uvlock": false, "x": 90, "y": 180 },
+        "facing=north,position=side": { "model": "oldworldblues:wheel_side", "uvlock": false, "x": 90 },
+        "facing=up,position=middle":     { "model": "oldworldblues:wheel_middle", "uvlock": false },
+        "facing=down,position=middle":   { "model": "oldworldblues:wheel_middle", "uvlock": false, "x": 180 },
+        "facing=east,position=middle":   { "model": "oldworldblues:wheel_middle", "uvlock": false, "x": 90, "y": 90 },
+        "facing=west,position=middle":   { "model": "oldworldblues:wheel_middle", "uvlock": false, "x": 90, "y": 270 },
+        "facing=south,position=middle":  { "model": "oldworldblues:wheel_middle", "uvlock": false, "x": 90, "y": 180 },
+        "facing=north,position=middle":  { "model": "oldworldblues:wheel_middle", "uvlock": false, "x": 90 }
+    }
+}

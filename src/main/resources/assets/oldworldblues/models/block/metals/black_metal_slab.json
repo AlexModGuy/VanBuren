@@ -1,0 +1,8 @@
+{
+    "parent": "block/half_slab",
+    "textures": {
+        "bottom": "oldworldblues:blocks/metals/black_metal_block",
+        "top": "oldworldblues:blocks/metals/black_metal_block",
+        "side": "oldworldblues:blocks/metals/black_metal_block"
+    }
+}

@@ -129,7 +129,18 @@ public class OWBBlocks {
     public static final Block DRY_IRRADIATED_MUD = new BlockGeneric("irradiated_mud_dry", 1F, 2F, Material.GROUND, SoundType.STONE);
     @GameRegistry.ObjectHolder(OldWorldBlues.MODID + ":wasteland_sand")
     public static final Block WASTELAND_SAND = new BlockGeneric("wasteland_sand", 1F, 0F, Material.SAND, SoundType.SAND);
-
+    @GameRegistry.ObjectHolder(OldWorldBlues.MODID + ":wheel")
+    public static final Block WHEEL = new BlockWheel("wheel", 1.5F, 1F, Material.CLOTH, SoundType.CLOTH, 1.0F);
+    @GameRegistry.ObjectHolder(OldWorldBlues.MODID + ":axel")
+    public static final Block AXEL = new BlockWheel("axel", 2.5F, 5F, Material.IRON, SoundType.METAL, 0.375F);
+    @GameRegistry.ObjectHolder(OldWorldBlues.MODID + ":headlight")
+    public static final Block HEADLIGHT = new BlockGenericDecoration("headlight", Material.GLASS, SoundType.GLASS, false,
+            generateAABBFromPixels(5F, 5F, 0F, 11F, 11F, 3F), generateAABBFromPixels(5F, 5F, 13F, 11F, 11F, 16F),
+            generateAABBFromPixels(13F, 5F, 5F, 16F, 11F, 11F), generateAABBFromPixels(0F, 5F, 5F, 3F, 11F, 11F));
+    @GameRegistry.ObjectHolder(OldWorldBlues.MODID + ":headlight_broken")
+    public static final Block HEADLIGHT_BROKEN = new BlockGenericDecoration("headlight_broken", Material.GLASS, SoundType.GLASS, false,
+            generateAABBFromPixels(5F, 5F, 0F, 11F, 11F, 3F), generateAABBFromPixels(5F, 5F, 13F, 11F, 11F, 16F),
+            generateAABBFromPixels(13F, 5F, 5F, 16F, 11F, 11F), generateAABBFromPixels(0F, 5F, 5F, 3F, 11F, 11F));
     static{
         GameRegistry.registerTileEntity(TileEntityOWBStorage.class, "OWBStorage");
         GameRegistry.registerTileEntity(TileEntityLocker.class, "OWBLocker");

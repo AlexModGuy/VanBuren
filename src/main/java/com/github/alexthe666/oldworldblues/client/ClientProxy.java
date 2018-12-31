@@ -1,10 +1,7 @@
 package com.github.alexthe666.oldworldblues.client;
 
 import com.github.alexthe666.oldworldblues.CommonProxy;
-import com.github.alexthe666.oldworldblues.block.BlockInteriorVaultDoor;
-import com.github.alexthe666.oldworldblues.block.BlockInteriorVaultDoorFrame;
-import com.github.alexthe666.oldworldblues.block.BlockVaultDoor;
-import com.github.alexthe666.oldworldblues.block.BlockVaultDoorFrame;
+import com.github.alexthe666.oldworldblues.block.*;
 import com.github.alexthe666.oldworldblues.block.entity.TileEntityInteriorVaultDoor;
 import com.github.alexthe666.oldworldblues.block.entity.TileEntityLocker;
 import com.github.alexthe666.oldworldblues.block.entity.TileEntityOWBStorage;
@@ -121,6 +118,13 @@ public class ClientProxy extends CommonProxy {
             }
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
+        }
+        for(MetalBlocks metal : MetalBlocks.values()) {
+            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(metal.metalBlock), 0, new ModelResourceLocation("oldworldblues:metals/" + metal.metalBlock.getUnlocalizedName().substring(19), "inventory"));
+            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(metal.metalStairs), 0, new ModelResourceLocation("oldworldblues:metals/" + metal.metalStairs.getUnlocalizedName().substring(19), "inventory"));
+            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(metal.metalSlab), 0, new ModelResourceLocation("oldworldblues:metals/" + metal.metalSlab.getUnlocalizedName().substring(19), "inventory"));
+            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(metal.metalSlabDouble), 0, new ModelResourceLocation("oldworldblues:metals/" + metal.metalSlabDouble.getUnlocalizedName().substring(19), "inventory"));
+            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(metal.metalSheet), 0, new ModelResourceLocation("oldworldblues:metals/" + metal.metalSheet.getUnlocalizedName().substring(19), "inventory"));
         }
         try {
             for (Field f : OWBItems.class.getDeclaredFields()) {

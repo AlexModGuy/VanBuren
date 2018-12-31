@@ -1,8 +1,8 @@
 package com.github.alexthe666.oldworldblues.block;
 
 import com.github.alexthe666.oldworldblues.init.OWBBlocks;
+import com.github.alexthe666.oldworldblues.item.ItemBlockGenericSlab;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockStairs;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemBlock;

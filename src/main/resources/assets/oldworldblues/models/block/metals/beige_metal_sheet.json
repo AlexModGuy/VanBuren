@@ -1,0 +1,7 @@
+{
+    "parent": "oldworldblues:block/metals/metal_sheet",
+    "textures": {
+        "particle": "oldworldblues:blocks/metals/beige_metal_block",
+        "wool": "oldworldblues:blocks/metals/beige_metal_block"
+    }
+}

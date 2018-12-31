@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "oldworldblues:blocks/metals/light_green_metal_block"
+  }
+}

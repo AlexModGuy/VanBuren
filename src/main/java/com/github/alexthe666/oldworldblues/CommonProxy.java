@@ -2,12 +2,14 @@ package com.github.alexthe666.oldworldblues;
 
 import com.github.alexthe666.oldworldblues.block.BlockGenericSlab;
 import com.github.alexthe666.oldworldblues.block.BlockVaultDoor;
+import com.github.alexthe666.oldworldblues.block.MetalBlocks;
 import com.github.alexthe666.oldworldblues.block.entity.TileEntityOWBStorage;
 import com.github.alexthe666.oldworldblues.entity.EntitySalesmanVillager;
 import com.github.alexthe666.oldworldblues.entity.EntitySeat;
 import com.github.alexthe666.oldworldblues.entity.EntityVaultTecPoster;
 import com.github.alexthe666.oldworldblues.init.*;
 import com.github.alexthe666.oldworldblues.inventory.ContainerOWBStorage;
+import com.github.alexthe666.oldworldblues.item.ItemBlockGenericSlab;
 import com.github.alexthe666.oldworldblues.item.ItemBlockVaultDoor;
 import com.github.alexthe666.oldworldblues.recipe.RecipeNumberDecal;
 import com.github.alexthe666.oldworldblues.recipe.RecipeVaultDoorNumber;
@@ -40,7 +42,6 @@ public class CommonProxy implements IGuiHandler {
     public static final int GUI_OWB_STORAGE = 1;
 
     public void preInit() {
-
     }
 
     public void init() {
@@ -102,6 +103,7 @@ public class CommonProxy implements IGuiHandler {
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
         }
+
     }
 
     @SubscribeEvent
@@ -119,6 +121,10 @@ public class CommonProxy implements IGuiHandler {
             }
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
+        }
+        for(MetalBlocks metal : MetalBlocks.values()){
+            metal.initialize();
+            event.getRegistry().registerAll(metal.metalBlock, metal.metalStairs, metal.metalSlab, metal.metalSlabDouble, metal.metalSheet);
         }
     }
 
@@ -149,6 +155,13 @@ public class CommonProxy implements IGuiHandler {
             }
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
+        }
+        for(MetalBlocks metal : MetalBlocks.values()){
+            event.getRegistry().registerAll(new ItemBlock(metal.metalBlock).setRegistryName(metal.metalBlock.getRegistryName()),
+                    new ItemBlock(metal.metalStairs).setRegistryName(metal.metalStairs.getRegistryName()),
+                    new ItemBlockGenericSlab(metal.metalSlab, metal.metalSlab, metal.metalSlabDouble).setRegistryName(metal.metalSlab.getRegistryName()),
+                    new ItemBlockGenericSlab(metal.metalSlabDouble, metal.metalSlab, metal.metalSlabDouble).setRegistryName(metal.metalSlabDouble.getRegistryName()),
+                    new ItemBlock(metal.metalSheet).setRegistryName(metal.metalSheet.getRegistryName()));
         }
     }
 

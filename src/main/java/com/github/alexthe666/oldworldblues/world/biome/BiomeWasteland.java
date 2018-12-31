@@ -79,7 +79,7 @@ public class BiomeWasteland extends OWBBiome {
         }
         super.decorate(worldIn, rand, pos);
         {
-            int i = rand.nextInt(2);
+            int i = rand.nextInt(2) - 1;
             for (int j = 0; j < i; ++j) {
                 int k = rand.nextInt(16) + 8;
                 int l = rand.nextInt(16) + 8;

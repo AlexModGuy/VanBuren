@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "inventory": { "model": "oldworldblues:metals/baby_blue_metal_slab" },
+        "half=bottom": { "model": "oldworldblues:metals/baby_blue_metal_slab" },
+        "half=top": { "model": "oldworldblues:metals/baby_blue_metal_upper_slab" }
+    }
+}
