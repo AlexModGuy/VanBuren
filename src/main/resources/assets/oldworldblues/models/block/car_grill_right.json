@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "oldworldblues:blocks/car_grill_right",
+    "down": "oldworldblues:blocks/car_grill_right",
+    "up": "oldworldblues:blocks/vault_floor_tiling_blank",
+    "north": "oldworldblues:blocks/car_grill_left",
+    "east": "oldworldblues:blocks/vault_floor_tiling_blank",
+    "south": "oldworldblues:blocks/car_grill_right",
+    "west": "oldworldblues:blocks/vault_floor_tiling_blank"
+  }
+}
+

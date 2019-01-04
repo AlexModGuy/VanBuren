@@ -141,6 +141,10 @@ public class OWBBlocks {
     public static final Block HEADLIGHT_BROKEN = new BlockGenericDecoration("headlight_broken", Material.GLASS, SoundType.GLASS, false,
             generateAABBFromPixels(5F, 5F, 0F, 11F, 11F, 3F), generateAABBFromPixels(5F, 5F, 13F, 11F, 11F, 16F),
             generateAABBFromPixels(13F, 5F, 5F, 16F, 11F, 11F), generateAABBFromPixels(0F, 5F, 5F, 3F, 11F, 11F));
+    @GameRegistry.ObjectHolder(OldWorldBlues.MODID + ":car_grill")
+    public static final Block CAR_GRILL = new BlockGenericVaultConnectedTextures("car_grill");
+    @GameRegistry.ObjectHolder(OldWorldBlues.MODID + ":broken_glass")
+    public static final Block BROKEN_GLASS = new BlockGenericGlass("broken_glass", 1.5F, 0F, Material.GLASS, SoundType.GLASS);
     static{
         GameRegistry.registerTileEntity(TileEntityOWBStorage.class, "OWBStorage");
         GameRegistry.registerTileEntity(TileEntityLocker.class, "OWBLocker");

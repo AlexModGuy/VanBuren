@@ -1,0 +1,17 @@
+{
+    "multipart": [
+        {   "apply": { "model": "oldworldblues:car_grill" }},
+        {   "when": { "east": "true" },
+            "apply": { "model": "oldworldblues:car_grill_right", "y" : 0, "uvlock": false }
+        },
+        {   "when": { "west": "true" },
+            "apply": { "model": "oldworldblues:car_grill_left", "y" : 0, "uvlock": false }
+        },
+        {   "when": { "north": "true" },
+            "apply": { "model": "oldworldblues:car_grill_left", "y" : 90, "uvlock": false }
+        },
+        {   "when": { "south": "true" },
+            "apply": { "model": "oldworldblues:car_grill_right", "y" : 90, "uvlock": false }
+        }
+    ]
+}
