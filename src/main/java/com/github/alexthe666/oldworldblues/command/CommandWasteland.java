@@ -53,10 +53,10 @@ public class CommandWasteland extends CommandBase
                     player.timeUntilPortal = 10;
                 } else if (player.dimension != OldWorldBlues.CONFIG.wastelandDimensionID) {
                     player.timeUntilPortal = 10;
-                    player.mcServer.getPlayerList().transferPlayerToDimension(player, OldWorldBlues.CONFIG.wastelandDimensionID, new TeleporterWasteland(player.mcServer.getWorld(OldWorldBlues.CONFIG.wastelandDimensionID), blockpos));
+                    player.getServer().getPlayerList().transferPlayerToDimension(player, OldWorldBlues.CONFIG.wastelandDimensionID, new TeleporterWasteland(player.getServer().getWorld(OldWorldBlues.CONFIG.wastelandDimensionID), blockpos));
                 } else if (player.dimension == OldWorldBlues.CONFIG.wastelandDimensionID) {
                     player.timeUntilPortal = 10;
-                    player.mcServer.getPlayerList().transferPlayerToDimension(player, 0, new TeleporterWasteland(player.mcServer.getWorld(0), blockpos));
+                    player.getServer().getPlayerList().transferPlayerToDimension(player, 0, new TeleporterWasteland(player.getServer().getWorld(0), blockpos));
                 }
                 notifyCommandListener(sender, this, "commands.wasteland.success", new Object[] {player.getName(), blockpos.getX(), blockpos.getY(), blockpos.getZ()});
             }

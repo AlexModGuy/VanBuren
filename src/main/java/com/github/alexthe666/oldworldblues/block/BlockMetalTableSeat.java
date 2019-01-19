@@ -31,7 +31,7 @@ public class BlockMetalTableSeat extends BlockHorizontal implements ISittable, I
         this.setSoundType(SoundType.METAL);
         this.setResistance(Float.MAX_VALUE);
         this.setCreativeTab(OldWorldBlues.TAB);
-        this.setUnlocalizedName("oldworldblues.metal_table_seat");
+        this.setTranslationKey("oldworldblues.metal_table_seat");
         this.setRegistryName(OldWorldBlues.MODID, "metal_table_seat");
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
         this.setLightOpacity(0);
@@ -64,7 +64,7 @@ public class BlockMetalTableSeat extends BlockHorizontal implements ISittable, I
     }
 
     public IBlockState getStateFromMeta(int meta) {
-        return this.getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta % 4));
+        return this.getDefaultState().withProperty(FACING, EnumFacing.byHorizontalIndex(meta % 4));
     }
 
     public int getMetaFromState(IBlockState state) {
@@ -77,7 +77,7 @@ public class BlockMetalTableSeat extends BlockHorizontal implements ISittable, I
 
     @Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer() {
+    public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.CUTOUT;
     }
 

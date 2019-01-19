@@ -13,7 +13,7 @@ public class BlockGenericVault extends Block {
         this.setSoundType(SoundType.STONE);
         this.setResistance(Float.MAX_VALUE);
         this.setCreativeTab(OldWorldBlues.TAB);
-        this.setUnlocalizedName("oldworldblues." + name);
+        this.setTranslationKey("oldworldblues." + name);
         this.setRegistryName(OldWorldBlues.MODID, name);
     }
 }

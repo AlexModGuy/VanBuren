@@ -14,7 +14,7 @@ public class BlockVaultSupport extends BlockRotatedPillar {
         this.setSoundType(SoundType.STONE);
         this.setResistance(Float.MAX_VALUE);
         this.setCreativeTab(OldWorldBlues.TAB);
-        this.setUnlocalizedName("oldworldblues.vault_support");
+        this.setTranslationKey("oldworldblues.vault_support");
         this.setRegistryName(OldWorldBlues.MODID, "vault_support");
     }
 }

@@ -1,8 +1,9 @@
-package com.github.alexthe666.oldworldblues.structure;
+package com.github.alexthe666.oldworldblues.world.gen;
 
 import com.github.alexthe666.oldworldblues.OldWorldBlues;
 import com.github.alexthe666.oldworldblues.block.*;
 import com.github.alexthe666.oldworldblues.init.OWBBlocks;
+import com.github.alexthe666.oldworldblues.structure.VaultDecorations;
 import com.github.alexthe666.oldworldblues.world.OWBWorldData;
 import com.github.alexthe666.oldworldblues.world.VaultData;
 import com.google.common.collect.Maps;
@@ -77,8 +78,8 @@ public class WorldGenVault extends WorldGenerator {
         currentRooms = 0;
         maxRooms = 6 + rand.nextInt(11);
         start = position;
-        nextRoomFacing = EnumFacing.getHorizontal(rand.nextInt(3));
-        EnumFacing facingNow = EnumFacing.getHorizontal(rand.nextInt(3));
+        nextRoomFacing = EnumFacing.byHorizontalIndex(rand.nextInt(3));
+        EnumFacing facingNow = EnumFacing.byHorizontalIndex(rand.nextInt(3));
         random = rand;
         generateCaveEnterance(worldIn, position.offset(facingNow.getOpposite(), 9).offset(facingNow.rotateY(), 8).down(2), rand, facingNow.getOpposite());
         tryGenerateRoom(VAULT_ROOM_ENTRANCE, worldIn, position, rand, getRotationFromFacing(facingNow), false, false, StructureUtils.ProcessorType.VAULT, LootTableList.EMPTY, this, RoomType.ENTERANCE);

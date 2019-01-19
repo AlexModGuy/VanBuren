@@ -1,7 +1,7 @@
 package com.github.alexthe666.oldworldblues.world;
 
 import com.github.alexthe666.oldworldblues.init.OWBBlocks;
-import com.github.alexthe666.oldworldblues.structure.WorldGenWastelandLake;
+import com.github.alexthe666.oldworldblues.world.gen.WorldGenWastelandLake;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;

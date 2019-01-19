@@ -26,7 +26,7 @@ public class BlockVaultFloorMat extends Block {
         this.setSoundType(SoundType.CLOTH);
         this.setResistance(Float.MAX_VALUE);
         this.setCreativeTab(OldWorldBlues.TAB);
-        this.setUnlocalizedName("oldworldblues.vault_floor_mat");
+        this.setTranslationKey("oldworldblues.vault_floor_mat");
         this.setRegistryName(OldWorldBlues.MODID, "vault_floor_mat");
     }
 

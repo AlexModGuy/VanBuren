@@ -27,7 +27,7 @@ public class BlockVaultWall extends Block {
         this.setSoundType(SoundType.STONE);
         this.setResistance(Float.MAX_VALUE);
         this.setCreativeTab(OldWorldBlues.TAB);
-        this.setUnlocalizedName("oldworldblues.vault_wall");
+        this.setTranslationKey("oldworldblues.vault_wall");
         this.setRegistryName(OldWorldBlues.MODID, "vault_wall");
         this.setDefaultState(this.blockState.getBaseState().withProperty(UP, Boolean.valueOf(false)).withProperty(DOWN, Boolean.valueOf(false)));
     }
@@ -43,7 +43,7 @@ public class BlockVaultWall extends Block {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer() {
+    public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.CUTOUT;
     }
 

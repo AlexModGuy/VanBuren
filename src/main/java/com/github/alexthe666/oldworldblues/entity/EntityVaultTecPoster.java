@@ -126,7 +126,7 @@ public class EntityVaultTecPoster extends EntityHanging implements IEntityAdditi
 	public void readSpawnData(ByteBuf buffer) {
 		this.variant = Variant.values()[buffer.readByte()];
 		this.hangingPosition = BlockPos.fromLong(buffer.readLong());
-		this.updateFacingWithBoundingBox(EnumFacing.getHorizontal(buffer.readByte()));
+		this.updateFacingWithBoundingBox(EnumFacing.byHorizontalIndex(buffer.readByte()));
 	}
 
 	@Override

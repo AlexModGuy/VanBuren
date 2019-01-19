@@ -39,7 +39,7 @@ import java.util.UUID;
 public class ItemVaultMap extends ItemMapBase {
     public ItemVaultMap() {
         this.maxStackSize = 1;
-        this.setUnlocalizedName("oldworldblues.filled_vault_map");
+        this.setTranslationKey("oldworldblues.filled_vault_map");
         this.setRegistryName(OldWorldBlues.MODID, "filled_vault_map");
     }
 
@@ -116,7 +116,7 @@ public class ItemVaultMap extends ItemMapBase {
                             int k2 = (j / i + k1 - 64) * i;
                             int l2 = (k / i + l1 - 64) * i;
                             Multiset<MapColor> multiset = HashMultiset.<MapColor>create();
-                            Chunk chunk = worldIn.getChunkFromBlockCoords(new BlockPos(k2, 0, l2));
+                            Chunk chunk = worldIn.getChunk(new BlockPos(k2, 0, l2));
 
                             if (!chunk.isEmpty()) {
                                 int i3 = k2 & 15;

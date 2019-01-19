@@ -1,4 +1,4 @@
-package com.github.alexthe666.oldworldblues.structure;
+package com.github.alexthe666.oldworldblues.world.gen;
 
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;

@@ -52,7 +52,7 @@ public class OldWorldBlues
     public void preInit(FMLPreInitializationEvent event){
         TAB = new CreativeTabs("oldworldblues") {
             @Override
-            public ItemStack getTabIconItem() {
+            public ItemStack createIcon() {
                 return new ItemStack(OWBItems.PIPBOY3000IV);
             }
         };

@@ -118,11 +118,11 @@ public class BlockWheel extends BlockGeneric implements IRoad {
             position = EnumPosition.MIDDLE;
         }
 
-        return this.getDefaultState().withProperty(FACING, EnumFacing.getFront(meta % 6)).withProperty(E_POS, position);
+        return this.getDefaultState().withProperty(FACING, EnumFacing.byIndex(meta % 6)).withProperty(E_POS, position);
     }
 
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer() {
+    public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.CUTOUT;
     }
 

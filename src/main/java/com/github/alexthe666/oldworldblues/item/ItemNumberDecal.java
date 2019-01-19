@@ -19,7 +19,7 @@ public class ItemNumberDecal extends Item implements ISpecialItemRender{
 
     public ItemNumberDecal(){
         this.setCreativeTab(OldWorldBlues.TAB);
-        this.setUnlocalizedName("oldworldblues.number_decal");
+        this.setTranslationKey("oldworldblues.number_decal");
         this.setRegistryName(OldWorldBlues.MODID, "number_decal");
         this.setHasSubtypes(true);
     }
@@ -30,8 +30,8 @@ public class ItemNumberDecal extends Item implements ISpecialItemRender{
 
     }
 
-    public String getUnlocalizedName(ItemStack stack) {
-        return super.getUnlocalizedName() + "_" + Math.min(stack.getMetadata(), 9);
+    public String getTranslationKey(ItemStack stack) {
+        return super.getTranslationKey() + "_" + Math.min(stack.getMetadata(), 9);
     }
 
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {

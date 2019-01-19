@@ -36,7 +36,7 @@ public class BlockLockerBottom extends BlockContainer implements IDecorationBloc
         this.setHardness(5F);
         this.setSoundType(SoundType.METAL);
         this.setCreativeTab(OldWorldBlues.TAB);
-        this.setUnlocalizedName("oldworldblues.locker");
+        this.setTranslationKey("oldworldblues.locker");
         this.setRegistryName(OldWorldBlues.MODID, "locker");
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
         this.setLightOpacity(1);
@@ -68,7 +68,7 @@ public class BlockLockerBottom extends BlockContainer implements IDecorationBloc
     }
 
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer() {
+    public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.CUTOUT;
     }
 
@@ -77,7 +77,7 @@ public class BlockLockerBottom extends BlockContainer implements IDecorationBloc
     }
 
     public IBlockState getStateFromMeta(int meta) {
-        return this.getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta));
+        return this.getDefaultState().withProperty(FACING, EnumFacing.byHorizontalIndex(meta));
     }
 
     protected BlockStateContainer createBlockState() {

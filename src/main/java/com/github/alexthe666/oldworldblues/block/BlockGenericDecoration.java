@@ -33,7 +33,7 @@ public class BlockGenericDecoration extends BlockHorizontal implements IDecorati
         super(material);
         this.setSoundType(sound);
         this.setCreativeTab(OldWorldBlues.TAB);
-        this.setUnlocalizedName("oldworldblues." + name);
+        this.setTranslationKey("oldworldblues." + name);
         this.setRegistryName(OldWorldBlues.MODID, name);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
         this.offset = offset;
@@ -107,7 +107,7 @@ public class BlockGenericDecoration extends BlockHorizontal implements IDecorati
     }
 
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer() {
+    public BlockRenderLayer getRenderLayer() {
         return renderLayer;
     }
 
@@ -116,7 +116,7 @@ public class BlockGenericDecoration extends BlockHorizontal implements IDecorati
     }
 
     public IBlockState getStateFromMeta(int meta) {
-        return this.getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta));
+        return this.getDefaultState().withProperty(FACING, EnumFacing.byHorizontalIndex(meta));
     }
 
     public Block.EnumOffsetType getOffsetType() {

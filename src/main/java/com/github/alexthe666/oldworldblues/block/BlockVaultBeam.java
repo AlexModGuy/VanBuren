@@ -30,7 +30,7 @@ public class BlockVaultBeam extends BlockHorizontal {
         this.setSoundType(SoundType.METAL);
         this.setResistance(Float.MAX_VALUE);
         this.setCreativeTab(OldWorldBlues.TAB);
-        this.setUnlocalizedName("oldworldblues.vault_beam");
+        this.setTranslationKey("oldworldblues.vault_beam");
         this.setRegistryName(OldWorldBlues.MODID, "vault_beam");
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(HALF, BlockVaultBeam.Half.BOTTOM));
         this.setLightOpacity(0);
@@ -90,7 +90,7 @@ public class BlockVaultBeam extends BlockHorizontal {
     }
 
     public IBlockState getStateFromMeta(int meta) {
-        return this.getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta % 4)).withProperty(HALF, meta > 3 ? Half.TOP : Half.BOTTOM);
+        return this.getDefaultState().withProperty(FACING, EnumFacing.byHorizontalIndex(meta % 4)).withProperty(HALF, meta > 3 ? Half.TOP : Half.BOTTOM);
     }
 
     public int getMetaFromState(IBlockState state) {
@@ -107,7 +107,7 @@ public class BlockVaultBeam extends BlockHorizontal {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer() {
+    public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.CUTOUT;
     }
 

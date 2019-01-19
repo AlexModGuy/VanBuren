@@ -34,7 +34,7 @@ public class BlockIrradiatedTallGrass extends BlockBush implements IGrowable, ne
         super(Material.VINE);
         this.setSoundType(SoundType.PLANT);
         this.setCreativeTab(OldWorldBlues.TAB);
-        this.setUnlocalizedName("oldworldblues.irradiated_tall_grass");
+        this.setTranslationKey("oldworldblues.irradiated_tall_grass");
         this.setRegistryName(OldWorldBlues.MODID, "irradiated_tall_grass");
         this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, 0));
     }

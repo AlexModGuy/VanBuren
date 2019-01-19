@@ -111,7 +111,7 @@ public class ClientProxy extends CommonProxy {
             for (Field f : OWBBlocks.class.getDeclaredFields()) {
                 Object obj = f.get(null);
                 if (obj instanceof Block && Item.getItemFromBlock((Block)obj) != null && !(obj instanceof ISpecialItemRender)) {
-                    String name = ((Block)obj).getUnlocalizedName().substring(19);
+                    String name = ((Block)obj).getTranslationKey().substring(19);
                     ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock((Block)obj), 0, new ModelResourceLocation("oldworldblues:" + name, "inventory"));
 
                 }
@@ -120,17 +120,17 @@ public class ClientProxy extends CommonProxy {
             throw new RuntimeException(e);
         }
         for(MetalBlocks metal : MetalBlocks.values()) {
-            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(metal.metalBlock), 0, new ModelResourceLocation("oldworldblues:metals/" + metal.metalBlock.getUnlocalizedName().substring(19), "inventory"));
-            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(metal.metalStairs), 0, new ModelResourceLocation("oldworldblues:metals/" + metal.metalStairs.getUnlocalizedName().substring(19), "inventory"));
-            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(metal.metalSlab), 0, new ModelResourceLocation("oldworldblues:metals/" + metal.metalSlab.getUnlocalizedName().substring(19), "inventory"));
-            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(metal.metalSlabDouble), 0, new ModelResourceLocation("oldworldblues:metals/" + metal.metalSlabDouble.getUnlocalizedName().substring(19), "inventory"));
-            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(metal.metalSheet), 0, new ModelResourceLocation("oldworldblues:metals/" + metal.metalSheet.getUnlocalizedName().substring(19), "inventory"));
+            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(metal.metalBlock), 0, new ModelResourceLocation("oldworldblues:metals/" + metal.metalBlock.getTranslationKey().substring(19), "inventory"));
+            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(metal.metalStairs), 0, new ModelResourceLocation("oldworldblues:metals/" + metal.metalStairs.getTranslationKey().substring(19), "inventory"));
+            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(metal.metalSlab), 0, new ModelResourceLocation("oldworldblues:metals/" + metal.metalSlab.getTranslationKey().substring(19), "inventory"));
+            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(metal.metalSlabDouble), 0, new ModelResourceLocation("oldworldblues:metals/" + metal.metalSlabDouble.getTranslationKey().substring(19), "inventory"));
+            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(metal.metalSheet), 0, new ModelResourceLocation("oldworldblues:metals/" + metal.metalSheet.getTranslationKey().substring(19), "inventory"));
         }
         try {
             for (Field f : OWBItems.class.getDeclaredFields()) {
                 Object obj = f.get(null);
                 if (obj instanceof Item && !(obj instanceof ISpecialItemRender)) {
-                    String name = ((Item)obj).getUnlocalizedName().substring(19);
+                    String name = ((Item)obj).getTranslationKey().substring(19);
                     ModelLoader.setCustomModelResourceLocation((Item)obj, 0, new ModelResourceLocation("oldworldblues:" + name, "inventory"));
                 }
             }

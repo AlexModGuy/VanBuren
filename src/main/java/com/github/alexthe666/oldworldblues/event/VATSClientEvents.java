@@ -62,7 +62,7 @@ public class VATSClientEvents {
     public void onEntityHearSound(PlaySoundAtEntityEvent event) {
         EntityPlayer player = Minecraft.getMinecraft().player;
         VATSProperties properties = EntityPropertiesHandler.INSTANCE.getProperties(player, VATSProperties.class);
-        if(properties != null && properties.isVatsTriggered() && !event.getSound().getSoundName().getResourceDomain().equals(OldWorldBlues.MODID) && !event.getSound().getSoundName().getResourcePath().contains("vats")){
+        if(properties != null && properties.isVatsTriggered() && !event.getSound().getSoundName().getNamespace().equals(OldWorldBlues.MODID) && !event.getSound().getSoundName().getPath().contains("vats")){
             event.setPitch(event.getDefaultPitch() - 0.75F);
         }
     }

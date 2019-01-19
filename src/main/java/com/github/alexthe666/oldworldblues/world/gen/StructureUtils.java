@@ -1,5 +1,6 @@
-package com.github.alexthe666.oldworldblues.structure;
+package com.github.alexthe666.oldworldblues.world.gen;
 
+import com.github.alexthe666.oldworldblues.world.gen.*;
 import net.minecraft.block.BlockGlazedTerracotta;
 import net.minecraft.init.Blocks;
 import net.minecraft.server.MinecraftServer;

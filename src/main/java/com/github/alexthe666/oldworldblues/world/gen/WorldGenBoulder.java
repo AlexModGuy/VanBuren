@@ -1,5 +1,6 @@
-package com.github.alexthe666.oldworldblues.world;
+package com.github.alexthe666.oldworldblues.world.gen;
 
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -29,7 +30,8 @@ public class WorldGenBoulder extends WorldGenerator {
             float f = (float) (j + k + l) * 0.333F + 0.5F;
 
             for (BlockPos blockpos : BlockPos.getAllInBox(position.add(-j, -k, -l), position.add(j, k, l))) {
-                if (blockpos.distanceSq(position) <= (double) (f * f) && (replaceAir ||worldIn.getBlockState(blockpos).isOpaqueCube())) {
+                if (blockpos.distanceSq(position) <= (double) (f * f) && (replaceAir || worldIn.getBlockState(blockpos).isOpaqueCube() &&
+                        (worldIn.getBlockState(blockpos).getMaterial() == Material.GROUND || worldIn.getBlockState(blockpos).getMaterial() == Material.GRASS || worldIn.getBlockState(blockpos).getMaterial() == Material.ROCK|| worldIn.getBlockState(blockpos).getMaterial() == Material.SAND))) {
                     worldIn.setBlockState(blockpos, this.block, 4);
                 }
             }

@@ -24,7 +24,7 @@ public class BlockDeskTop extends Block implements IDecorationBlock {
         this.setSoundType(SoundType.WOOD);
         this.setResistance(Float.MAX_VALUE);
         this.setCreativeTab(OldWorldBlues.TAB);
-        this.setUnlocalizedName("oldworldblues.desk_top");
+        this.setTranslationKey("oldworldblues.desk_top");
         this.setRegistryName(OldWorldBlues.MODID, "desk_top");
     }
 
@@ -49,7 +49,7 @@ public class BlockDeskTop extends Block implements IDecorationBlock {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer() {
+    public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.CUTOUT;
     }
 }

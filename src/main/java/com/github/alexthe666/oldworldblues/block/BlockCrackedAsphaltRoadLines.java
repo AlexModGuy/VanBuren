@@ -29,7 +29,7 @@ public class BlockCrackedAsphaltRoadLines extends Block implements IRoad {
         this.setSoundType(SoundType.STONE);
         this.setResistance(15F);
         this.setCreativeTab(OldWorldBlues.TAB);
-        this.setUnlocalizedName("oldworldblues.asphalt_cracked_road_lines");
+        this.setTranslationKey("oldworldblues.asphalt_cracked_road_lines");
         this.setRegistryName(OldWorldBlues.MODID, "asphalt_cracked_road_lines");
         this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, 0).withProperty(E_AXIS, BlockAsphaltRoadLines.EnumAxis.Z));
     }
@@ -72,7 +72,7 @@ public class BlockCrackedAsphaltRoadLines extends Block implements IRoad {
     }
 
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer() {
+    public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.TRANSLUCENT;
     }
 

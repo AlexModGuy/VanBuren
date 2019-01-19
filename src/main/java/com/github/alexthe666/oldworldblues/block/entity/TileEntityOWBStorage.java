@@ -55,7 +55,7 @@ public class TileEntityOWBStorage extends TileEntityLockableLoot implements ITic
 
     public String getName() {
         Block block = world.getBlockState(this.pos).getBlock();
-        return this.hasCustomName() ? this.customName : block.getUnlocalizedName() + ".name";
+        return this.hasCustomName() ? this.customName : block.getTranslationKey() + ".name";
     }
 
     public static void registerFixesChest(DataFixer fixer) {

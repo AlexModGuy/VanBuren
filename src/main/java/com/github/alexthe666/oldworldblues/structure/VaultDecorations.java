@@ -16,7 +16,7 @@ import java.util.Random;
 public class VaultDecorations {
 
     public static void generateTrolley(World world, BlockPos pos, Random random) {
-        EnumFacing facing = EnumFacing.getHorizontal(random.nextInt(3));
+        EnumFacing facing = EnumFacing.byHorizontalIndex(random.nextInt(3));
         if (world.isAirBlock(pos)) {
             world.setBlockState(pos, OWBBlocks.SHELF_TROLLEY.getDefaultState().withProperty(BlockGenericDecoration.FACING, facing));
             world.setBlockState(pos.up(), OWBBlocks.TOOLBOX.getDefaultState().withProperty(BlockToolbox.FACING, facing));
@@ -24,7 +24,7 @@ public class VaultDecorations {
     }
 
     public static void generateCrates(World world, BlockPos pos, Random random){
-        EnumFacing facing = EnumFacing.getHorizontal(random.nextInt(3));
+        EnumFacing facing = EnumFacing.byHorizontalIndex(random.nextInt(3));
         Block crate;
         switch (random.nextInt(3)) {
             default:
@@ -84,7 +84,7 @@ public class VaultDecorations {
     public static void generateShelf(World world, BlockPos pos, Random random) {
         int length = 4 + random.nextInt(1);
         int height = 1 + random.nextInt(3);
-        EnumFacing facing = EnumFacing.getHorizontal(random.nextInt(3));
+        EnumFacing facing = EnumFacing.byHorizontalIndex(random.nextInt(3));
         for(int i = 0; i < length; i++){
             for(int k = -1; k < 1; k++) {
                 for (int j = 0; j < height; j++) {
@@ -133,7 +133,7 @@ public class VaultDecorations {
     public static void generateDiningTable(World world, BlockPos pos, Random random){
         int width = 2 + random.nextInt(1);
         int length = width + 2 + random.nextInt(2);
-        EnumFacing facing = EnumFacing.getHorizontal(random.nextInt(3));
+        EnumFacing facing = EnumFacing.byHorizontalIndex(random.nextInt(3));
         for(int i = 0; i < length; i++){
             for(int j = -1; j < width + 1; j++){
                 if(!world.isAirBlock(pos.offset(facing, i).offset(facing.rotateY(), j))){
@@ -149,7 +149,7 @@ public class VaultDecorations {
                 world.setBlockState(pos1, state);
                 if(state.getBlock() == OWBBlocks.METAL_TABLE_TOP){
                     if(random.nextFloat()  > 0.5F){
-                        EnumFacing cupFacing = EnumFacing.getHorizontal(random.nextInt(3));
+                        EnumFacing cupFacing = EnumFacing.byHorizontalIndex(random.nextInt(3));
                         IBlockState cupState = null;
                         switch(random.nextInt(2)){
                             default:
@@ -219,7 +219,7 @@ public class VaultDecorations {
             }
             EnumFacing facing;
             if(possibleDirections.isEmpty()){
-                facing = EnumFacing.getHorizontal(random.nextInt(3));
+                facing = EnumFacing.byHorizontalIndex(random.nextInt(3));
             }else{
                 facing = possibleDirections.get(possibleDirections.size() > 1 ? random.nextInt(possibleDirections.size() - 1) : 0);
 

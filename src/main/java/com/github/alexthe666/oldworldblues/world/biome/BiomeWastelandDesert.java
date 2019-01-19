@@ -1,7 +1,7 @@
 package com.github.alexthe666.oldworldblues.world.biome;
 
 import com.github.alexthe666.oldworldblues.init.OWBBlocks;
-import com.github.alexthe666.oldworldblues.world.WorldGenBoulder;
+import com.github.alexthe666.oldworldblues.world.gen.WorldGenBoulder;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 

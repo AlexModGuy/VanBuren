@@ -36,8 +36,8 @@ public class ItemBlockGenericSlab extends ItemBlock {
     }
 
     @Override
-    public String getUnlocalizedName(ItemStack stack) {
-        return this.singleSlab.getUnlocalizedName(stack.getMetadata());
+    public String getTranslationKey(ItemStack stack) {
+        return this.singleSlab.getTranslationKey(stack.getMetadata());
     }
 
     @Override

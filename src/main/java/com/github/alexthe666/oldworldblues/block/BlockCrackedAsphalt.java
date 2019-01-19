@@ -20,7 +20,7 @@ public class BlockCrackedAsphalt extends Block implements IRoad {
         this.setSoundType(SoundType.STONE);
         this.setResistance(15F);
         this.setCreativeTab(OldWorldBlues.TAB);
-        this.setUnlocalizedName("oldworldblues.asphalt_cracked");
+        this.setTranslationKey("oldworldblues.asphalt_cracked");
         this.setRegistryName(OldWorldBlues.MODID, "asphalt_cracked");
         this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, 0));
     }

@@ -53,7 +53,7 @@ public class BlockRustStain extends Block {
         this.setSoundType(SoundType.METAL);
         this.setResistance(Float.MAX_VALUE);
         this.setCreativeTab(OldWorldBlues.TAB);
-        this.setUnlocalizedName("oldworldblues.rust_stain");
+        this.setTranslationKey("oldworldblues.rust_stain");
         this.setRegistryName(OldWorldBlues.MODID, "rust_stain");
     }
 
@@ -155,12 +155,12 @@ public class BlockRustStain extends Block {
     }
 
     public IBlockState getStateFromMeta(int meta) {
-        EnumFacing enumfacing = EnumFacing.getFront(meta);
+        EnumFacing enumfacing = EnumFacing.byIndex(meta);
         return this.getDefaultState().withProperty(FACING, enumfacing);
     }
 
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer() {
+    public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.TRANSLUCENT;
     }
 

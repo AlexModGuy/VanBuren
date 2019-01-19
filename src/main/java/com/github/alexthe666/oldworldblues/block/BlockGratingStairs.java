@@ -23,7 +23,7 @@ public class BlockGratingStairs extends BlockGenericStairs implements IGrating {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer() {
+    public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.TRANSLUCENT;
     }
 

@@ -1,4 +1,4 @@
-package com.github.alexthe666.oldworldblues.structure;
+package com.github.alexthe666.oldworldblues.world.gen;
 
 import com.github.alexthe666.oldworldblues.init.OWBBlocks;
 import net.minecraft.block.Block;

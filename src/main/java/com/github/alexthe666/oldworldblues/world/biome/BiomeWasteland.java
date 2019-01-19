@@ -4,10 +4,12 @@ import com.github.alexthe666.oldworldblues.block.BlockAsphaltRoadLines;
 import com.github.alexthe666.oldworldblues.block.BlockCrackedAsphaltRoadLines;
 import com.github.alexthe666.oldworldblues.block.IRoad;
 import com.github.alexthe666.oldworldblues.init.OWBBlocks;
-import com.github.alexthe666.oldworldblues.world.WorldGenBoulder;
-import com.github.alexthe666.oldworldblues.world.WorldGenWastelandGrass;
+import com.github.alexthe666.oldworldblues.world.gen.WorldGenBoulder;
+import com.github.alexthe666.oldworldblues.world.gen.WorldGenVehicle;
+import com.github.alexthe666.oldworldblues.world.gen.WorldGenWastelandGrass;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkPrimer;
@@ -44,7 +46,7 @@ public class BiomeWasteland extends OWBBiome {
                 for (int width = 0; width < 7; width++) {
                     BlockPos bottom = worldIn.getHeight(pos.add(width, 0, length)).down();
                     boolean hole = rand.nextFloat() < Math.abs(width - 3.5F) / 10F;
-                    if(!hole && !(worldIn.getBlockState(bottom).getBlock() instanceof IRoad) && worldIn.getBlockState(bottom).getBlock() != OWBBlocks.ASPHALT){
+                    if(!hole && !(worldIn.getBlockState(bottom).getBlock() instanceof IRoad) && worldIn.getBlockState(bottom).getBlock() != OWBBlocks.ASPHALT && worldIn.getBlockState(bottom).getMaterial() != Material.IRON){
                         IBlockState asphalt = rand.nextInt(10)== 0 ? OWBBlocks.ASPHALT.getDefaultState() : OWBBlocks.CRACKED_ASPHALT.getDefaultState();
                         IBlockState lines = rand.nextInt(10)== 0 ? OWBBlocks.ASPHALT_ROAD_LINES.getDefaultState().withProperty(BlockAsphaltRoadLines.E_AXIS, BlockAsphaltRoadLines.EnumAxis.Z) : OWBBlocks.CRACKED_ASPHALT_ROAD_LINES.getDefaultState().withProperty(BlockCrackedAsphaltRoadLines.E_AXIS, BlockAsphaltRoadLines.EnumAxis.Z);
 
@@ -63,7 +65,7 @@ public class BiomeWasteland extends OWBBiome {
                 for (int width = 0; width < 7; width++) {
                     BlockPos bottom = worldIn.getHeight(pos.add(length, 0, width)).down();
                     boolean hole = rand.nextFloat() < Math.abs(width - 3.5F) / 10F;
-                    if(!hole && !(worldIn.getBlockState(bottom).getBlock() instanceof IRoad) && worldIn.getBlockState(bottom).getBlock() != OWBBlocks.ASPHALT){
+                    if(!hole && !(worldIn.getBlockState(bottom).getBlock() instanceof IRoad) && worldIn.getBlockState(bottom).getBlock() != OWBBlocks.ASPHALT && worldIn.getBlockState(bottom).getMaterial() != Material.IRON){
                         IBlockState asphalt = rand.nextInt(10)== 0 ? OWBBlocks.ASPHALT.getDefaultState() : OWBBlocks.CRACKED_ASPHALT.getDefaultState();
                         IBlockState lines = rand.nextInt(10)== 0 ? OWBBlocks.ASPHALT_ROAD_LINES.getDefaultState().withProperty(BlockAsphaltRoadLines.E_AXIS, BlockAsphaltRoadLines.EnumAxis.X) : OWBBlocks.CRACKED_ASPHALT_ROAD_LINES.getDefaultState().withProperty(BlockCrackedAsphaltRoadLines.E_AXIS, BlockAsphaltRoadLines.EnumAxis.X);
                         if (width == 3 && (length % 4 == 0 || length % 4 == 1)) {

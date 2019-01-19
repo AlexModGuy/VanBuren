@@ -14,7 +14,7 @@ public class ItemBlockMetalSlab extends ItemBlockGenericSlab {
     }
 
     @Override
-    public String getUnlocalizedName(ItemStack stack) {
+    public String getTranslationKey(ItemStack stack) {
         return this.name;
     }
 }

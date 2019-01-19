@@ -35,7 +35,7 @@ public class BlockDeskDrawer extends BlockContainer implements IDecorationBlock 
         this.setSoundType(SoundType.METAL);
         this.setResistance(Float.MAX_VALUE);
         this.setCreativeTab(OldWorldBlues.TAB);
-        this.setUnlocalizedName("oldworldblues.desk_drawer");
+        this.setTranslationKey("oldworldblues.desk_drawer");
         this.setRegistryName(OldWorldBlues.MODID, "desk_drawer");
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
     }
@@ -70,7 +70,7 @@ public class BlockDeskDrawer extends BlockContainer implements IDecorationBlock 
 
 
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer() {
+    public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.CUTOUT;
     }
 
@@ -79,7 +79,7 @@ public class BlockDeskDrawer extends BlockContainer implements IDecorationBlock 
     }
 
     public IBlockState getStateFromMeta(int meta){
-        return this.getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta));
+        return this.getDefaultState().withProperty(FACING, EnumFacing.byHorizontalIndex(meta));
     }
 
     protected BlockStateContainer createBlockState() {

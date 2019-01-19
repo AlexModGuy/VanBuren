@@ -40,7 +40,7 @@ public class BlockInteriorVaultDoorFrame extends Block {
         this.setResistance(100000.0F);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
         this.setSoundType(SoundType.METAL);
-        this.setUnlocalizedName("oldworldblues.interior_vault_door_frame");
+        this.setTranslationKey("oldworldblues.interior_vault_door_frame");
         this.setRegistryName(OldWorldBlues.MODID, "interior_vault_door_frame");
         this.setLightOpacity(1);
     }
@@ -219,7 +219,7 @@ public class BlockInteriorVaultDoorFrame extends Block {
     @Override
     @SuppressWarnings("deprecation")
     public IBlockState getStateFromMeta(int meta) {
-        return this.getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta));
+        return this.getDefaultState().withProperty(FACING, EnumFacing.byHorizontalIndex(meta));
     }
 
     @Override
@@ -234,7 +234,7 @@ public class BlockInteriorVaultDoorFrame extends Block {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer() {
+    public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.CUTOUT;
     }
 

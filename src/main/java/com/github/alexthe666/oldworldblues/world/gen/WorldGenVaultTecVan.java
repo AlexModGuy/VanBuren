@@ -1,4 +1,4 @@
-package com.github.alexthe666.oldworldblues.structure;
+package com.github.alexthe666.oldworldblues.world.gen;
 
 import com.github.alexthe666.oldworldblues.OldWorldBlues;
 import net.minecraft.util.EnumFacing;
@@ -7,7 +7,6 @@ import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraft.world.gen.structure.StructureBoundingBox;
 
 import java.util.Random;
 

@@ -31,7 +31,7 @@ public class BlockOfficeChair extends BlockHorizontal implements ISittable, IDec
         this.setSoundType(SoundType.METAL);
         this.setResistance(Float.MAX_VALUE);
         this.setCreativeTab(OldWorldBlues.TAB);
-        this.setUnlocalizedName("oldworldblues.office_chair");
+        this.setTranslationKey("oldworldblues.office_chair");
         this.setRegistryName(OldWorldBlues.MODID, "office_chair");
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
         this.setLightOpacity(0);
@@ -64,7 +64,7 @@ public class BlockOfficeChair extends BlockHorizontal implements ISittable, IDec
     }
 
     public IBlockState getStateFromMeta(int meta) {
-        return this.getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta));
+        return this.getDefaultState().withProperty(FACING, EnumFacing.byHorizontalIndex(meta));
     }
 
     public int getMetaFromState(IBlockState state) {
@@ -77,7 +77,7 @@ public class BlockOfficeChair extends BlockHorizontal implements ISittable, IDec
 
     @Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer() {
+    public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.CUTOUT;
     }
 

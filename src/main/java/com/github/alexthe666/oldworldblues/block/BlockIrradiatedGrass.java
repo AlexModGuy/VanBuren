@@ -27,7 +27,7 @@ public class BlockIrradiatedGrass extends Block implements IGrowable {
         this.setSoundType(SoundType.PLANT);
         this.setResistance(0F);
         this.setCreativeTab(OldWorldBlues.TAB);
-        this.setUnlocalizedName("oldworldblues.irradiated_grass");
+        this.setTranslationKey("oldworldblues.irradiated_grass");
         this.setRegistryName(OldWorldBlues.MODID, "irradiated_grass");
     }
 
@@ -106,7 +106,7 @@ public class BlockIrradiatedGrass extends Block implements IGrowable {
     }
 
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer() {
+    public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.CUTOUT_MIPPED;
     }
 

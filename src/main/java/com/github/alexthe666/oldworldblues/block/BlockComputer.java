@@ -31,7 +31,7 @@ public class BlockComputer extends BlockHorizontal implements IDecorationBlock {
         this.setSoundType(SoundType.METAL);
         this.setResistance(Float.MAX_VALUE);
         this.setCreativeTab(OldWorldBlues.TAB);
-        this.setUnlocalizedName("oldworldblues.computer");
+        this.setTranslationKey("oldworldblues.computer");
         this.setRegistryName(OldWorldBlues.MODID, "computer");
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
     }
@@ -68,7 +68,7 @@ public class BlockComputer extends BlockHorizontal implements IDecorationBlock {
     }
 
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer() {
+    public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.CUTOUT;
     }
 
@@ -77,7 +77,7 @@ public class BlockComputer extends BlockHorizontal implements IDecorationBlock {
     }
 
     public IBlockState getStateFromMeta(int meta){
-        return this.getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta));
+        return this.getDefaultState().withProperty(FACING, EnumFacing.byHorizontalIndex(meta));
     }
 
     protected BlockStateContainer createBlockState() {

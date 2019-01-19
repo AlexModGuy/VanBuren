@@ -52,7 +52,7 @@ public class BlockAsphaltRoadLines extends BlockGeneric implements IRoad {
     }
 
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer() {
+    public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.TRANSLUCENT;
     }
 

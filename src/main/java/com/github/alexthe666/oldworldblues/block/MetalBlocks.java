@@ -42,7 +42,7 @@ public enum MetalBlocks {
         metalBlock = new BlockMetal(this);
         metalSlab = new SlabHalf(friendlyName + "_metal_slab", metalSlab, metalSlabDouble);
         metalSlabDouble = new SlabDouble(friendlyName + "_metal_slab", metalSlab, metalSlabDouble);
-        metalStairs = new BlockGenericStairs(metalBlock.getDefaultState(), friendlyName + "_metal_stairs");
+        metalStairs = new BlockMetalStairs(metalBlock.getDefaultState(), friendlyName + "_metal_stairs");
         metalSheet = new BlockMetalSheet(this);
     }
 
@@ -50,6 +50,11 @@ public enum MetalBlocks {
     public class BlockMetal extends BlockGeneric {
         public BlockMetal(MetalBlocks enumMetalColors) {
             super(enumMetalColors.friendlyName + "_metal_block", 4.0F, 14F, Material.IRON, SoundType.METAL);
+        }
+    }
+    public class BlockMetalStairs extends BlockGenericStairs{
+        public BlockMetalStairs(IBlockState modelState, String name) {
+            super(modelState, name);
         }
     }
 
@@ -99,7 +104,7 @@ public enum MetalBlocks {
 
     }
 
-    private class BlockMetalSheet extends BlockGeneric {
+    public class BlockMetalSheet extends BlockGeneric {
 
         public BlockMetalSheet(MetalBlocks metalBlocks) {
             super(metalBlocks.friendlyName + "_metal_sheet", 2.0F, 10F, Material.IRON, SoundType.METAL);

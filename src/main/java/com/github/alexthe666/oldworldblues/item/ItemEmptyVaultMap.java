@@ -17,7 +17,7 @@ public class ItemEmptyVaultMap extends Item {
 
     public ItemEmptyVaultMap(){
         this.setCreativeTab(OldWorldBlues.TAB);
-        this.setUnlocalizedName("oldworldblues.vault_map");
+        this.setTranslationKey("oldworldblues.vault_map");
         this.setRegistryName(OldWorldBlues.MODID, "vault_map");
     }
 

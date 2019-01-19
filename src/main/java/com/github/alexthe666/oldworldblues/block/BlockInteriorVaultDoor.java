@@ -45,7 +45,7 @@ public class BlockInteriorVaultDoor extends BlockContainer {
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
         this.setSoundType(SoundType.METAL);
         this.setCreativeTab(OldWorldBlues.TAB);
-        this.setUnlocalizedName("oldworldblues.interior_vault_door");
+        this.setTranslationKey("oldworldblues.interior_vault_door");
         this.setRegistryName(OldWorldBlues.MODID, "interior_vault_door");
         GameRegistry.registerTileEntity(TileEntityInteriorVaultDoor.class, "interior_vault_door");
         this.setLightOpacity(1);
@@ -73,7 +73,7 @@ public class BlockInteriorVaultDoor extends BlockContainer {
     @Override
     @SuppressWarnings("deprecation")
     public IBlockState getStateFromMeta(int meta) {
-        return this.getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta));
+        return this.getDefaultState().withProperty(FACING, EnumFacing.byHorizontalIndex(meta));
     }
 
     public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) {
@@ -191,7 +191,7 @@ public class BlockInteriorVaultDoor extends BlockContainer {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer() {
+    public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.CUTOUT;
     }
 

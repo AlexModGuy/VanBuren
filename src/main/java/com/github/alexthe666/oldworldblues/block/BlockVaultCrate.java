@@ -42,7 +42,7 @@ public class BlockVaultCrate extends BlockContainer implements IBlockStackable, 
         this.setSoundType(SoundType.METAL);
         this.setResistance(Float.MAX_VALUE);
         this.setCreativeTab(OldWorldBlues.TAB);
-        this.setUnlocalizedName("oldworldblues.vault_crate_" + color);
+        this.setTranslationKey("oldworldblues.vault_crate_" + color);
         this.setRegistryName(OldWorldBlues.MODID, "vault_crate_" + color);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
     }
@@ -106,7 +106,7 @@ public class BlockVaultCrate extends BlockContainer implements IBlockStackable, 
     }
 
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer() {
+    public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.CUTOUT;
     }
 
@@ -115,7 +115,7 @@ public class BlockVaultCrate extends BlockContainer implements IBlockStackable, 
     }
 
     public IBlockState getStateFromMeta(int meta) {
-        return this.getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta));
+        return this.getDefaultState().withProperty(FACING, EnumFacing.byHorizontalIndex(meta));
     }
 
     protected BlockStateContainer createBlockState() {

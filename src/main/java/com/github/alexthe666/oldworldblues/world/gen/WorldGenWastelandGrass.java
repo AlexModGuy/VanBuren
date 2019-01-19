@@ -1,4 +1,4 @@
-package com.github.alexthe666.oldworldblues.world;
+package com.github.alexthe666.oldworldblues.world.gen;
 
 import com.github.alexthe666.oldworldblues.block.BlockIrradiatedTallGrass;
 import net.minecraft.block.state.IBlockState;

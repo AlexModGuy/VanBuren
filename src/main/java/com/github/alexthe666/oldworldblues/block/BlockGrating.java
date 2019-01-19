@@ -22,7 +22,7 @@ public class BlockGrating extends Block implements IGrating{
         this.setResistance(15F);
         this.setSoundType(SoundType.METAL);
         this.setCreativeTab(OldWorldBlues.TAB);
-        this.setUnlocalizedName("oldworldblues.grating");
+        this.setTranslationKey("oldworldblues.grating");
         this.setRegistryName(OldWorldBlues.MODID, "grating");
         this.setLightOpacity(1);
     }
@@ -33,7 +33,7 @@ public class BlockGrating extends Block implements IGrating{
 
     @Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer() {
+    public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.CUTOUT;
     }
 

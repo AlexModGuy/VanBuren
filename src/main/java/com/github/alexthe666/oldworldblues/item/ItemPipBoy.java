@@ -12,7 +12,7 @@ public class ItemPipBoy extends Item {
     public ItemPipBoy(String version){
         this.maxStackSize = 1;
         this.setCreativeTab(OldWorldBlues.TAB);
-        this.setUnlocalizedName("oldworldblues.pipboy" + version);
+        this.setTranslationKey("oldworldblues.pipboy" + version);
         this.setRegistryName(OldWorldBlues.MODID, "pipboy" + version);
     }
 }

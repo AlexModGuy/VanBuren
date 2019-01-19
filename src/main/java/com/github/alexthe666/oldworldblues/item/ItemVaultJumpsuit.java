@@ -25,7 +25,7 @@ public class ItemVaultJumpsuit extends ItemArmor implements IVaultJumpsuit {
     public ItemVaultJumpsuit(ArmorMaterial material, int renderIndex, EntityEquipmentSlot slot, String name) {
         super(material, renderIndex, slot);
         this.setCreativeTab(OldWorldBlues.TAB);
-        this.setUnlocalizedName("oldworldblues." + name);
+        this.setTranslationKey("oldworldblues." + name);
         this.setRegistryName(OldWorldBlues.MODID, name);
     }
 

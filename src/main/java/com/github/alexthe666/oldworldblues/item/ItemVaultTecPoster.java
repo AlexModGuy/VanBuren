@@ -14,7 +14,7 @@ public class ItemVaultTecPoster extends Item {
 
     public ItemVaultTecPoster(){
         this.setCreativeTab(OldWorldBlues.TAB);
-        this.setUnlocalizedName("oldworldblues.vault_tec_poster");
+        this.setTranslationKey("oldworldblues.vault_tec_poster");
         this.setRegistryName(OldWorldBlues.MODID, "vault_tec_poster");
     }
 

@@ -13,7 +13,7 @@ public class BlockGenericStairs extends BlockStairs {
 		super(modelState);
 		this.setLightOpacity(0);
 		this.setCreativeTab(OldWorldBlues.TAB);
-		this.setUnlocalizedName("oldworldblues." + name);
+		this.setTranslationKey("oldworldblues." + name);
 		this.setRegistryName(OldWorldBlues.MODID, name);
 	}
 

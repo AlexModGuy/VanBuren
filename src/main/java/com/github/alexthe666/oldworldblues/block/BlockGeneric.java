@@ -13,7 +13,7 @@ public class BlockGeneric extends Block {
         this.setSoundType(sound);
         this.setResistance(resistance);
         this.setCreativeTab(OldWorldBlues.TAB);
-        this.setUnlocalizedName("oldworldblues." + name);
+        this.setTranslationKey("oldworldblues." + name);
         this.setRegistryName(OldWorldBlues.MODID, name);
     }
 }

@@ -33,7 +33,7 @@ public class BlockCardboardBox extends BlockHorizontal implements IDecorationBlo
         this.setSoundType(SoundType.CLOTH);
         this.setResistance(Float.MAX_VALUE);
         this.setCreativeTab(OldWorldBlues.TAB);
-        this.setUnlocalizedName("oldworldblues.cardboard_box");
+        this.setTranslationKey("oldworldblues.cardboard_box");
         this.setRegistryName(OldWorldBlues.MODID, "cardboard_box");
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(OPEN, true));
         this.setLightOpacity(0);
@@ -95,7 +95,7 @@ public class BlockCardboardBox extends BlockHorizontal implements IDecorationBlo
     }
 
     public IBlockState getStateFromMeta(int meta) {
-        return this.getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta % 4)).withProperty(OPEN, meta > 3);
+        return this.getDefaultState().withProperty(FACING, EnumFacing.byHorizontalIndex(meta % 4)).withProperty(OPEN, meta > 3);
     }
 
     @Override
@@ -124,7 +124,7 @@ public class BlockCardboardBox extends BlockHorizontal implements IDecorationBlo
 
     @Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer() {
+    public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.CUTOUT;
     }
 

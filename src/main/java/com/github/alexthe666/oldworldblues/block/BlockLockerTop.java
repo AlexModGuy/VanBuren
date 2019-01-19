@@ -25,7 +25,7 @@ public class BlockLockerTop extends Block implements IDecorationBlock {
         this.setHardness(5F);
         this.setSoundType(SoundType.METAL);
         this.setCreativeTab(OldWorldBlues.TAB);
-        this.setUnlocalizedName("oldworldblues.locker_top");
+        this.setTranslationKey("oldworldblues.locker_top");
         this.setRegistryName(OldWorldBlues.MODID, "locker_top");
         this.setLightOpacity(1);
     }

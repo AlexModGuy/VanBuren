@@ -1,4 +1,5 @@
 package com.github.alexthe666.oldworldblues.structure;
+import com.github.alexthe666.oldworldblues.world.gen.WorldGenVaultTecVan;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;

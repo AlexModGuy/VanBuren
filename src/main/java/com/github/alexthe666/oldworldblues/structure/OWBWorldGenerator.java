@@ -1,5 +1,9 @@
 package com.github.alexthe666.oldworldblues.structure;
 
+import com.github.alexthe666.oldworldblues.OldWorldBlues;
+import com.github.alexthe666.oldworldblues.world.gen.WorldGenVault;
+import com.github.alexthe666.oldworldblues.world.gen.WorldGenVehicle;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
@@ -20,6 +24,24 @@ public class OWBWorldGenerator implements IWorldGenerator{
             BlockPos centerPos = world.getHeight(new BlockPos(x2, 0, z2));
             int y2 = Math.max(centerPos.getY() - (40 + random.nextInt(20)), 10);
             new WorldGenVault().generate(world, random, new BlockPos(x2, y2, z2));
+        }
+        if(world.provider.getDimension() == OldWorldBlues.CONFIG.wastelandDimensionID){
+            if(chunkX % 16 == 0){
+                if(random.nextInt(2) == 0){
+                    int x2 = x + random.nextInt(15);
+                    int z2 = z + random.nextInt(15);
+                    BlockPos centerPos = world.getHeight(new BlockPos(x2, 0, z2));
+                    new WorldGenVehicle(random.nextBoolean() ? EnumFacing.NORTH : EnumFacing.SOUTH).generate(world, random, centerPos);
+                }
+            }
+            if(chunkZ % 16 == 0){
+                if(random.nextInt(2) == 0){
+                    int x2 = x + random.nextInt(15);
+                    int z2 = z + random.nextInt(15);
+                    BlockPos centerPos = world.getHeight(new BlockPos(x2, 0, z2));
+                    new WorldGenVehicle(random.nextBoolean() ? EnumFacing.WEST : EnumFacing.EAST).generate(world, random, centerPos);
+                }
+            }
         }
     }
 }

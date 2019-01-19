@@ -34,11 +34,11 @@ public abstract class BlockGenericSlab extends BlockSlab {
 		setResistance(resistance);
 		setSoundType(soundType);
 		if (this.isDouble()) {
-			setUnlocalizedName("oldworldblues." + name + "_double");
+			setTranslationKey("oldworldblues." + name + "_double");
 			this.setRegistryName(OldWorldBlues.MODID, name + "_double");
 		} else {
 			iblockstate = iblockstate.withProperty(HALF, BlockSlab.EnumBlockHalf.BOTTOM);
-			setUnlocalizedName("oldworldblues." + name);
+			setTranslationKey("oldworldblues." + name);
 			this.setRegistryName(OldWorldBlues.MODID, name);
 			setCreativeTab(OldWorldBlues.TAB);
 		}
@@ -91,8 +91,8 @@ public abstract class BlockGenericSlab extends BlockSlab {
 	}
 
 	@Override
-	public String getUnlocalizedName(int meta) {
-		return super.getUnlocalizedName();
+	public String getTranslationKey(int meta) {
+		return super.getTranslationKey();
 	}
 
 	@Override

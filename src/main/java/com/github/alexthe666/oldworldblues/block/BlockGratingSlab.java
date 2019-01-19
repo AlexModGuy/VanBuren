@@ -39,7 +39,7 @@ public abstract class BlockGratingSlab extends BlockGenericSlab implements IGrat
 
         @Override
         @SideOnly(Side.CLIENT)
-        public BlockRenderLayer getBlockLayer() {
+        public BlockRenderLayer getRenderLayer() {
             return BlockRenderLayer.CUTOUT;
         }
 
@@ -80,7 +80,7 @@ public abstract class BlockGratingSlab extends BlockGenericSlab implements IGrat
 
         @Override
         @SideOnly(Side.CLIENT)
-        public BlockRenderLayer getBlockLayer() {
+        public BlockRenderLayer getRenderLayer() {
             return BlockRenderLayer.CUTOUT;
         }
 
