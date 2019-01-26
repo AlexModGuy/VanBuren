@@ -1,5 +1,6 @@
 package com.github.alexthe666.oldworldblues.block;
 
+import com.github.alexthe666.oldworldblues.init.OWBBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -15,6 +16,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class BlockGenericGlass extends BlockGeneric {
     public BlockGenericGlass(String name, float hardness, float resistance, Material material, SoundType soundType) {
         super(name, hardness, resistance, material, soundType);
+        this.setLightOpacity(255);
     }
 
     public boolean isOpaqueCube(IBlockState state) {
@@ -28,19 +30,24 @@ public class BlockGenericGlass extends BlockGeneric {
     @Override
     @SideOnly(Side.CLIENT)
     public BlockRenderLayer getRenderLayer() {
-        return BlockRenderLayer.TRANSLUCENT;
+        return this == OWBBlocks.BROKEN_GLASS ? BlockRenderLayer.TRANSLUCENT : BlockRenderLayer.CUTOUT;
     }
 
     @SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
         IBlockState iblockstate = blockAccess.getBlockState(pos.offset(side));
         Block block = iblockstate.getBlock();
-        if (blockState != iblockstate) {
+        if(this == OWBBlocks.RUSTY_LATTICE){
             return true;
+        }else{
+            if (blockState != iblockstate) {
+                return true;
+            }
+            if (block == this) {
+                return false;
+            }
+            return super.shouldSideBeRendered(blockState, blockAccess, pos, side);
         }
-        if (block == this) {
-            return false;
-        }
-        return super.shouldSideBeRendered(blockState, blockAccess, pos, side);
+
     }
 }

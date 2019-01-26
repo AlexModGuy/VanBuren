@@ -41,11 +41,11 @@ public class WorldGenVehicle extends WorldGenerator {
         boolean paint = true;
         int chance = rand.nextInt(99) + 1;
         if(chance < 80){
-            if(chance > 20){
+            if(chance > 60){
                 model = CAR_0;
             }else if(chance > 40){
                 model = CAR_1;
-            }else if(chance > 60){
+            }else if(chance > 20){
                 model = CAR_2;
             }else{
                 model = CAR_3;
@@ -85,7 +85,7 @@ public class WorldGenVehicle extends WorldGenerator {
                 !isPartOfACar(world.getBlockState(middle.offset(facing.rotateY(), x / 2))) && !isPartOfACar(world.getBlockState(middle.offset(facing.rotateYCCW(), x / 2)));
     }
 
-    private boolean isPartOfACar(IBlockState state){
+    public static boolean isPartOfACar(IBlockState state){
         return state.getBlock() instanceof MetalBlocks.BlockMetal || state.getBlock() instanceof MetalBlocks.BlockMetalSheet || state.getBlock() instanceof MetalBlocks.SlabDouble || state.getBlock() instanceof MetalBlocks.SlabHalf
                 || state.getBlock() == OWBBlocks.CAR_GRILL || state.getBlock() == OWBBlocks.HEADLIGHT || state.getBlock() == OWBBlocks.HEADLIGHT_BROKEN;
     }

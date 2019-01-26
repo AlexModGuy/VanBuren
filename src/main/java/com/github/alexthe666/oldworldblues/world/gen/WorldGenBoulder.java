@@ -30,8 +30,10 @@ public class WorldGenBoulder extends WorldGenerator {
             float f = (float) (j + k + l) * 0.333F + 0.5F;
 
             for (BlockPos blockpos : BlockPos.getAllInBox(position.add(-j, -k, -l), position.add(j, k, l))) {
-                if (blockpos.distanceSq(position) <= (double) (f * f) && (replaceAir || worldIn.getBlockState(blockpos).isOpaqueCube() &&
-                        (worldIn.getBlockState(blockpos).getMaterial() == Material.GROUND || worldIn.getBlockState(blockpos).getMaterial() == Material.GRASS || worldIn.getBlockState(blockpos).getMaterial() == Material.ROCK|| worldIn.getBlockState(blockpos).getMaterial() == Material.SAND))) {
+                if (blockpos.distanceSq(position) <= (double) (f * f) && (replaceAir || (
+                        !WorldGenVehicle.isPartOfACar(worldIn.getBlockState(blockpos)) &&
+                        worldIn.getBlockState(blockpos).isOpaqueCube() &&
+                        (worldIn.getBlockState(blockpos).getMaterial() == Material.GROUND || worldIn.getBlockState(blockpos).getMaterial() == Material.GRASS || worldIn.getBlockState(blockpos).getMaterial() == Material.ROCK|| worldIn.getBlockState(blockpos).getMaterial() == Material.SAND) ))) {
                     worldIn.setBlockState(blockpos, this.block, 4);
                 }
             }

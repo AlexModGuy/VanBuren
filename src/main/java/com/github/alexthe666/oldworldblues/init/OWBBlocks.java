@@ -145,6 +145,11 @@ public class OWBBlocks {
     public static final Block CAR_GRILL = new BlockGenericVaultConnectedTextures("car_grill");
     @GameRegistry.ObjectHolder(OldWorldBlues.MODID + ":broken_glass")
     public static final Block BROKEN_GLASS = new BlockGenericGlass("broken_glass", 1.5F, 0F, Material.GLASS, SoundType.GLASS);
+    @GameRegistry.ObjectHolder(OldWorldBlues.MODID + ":rusty_lattice")
+    public static final Block RUSTY_LATTICE = new BlockGenericGlass("rusty_lattice", 4F, 10F, Material.IRON, SoundType.METAL);
+    @GameRegistry.ObjectHolder(OldWorldBlues.MODID + ":rusty_pole")
+    public static final Block RUSTY_POLE = new BlockRustyPole();
+
     static{
         GameRegistry.registerTileEntity(TileEntityOWBStorage.class, "OWBStorage");
         GameRegistry.registerTileEntity(TileEntityLocker.class, "OWBLocker");
