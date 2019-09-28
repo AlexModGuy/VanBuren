@@ -9,6 +9,6 @@ public class MapGenWastelandCaves extends MapGenCaves {
 
     protected boolean canReplaceBlock(IBlockState state1, IBlockState state2) {
         Block block = state1.getBlock();
-        return super.canReplaceBlock(state1, state2) || block == OWBBlocks.IRRADIATED_STONE || block == OWBBlocks.IRRADIATED_SOIL || block == OWBBlocks.ROCKY_IRRADIATED_SOIL;
+        return super.canReplaceBlock(state1, state2) || block == OWBBlocks.IRRADIATED_STONE || block == OWBBlocks.IRRADIATED_SOIL || block == OWBBlocks.IRRADIATED_GRAVEL;
     }
 }

@@ -7,11 +7,17 @@ import net.minecraft.block.BlockTallGrass;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyBool;
+import net.minecraft.block.properties.PropertyInteger;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -19,6 +25,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.Random;
 
 public class BlockIrradiatedGrass extends Block implements IGrowable {
+
+    public static final PropertyInteger INDEX = PropertyInteger.create("index", 0, 3);
 
     public BlockIrradiatedGrass() {
         super(Material.GRASS);
@@ -29,8 +37,33 @@ public class BlockIrradiatedGrass extends Block implements IGrowable {
         this.setCreativeTab(OldWorldBlues.TAB);
         this.setTranslationKey("oldworldblues.irradiated_grass");
         this.setRegistryName(OldWorldBlues.MODID, "irradiated_grass");
+        this.setDefaultState(this.blockState.getBaseState().withProperty(INDEX, 0));
     }
 
+    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+        return state.withProperty(INDEX, getIndexFromPos(pos));
+    }
+
+    protected BlockStateContainer createBlockState() {
+        return new BlockStateContainer(this, new IProperty[]{INDEX});
+    }
+
+    public int getMetaFromState(IBlockState state) {
+        return 0;
+    }
+
+    public int getIndexFromPos(BlockPos pos){
+        if(pos.getX() % 2 == 0 && pos.getZ() % 2 == 0){
+            return 3;
+        }
+        else if(pos.getX() % 2 == 0 && pos.getZ() % 2 != 0){
+            return 1;
+        }
+        else if(pos.getX() % 2 != 0 && pos.getZ() % 2 != 0){
+            return 0;
+        }
+        return 2;
+    }
     public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
         if (!worldIn.isRemote) {
             if (!worldIn.isAreaLoaded(pos, 3))
@@ -49,8 +82,8 @@ public class BlockIrradiatedGrass extends Block implements IGrowable {
                         IBlockState iblockstate = worldIn.getBlockState(blockpos.up());
                         IBlockState iblockstate1 = worldIn.getBlockState(blockpos);
 
-                        if (iblockstate1.getBlock() == OWBBlocks.IRRADIATED_SOIL && worldIn.getLightFromNeighbors(blockpos.up()) >= 4 && iblockstate.getLightOpacity(worldIn, pos.up()) <= 2) {
-                            worldIn.setBlockState(blockpos, Blocks.GRASS.getDefaultState());
+                        if (iblockstate1.getBlock() == OWBBlocks.IRRADIATED_SOIL && iblockstate1.getValue(BlockIrradiatedSoil.GROWTH) && worldIn.getLightFromNeighbors(blockpos.up()) >= 4 && iblockstate.getLightOpacity(worldIn, pos.up()) <= 2) {
+                            worldIn.setBlockState(blockpos, OWBBlocks.IRRADIATED_GRASS.getDefaultState());
                         }
                     }
                 }
@@ -59,7 +92,7 @@ public class BlockIrradiatedGrass extends Block implements IGrowable {
     }
 
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-        return Blocks.DIRT.getItemDropped(OWBBlocks.IRRADIATED_SOIL.getDefaultState(), rand, fortune);
+        return Item.getItemFromBlock(OWBBlocks.IRRADIATED_SOIL);
     }
 
     public boolean canGrow(World worldIn, BlockPos pos, IBlockState state, boolean isClient) {

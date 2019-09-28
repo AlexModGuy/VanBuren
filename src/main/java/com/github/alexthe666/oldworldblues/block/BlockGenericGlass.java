@@ -6,17 +6,19 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.lwjgl.opengl.GL11;
 
 public class BlockGenericGlass extends BlockGeneric {
     public BlockGenericGlass(String name, float hardness, float resistance, Material material, SoundType soundType) {
         super(name, hardness, resistance, material, soundType);
-        this.setLightOpacity(255);
+        this.setLightOpacity(0);
     }
 
     public boolean isOpaqueCube(IBlockState state) {

@@ -1,0 +1,90 @@
+{
+    "multipart": [
+
+        {   "when": { "up": "0", "east" : "0", "west" : "0", "south" : "0", "north" : "0" },
+            "apply": { "model": "oldworldblues:tree/log4", "uvlock": false }
+        },
+
+        {   "when": { "up": "1" },
+            "apply": { "model": "oldworldblues:tree/log4", "uvlock": false }
+        },
+        {   "when": { "up": "2" },
+            "apply": { "model": "oldworldblues:tree/log6", "uvlock": false }
+        },
+        {   "when": { "up": "3" },
+            "apply": { "model": "oldworldblues:tree/log8", "uvlock": false }
+        },
+        {   "when": { "up": "4" },
+            "apply": { "model": "oldworldblues:tree/log10", "uvlock": false }
+        },
+        {   "when": { "up": "5" },
+            "apply": { "model": "oldworldblues:tree/log12", "uvlock": false }
+        },
+
+
+        {   "when": { "east": "1" },
+            "apply": { "model": "oldworldblues:tree/log4_stick", "uvlock": false, "x": 90, "y" : 270 }
+        },
+        {   "when": { "east": "2" },
+            "apply": { "model": "oldworldblues:tree/log6_stick", "uvlock": false, "x": 90, "y" : 270 }
+        },
+        {   "when": { "east": "3" },
+            "apply": { "model": "oldworldblues:tree/log8_stick", "uvlock": false, "x": 90, "y" : 270 }
+        },
+        {   "when": { "east": "4" },
+            "apply": { "model": "oldworldblues:tree/log10_stick", "uvlock": false, "x": 90, "y" : 270 }
+        },
+        {   "when": { "east": "5" },
+            "apply": { "model": "oldworldblues:tree/log12_stick", "uvlock": false, "x": 90, "y" : 270 }
+        },
+
+
+        {   "when": { "west": "1" },
+            "apply": { "model": "oldworldblues:tree/log4_stick", "uvlock": false, "x": 90, "y" : 90 }
+        },
+        {   "when": { "west": "2" },
+            "apply": { "model": "oldworldblues:tree/log6_stick", "uvlock": false, "x": 90, "y" : 90 }
+        },
+        {   "when": { "west": "3" },
+            "apply": { "model": "oldworldblues:tree/log8_stick", "uvlock": false, "x": 90, "y" : 90 }
+        },
+        {   "when": { "west": "4" },
+            "apply": { "model": "oldworldblues:tree/log10_stick", "uvlock": false, "x": 90, "y" : 90 }
+        },
+        {   "when": { "west": "5" },
+            "apply": { "model": "oldworldblues:tree/log12_stick", "uvlock": false, "x": 90, "y" : 90 }
+        },
+
+        {   "when": { "south": "1" },
+            "apply": { "model": "oldworldblues:tree/log4_stick", "uvlock": false, "x": 90, "y" : 0 }
+        },
+        {   "when": { "south": "2" },
+            "apply": { "model": "oldworldblues:tree/log6_stick", "uvlock": false, "x": 90, "y" : 0 }
+        },
+        {   "when": { "south": "3" },
+            "apply": { "model": "oldworldblues:tree/log8_stick", "uvlock": false, "x": 90, "y" : 0 }
+        },
+        {   "when": { "south": "4" },
+            "apply": { "model": "oldworldblues:tree/log10_stick", "uvlock": false, "x": 90, "y" : 0 }
+        },
+        {   "when": { "south": "5" },
+            "apply": { "model": "oldworldblues:tree/log12_stick", "uvlock": false, "x": 90, "y" : 0 }
+        },
+
+        {   "when": { "north": "1" },
+            "apply": { "model": "oldworldblues:tree/log4_stick", "uvlock": false, "x": 90, "y" : 180 }
+        },
+        {   "when": { "north": "2" },
+            "apply": { "model": "oldworldblues:tree/log6_stick", "uvlock": false, "x": 90, "y" : 180 }
+        },
+        {   "when": { "north": "3" },
+            "apply": { "model": "oldworldblues:tree/log8_stick", "uvlock": false, "x": 90, "y" : 180 }
+        },
+        {   "when": { "north": "4" },
+            "apply": { "model": "oldworldblues:tree/log10_stick", "uvlock": false, "x": 90, "y" : 180 }
+        },
+        {   "when": { "north": "5" },
+            "apply": { "model": "oldworldblues:tree/log12_stick", "uvlock": false, "x": 90, "y" : 180 }
+        }
+    ]
+}

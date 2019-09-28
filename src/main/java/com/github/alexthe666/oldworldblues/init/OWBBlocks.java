@@ -116,11 +116,11 @@ public class OWBBlocks {
     @GameRegistry.ObjectHolder(OldWorldBlues.MODID + ":irradiated_stone")
     public static final Block IRRADIATED_STONE = new BlockGeneric("irradiated_stone", 1.5F, 10F, Material.ROCK, SoundType.STONE);
     @GameRegistry.ObjectHolder(OldWorldBlues.MODID + ":irradiated_soil")
-    public static final Block IRRADIATED_SOIL = new BlockGeneric("irradiated_soil", 0.5F, 0F, Material.GROUND, SoundType.GROUND);
+    public static final Block IRRADIATED_SOIL = new BlockIrradiatedSoil();
     @GameRegistry.ObjectHolder(OldWorldBlues.MODID + ":irradiated_grass")
     public static final Block IRRADIATED_GRASS = new BlockIrradiatedGrass();
     @GameRegistry.ObjectHolder(OldWorldBlues.MODID + ":irradiated_soil_rocky")
-    public static final Block ROCKY_IRRADIATED_SOIL = new BlockGeneric("irradiated_soil_rocky", 1.05F, 3F, Material.GROUND, SoundType.GROUND);
+    public static final Block IRRADIATED_GRAVEL = new BlockGeneric("irradiated_gravel", 1.05F, 3F, Material.GROUND, SoundType.GROUND);
     @GameRegistry.ObjectHolder(OldWorldBlues.MODID + ":irradiated_tall_grass")
     public static final Block IRRADIATED_TALL_GRASS = new BlockIrradiatedTallGrass();
     @GameRegistry.ObjectHolder(OldWorldBlues.MODID + ":irradiated_mud")
@@ -149,6 +149,11 @@ public class OWBBlocks {
     public static final Block RUSTY_LATTICE = new BlockGenericGlass("rusty_lattice", 4F, 10F, Material.IRON, SoundType.METAL);
     @GameRegistry.ObjectHolder(OldWorldBlues.MODID + ":rusty_pole")
     public static final Block RUSTY_POLE = new BlockRustyPole();
+
+    @GameRegistry.ObjectHolder(OldWorldBlues.MODID + ":petrified_tree")
+    public static final Block PETRIFIED_TREE = new BlockPetrifiedStump();
+    @GameRegistry.ObjectHolder(OldWorldBlues.MODID + ":petrified_tree_branch")
+    public static final Block PETRIFIED_TREE_BRANCH = new BlockPetrifiedBranch();
 
     static{
         GameRegistry.registerTileEntity(TileEntityOWBStorage.class, "OWBStorage");

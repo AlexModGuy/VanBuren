@@ -5,11 +5,9 @@ import com.github.alexthe666.oldworldblues.block.BlockCrackedAsphaltRoadLines;
 import com.github.alexthe666.oldworldblues.block.IRoad;
 import com.github.alexthe666.oldworldblues.init.OWBBlocks;
 import com.github.alexthe666.oldworldblues.world.gen.WorldGenBoulder;
-import com.github.alexthe666.oldworldblues.world.gen.WorldGenVehicle;
 import com.github.alexthe666.oldworldblues.world.gen.WorldGenWastelandGrass;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkPrimer;
@@ -21,7 +19,7 @@ import java.util.Random;
 
 public class BiomeWasteland extends OWBBiome {
     protected IBlockState stone;
-    public static final int GRASS_COLOR = 0XBD9B73;
+    public static final int GRASS_COLOR = 0XCAB397;
     public BiomeWasteland(String name, BiomeProperties properties) {
         super(name, properties);
         stone = OWBBlocks.IRRADIATED_STONE.getDefaultState();
@@ -42,7 +40,7 @@ public class BiomeWasteland extends OWBBiome {
 
     public void decorate(World worldIn, Random rand, BlockPos pos) {
         if(pos.getX() % 256 == 0){
-            for(int length = 0; length < 16; length++) {
+            for(int length = 0; length < 15; length++) {
                 for (int width = 0; width < 7; width++) {
                     BlockPos bottom = worldIn.getHeight(pos.add(width, 0, length)).down();
                     boolean hole = rand.nextFloat() < Math.abs(width - 3.5F) / 10F;
@@ -61,7 +59,7 @@ public class BiomeWasteland extends OWBBiome {
                 }
             }
         }else if(pos.getZ() % 256 == 0){
-             for(int length = 0; length < 16; length++) {
+             for(int length = 0; length < 15; length++) {
                 for (int width = 0; width < 7; width++) {
                     BlockPos bottom = worldIn.getHeight(pos.add(length, 0, width)).down();
                     boolean hole = rand.nextFloat() < Math.abs(width - 3.5F) / 10F;
@@ -154,7 +152,7 @@ public class BiomeWasteland extends OWBBiome {
 
                         if (j == 0 && iblockstate1.getBlock() == OWBBlocks.IRRADIATED_SOIL && k > 1) {
                             j = rand.nextInt(4) + Math.max(0, j1 - 63);
-                            iblockstate1 = OWBBlocks.ROCKY_IRRADIATED_SOIL.getDefaultState();
+                            iblockstate1 = OWBBlocks.IRRADIATED_GRAVEL.getDefaultState();
                         }
                         if (j == 0 && iblockstate1.getBlock() == OWBBlocks.WASTELAND_SAND && k > 1) {
                             j = rand.nextInt(4) + Math.max(0, j1 - 63);

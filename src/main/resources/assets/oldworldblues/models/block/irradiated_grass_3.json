@@ -1,0 +1,10 @@
+{
+    "parent": "block/grass",
+    "textures": {
+        "particle": "oldworldblues:blocks/irradiated_soil",
+        "bottom": "oldworldblues:blocks/irradiated_soil",
+        "top": "oldworldblues:blocks/irradiated_grass_3",
+        "side": "oldworldblues:blocks/irradiated_grass_side",
+        "overlay": "oldworldblues:blocks/irradiated_grass_side"
+    }
+}

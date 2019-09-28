@@ -82,6 +82,7 @@ public class ClientProxy extends CommonProxy {
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
     public static void registerModels(ModelRegistryEvent event) {
+        ModelLoader.setCustomStateMapper(OWBBlocks.IRRADIATED_SOIL, (new StateMap.Builder()).ignore(BlockIrradiatedSoil.GROWTH).build());
 
         ModelLoader.setCustomStateMapper(OWBBlocks.VAULT_DOOR, (new StateMap.Builder()).ignore(BlockVaultDoor.FACING).build());
         ModelLoader.setCustomStateMapper(OWBBlocks.VAULT_DOOR_FRAME, (new StateMap.Builder()).ignore(BlockVaultDoorFrame.FACING).build());
@@ -151,13 +152,13 @@ public class ClientProxy extends CommonProxy {
             public int colorMultiplier(IBlockState state, @Nullable IBlockAccess worldIn, @Nullable BlockPos pos, int tintIndex) {
                 return worldIn != null && pos != null ? BiomeColorHelper.getGrassColorAtPos(worldIn, pos) : BiomeWasteland.GRASS_COLOR;
             }
-        }, OWBBlocks.IRRADIATED_GRASS, OWBBlocks.IRRADIATED_TALL_GRASS);
+        }, OWBBlocks.IRRADIATED_TALL_GRASS);
         Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new IItemColor() {
             @Override
             public int colorMultiplier(ItemStack stack, int tintIndex) {
                 return BiomeWasteland.GRASS_COLOR;
             }
-        }, Item.getItemFromBlock(OWBBlocks.IRRADIATED_GRASS), Item.getItemFromBlock(OWBBlocks.IRRADIATED_TALL_GRASS));
+        }, Item.getItemFromBlock(OWBBlocks.IRRADIATED_TALL_GRASS));
     }
 
     public void postInit(){

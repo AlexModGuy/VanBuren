@@ -4,6 +4,8 @@ import com.github.alexthe666.oldworldblues.init.OWBBlocks;
 import com.github.alexthe666.oldworldblues.world.gen.WorldGenBoulder;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Random;
 
@@ -13,6 +15,17 @@ public class BiomeWastelandDesert extends BiomeWasteland {
         super(name, properties);
         this.topBlock = OWBBlocks.WASTELAND_SAND.getDefaultState();
         this.fillerBlock = OWBBlocks.WASTELAND_SAND.getDefaultState();
+    }
+
+    @SideOnly(Side.CLIENT)
+    public int getGrassColorAtPos(BlockPos pos){
+        return 0XC19476;
+    }
+
+
+    @SideOnly(Side.CLIENT)
+    public int getSkyColorByTemp(float currentTemperature){
+        return 0X8C6754;
     }
 
     public void decorate(World worldIn, Random rand, BlockPos pos) {

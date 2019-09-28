@@ -51,7 +51,7 @@ public class WorldGenBillboard extends WorldGenerator {
             }
         }
         BlockPos paintingPos = position.up(supportHeight+ (isShort ? 0 : 1)).offset(facing.rotateY());
-        worldIn.setBlockState(paintingPos, Blocks.PUMPKIN.getDefaultState().withProperty(BlockHorizontal.FACING, facing.rotateY()));
+        //worldIn.setBlockState(paintingPos, Blocks.PUMPKIN.getDefaultState().withProperty(BlockHorizontal.FACING, facing.rotateY()));
          return true;
     }
 }

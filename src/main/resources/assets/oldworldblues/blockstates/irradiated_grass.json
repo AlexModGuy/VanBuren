@@ -1,5 +1,8 @@
 {
     "variants": {
-        "normal": { "model": "oldworldblues:irradiated_grass" }
+        "index=0": { "model": "oldworldblues:irradiated_grass_0"},
+        "index=1": { "model": "oldworldblues:irradiated_grass_1"},
+        "index=2": { "model": "oldworldblues:irradiated_grass_2"},
+        "index=3": { "model": "oldworldblues:irradiated_grass_3"}
     }
 }
